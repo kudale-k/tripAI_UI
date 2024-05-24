@@ -1,0 +1,97 @@
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.dll
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\Newtonsoft.Json.dll
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.ValidatorAttribute.dll
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.dll
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.pdb
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll.config
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.xml
+J:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csprojAssemblyReference.cache
+J:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CoreCompileInputs.cache
+J:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CopyComplete
+J:\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.pdb
+J:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.dll
+J:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.pdb
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.dll
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.pdb
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\Newtonsoft.Json.dll
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.ValidatorAttribute.dll
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.dll
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.pdb
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll.config
+E:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.xml
+E:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csprojAssemblyReference.cache
+E:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CopyComplete
+E:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.dll
+E:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.pdb
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.dll
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.pdb
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\Newtonsoft.Json.dll
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.ValidatorAttribute.dll
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.dll
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.pdb
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll.config
+D:\E Drive\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.xml
+D:\E Drive\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csprojAssemblyReference.cache
+D:\E Drive\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CoreCompileInputs.cache
+D:\E Drive\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CopyComplete
+D:\E Drive\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.dll
+D:\E Drive\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.pdb
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.dll
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\HotelDataModels.pdb
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\Newtonsoft.Json.dll
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.ValidatorAttribute.dll
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.dll
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.pdb
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll.config
+C:\DOMES\Presentation\HotelDataModels\bin\Debug\FluentValidation.xml
+C:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CoreCompileInputs.cache
+C:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CopyComplete
+C:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.dll
+C:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.pdb
+C:\DOMES\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csprojAssemblyReference.cache
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\HotelDataModels.dll
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\HotelDataModels.pdb
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\Newtonsoft.Json.dll
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.ValidatorAttribute.dll
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.dll
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.pdb
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll.config
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.xml
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.AssemblyReference.cache
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CoreCompileInputs.cache
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CopyComplete
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.dll
+C:\Users\rahul\Desktop\TripAI\code\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.pdb
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\HotelDataModels.dll
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\HotelDataModels.pdb
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\Newtonsoft.Json.dll
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.ValidatorAttribute.dll
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.dll
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.pdb
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll.config
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.xml
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.AssemblyReference.cache
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CoreCompileInputs.cache
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CopyComplete
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.dll
+C:\Applications\TripAI\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.pdb
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\HotelDataModels.dll
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\HotelDataModels.pdb
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.ValidatorAttribute.dll
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.dll
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.pdb
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\AirDataModels.dll.config
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\FluentValidation.xml
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.AssemblyReference.cache
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CoreCompileInputs.cache
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.csproj.CopyComplete
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.dll
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\obj\Debug\HotelDataModels.pdb
+D:\Work\TripAI_Code_Deploy\TravelApp\Presentation\HotelDataModels\bin\Debug\Newtonsoft.Json.dll
