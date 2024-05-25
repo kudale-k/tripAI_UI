@@ -1,0 +1,628 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Config.Company.COMPNAME</title>
+    <meta name='description' content='@Config.Company.COMPNAME'>
+    <meta name='abstract' content='@Config.Company.COMPNAME'>
+    <meta name='keywords' content='@Config.Company.COMPNAME'>
+    <meta name='author' content='@Config.Company.COMPNAME'>
+    <meta name='distribution' content='Global'>
+    <link href="~/@(Config.Company.WebManagement.WebTemplate.ColourSchemes)" rel="stylesheet" />
+    <link href="~/@(Config.Company.WebManagement.WebTemplate.Fonts)" rel="stylesheet">
+    <link href="~/assets/functions/css/header.css" rel="stylesheet">
+    <link href="~/assets/functions/css/footer.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <environment names="Development">
+        @* <link href="~/assets/library/css/materialize.css" rel="stylesheet"> *@
+        <link href="~/assets/library/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/assets/library/css/jquery-ui.css" rel="stylesheet">
+        <link href="~/assets/library/css/nouislider.css" rel="stylesheet">
+    </environment>
+    <environment names="Staging,Production">
+        @* <link href="~/assets/library/css/materialize.css" rel="stylesheet"> *@
+        <link href="~/assets/library/css/bootstrap.css" rel="stylesheet">
+        <link href="~/assets/library/css/jquery-ui.css" rel="stylesheet">
+        <link href="~/assets/library/css/nouislider.css" rel="stylesheet">
+    </environment>
+
+    <!-- TODO add manifest here -->
+    <link rel="manifest" href="/manifest.json">
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Devopsmate">
+    <link rel="apple-touch-icon" href="~/assets/images/icons/icon-152x152.png">
+    <meta name="msapplication-TileImage" content="~/assets/images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+    @Html.Raw(JavaScriptSnippet.FullScript)
+    <link href="~/assets/library/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/assets/library/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="overlay" id="Loader">
+        <div class="overlay__inner">
+            <div class="overlay__content">
+                <span class="spinner"></span>
+                <div>
+                    <span style="color:white"> Please wait...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Config.Session.Staff != null && (Config.Session.IsAuthenticated))
+    {
+        <header class="customHeader clearfix" id="fixedHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="@Html.Raw(Url.Action(Config.Company.WebManagement.HomePage)))" class="logo">
+                            <a href="~/@(Config.Company.WebManagement.HomePage.Replace("~/", ""))">
+                            <img src="~/@(Config.Company.WebManagement.Logo)" alt="@Config.Company.COMPNAME">
+                        </a> 
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row text-right">
+                            <div class="col-sm-12">
+                              @*   <div class="colorBrick callDetails pull-right">@(Config.Company.COMPPHONE)</div>
+                                <span class="colorBrick callText pull-right">Call to book</span> *@
+                            </div>
+                        </div>
+                        <div class="positionedNav">
+                            <nav class="navbar navbar-expand-lg p-0">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"><img src="~/assets/images/header/menu.png" alt=""></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <div class="ContactDetails">
+
+                                    </div>
+
+                                    @*<ul class="navbar-nav ml-auto navMrgn">
+            @{
+                foreach (var item in Config.Session.PrevillegeGroup)
+                {
+
+                    <li class="nav-item dropdown yourTrips">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="~/Home/AdminPanel" aria-expanded="false">
+                            @item.Name <img src="~/assets/images/header/dropdown.png" alt="">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            @foreach (var previllege in item.Previleges)
+                            {
+                                <li>
+                                    <a class="nav-link" href="~/@previllege.LinkUrl">@previllege.LinkText</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+
+                }
+
+                <li class="dropdown yourTrips submenu">
+                    <img src="~/assets/images/header/login.png" alt="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Welcome : @Config.Session.Staff.FirstName @Config.Session.Staff.LastName </a>
+                    <img src="~/assets/images/header/dropdown.png" alt="">
+                    <ul class="dropdown-menu">
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="javascript:" data-toggle="modal" data-target="#filter">Set Filter</a></li>
+                        <li><a href="@Url.Action("Logout","Login")">Log-Out</a></li>
+                    </ul>
+                </li>
+            }
+
+
+
+        </ul>*@
+
+                                <ul class="navbar-nav mr-auto navMrgn">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="~/Home/Index">FLIGHTS <span class="sr-only">(current)</span></a>
+                                    </li>
+                                  @*   <li class="nav-item active">
+                                            <a class="nav-link" href="~/Home/Index#Hotel">HOTELS</a>
+                                    </li> *@
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Home/Index">HOTELS</a>
+                                        </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="~/Home/Index">ACTIVITIES</a>
+                                    </li>
+                                    <li class="shortList submenu firstItem"><a href="~/Wallet/GetWallets"><img src="assets/images/header/star.png" alt=""> Wallet</a></li>
+                                    <li class="dropdown yourTrips submenu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            Your Trips
+                                            <img src="assets/images/header/dropdown.png" alt="">
+                                        </a>
+                                        <ul class="dropdown-menu">
+
+                                            <li><a href="~/Queues?QueueType=TicketQueue">Tickets</a></li>
+                                            <li><a href="~/Queues?QueueType=BookingQueue">Trips on Hold</a></li>
+                                            <li><a href="~/Queues?QueueType=CancelQueue">Cancelled Trips</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown yourTrips submenu">
+                                        <img src="~/assets/images/header/login.png" alt="">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">@Config.Session.Staff.FirstName @Config.Session.Staff.LastName </a>
+                                        <img src="~/assets/images/header/dropdown.png" alt="">
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">My Profile</a></li>
+                                            <li><a href="@Url.Action("Logout","Login")">Log-Out</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- <li class="yourTrips submenu"><a href="#">Your Trips <img src="assets/images/header/dropdown.png" alt=""></a></li> -->
+
+
+                                </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    }
+    else
+    {
+        <header class="customHeader clearfix" id="fixedHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Index", "Home")" class="logo"><img src="@Config.Company.WebManagement.Logo"></a>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row text-right">
+                            <div class="col-sm-12" style="padding-top:12px;">
+                                <div class="colorBrick callDetails pull-right">@(Config.Company.COMPPHONE)</div>
+                                <span class="colorBrick callText pull-right">Call to book</span>
+                            </div>
+                        </div>
+                        <div class="positionedNav">
+                            <nav class="navbar navbar-expand-lg p-0">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"><img src="~/assets/images/header/menu.png" alt=""></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <div class="ContactDetails">
+
+                                    </div>
+                                    <ul class="navbar-nav mr-auto navMrgn">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Holiday Inspiration </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Great Deals</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Why @Config.Company.COMPNAME</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link firstItem" href="#"></a>
+                                        </li>
+                                        <li class="submenu firstItem">
+                                            <a class="nav-link " href="#"></a>
+                                        </li>
+                                        <li class="login submenu" style="padding-left:20px;">
+                                            <a href="#" class="modal-trigger" data-toggle="modal" data-target="#modalLogin">
+                                                <img src="~/assets/images/header/login.png" alt="">
+                                                Login
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    }
+
+    @RenderBody()
+    <input type="hidden" id="_root" value="@Url.Content("~/")" />
+    <hr />
+    <footer>
+        <div class="container">
+            <div class="bottomNav">
+                <div class="row">
+                   @*  <div class="col-sm-3">
+                        <h6>HOLIDAY TYPE</h6>
+                        <ul class="bottomList">
+                            <li><a href="#">All Inclusive Holidays</a></li>
+                            <li><a href="#">Cheap All inclusive Holidays</a></li>
+                            <li><a href="#">City Breaks</a></li>
+                            <li><a href="#">Family All inclusive Holidays</a></li>
+                            <li><a href="#">Cheap Holidays</a></li>
+                            <li><a href="#">Winter Sun Holidays</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>POPULAR BEACH</h6>
+                        <ul class="bottomList">
+                            <li><a href="#">Algarve</a></li>
+                            <li><a href="#">Costa Del Sol</a></li>
+                            <li><a href="#">Dubai</a></li>
+                            <li><a href="#">Fuerteventura</a></li>
+                            <li><a href="#">Lanzartone</a></li>
+                            <li><a href="#">Mallorca</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>INFORMATION</h6>
+                        <ul class="bottomList">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Important Information</a></li>
+                            <li><a href="#">Customer Service</a></li>
+                            <li><a href="#">Deal Finder</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>&nbsp;</h6>
+                        <ul class="bottomList">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Financial Protection</a></li>
+                            <li><a href="#">Terms & conditions</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div> *@
+                </div>
+            </div>
+        </div>
+        <div class="footerTopBG footerSeperator">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <span class="footerFontSize footerfontcolor">We Accept</span> <img src="~/assets/images/index/cards.png" alt="" class="cardMargin">
+                            </div>
+                            <div class="col-sm-2 footerFloat">
+                                <span class="footerFontSize footerlinkhover"><a class="footerlinks footerfontcolor" href="https://tripai.io/terms_of_use.html" target="_blank">Terms and Conditions</a></span>
+                            </div>
+                            <div class="col-sm-2 footerFloat">
+                                <span class="footerFontSize footerlinkhover"><a class="footerlinks footerfontcolor" href="https://tripai.io/privacy_policy.html" target="_blank">Privacy Policy</a></span>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="footerSocial">
+                                    <li><span class="footerFontSize footerfontcolor">Connect With Us</span></li>
+                                    @*<li><a href="#"><img src="~/assets/images/footer/facebook.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/assets/images/footer/twitter.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/assets/images/footer/youtube.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/assets/images/footer/instagram.png" alt=""></a></li>*@
+                                    <li><a href="https://www.instagram.com/tripai_dallas/" target="_blank"><img src="~/assets/images/footer/instagram.png" alt=""></a></li>
+                                    <li><a href="https://www.youtube.com/%40TripAI" target="_blank"><img src="~/assets/images/footer/youtube.png" alt=""></a></li>
+                                    <li><a href="https://www.linkedin.com/company/tripai/about/?viewAsMember=true" target="_blank"><img src="~/assets/images/footer/linkedin.png" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                   @*<div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-8 PR0">
+                                <div class="footerFloat"> <span class="footerFontSize footerfontcolor">Connect With Us</span> </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="footerSocial">
+                                    <li><a href="#"><img src="~/assets/images/footer/facebook.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/assets/images/footer/twitter.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/assets/images/footer/youtube.png" alt=""></a></li>
+                                    <li><a href="#"><img src="~/assets/images/footer/instagram.png" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        @* <div class="copyRight">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; @DateTime.Now.Year @Config.Company.COMPNAME
+                    </div>
+                    <div class="col-sm-6 footerFloat">
+                        Registered in England Company No. @Config.Company.COMPATOL | VAT No.@Config.Company.COMPPANNO
+                    </div>
+                </div>
+            </div>
+        </div> *@
+    </footer>
+ @*  COMMENTED BY BM START *@
+ @*    <div class="modal fade customModal loginsignup" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="signModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:800px; left:-200px;top:-70px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body row">
+                        <div class="col-sm-6 col-xs-6">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="input-field">
+                                        <input id="login" type="text" class="validate loginfield" style="border:0px solid; border-bottom:1px solid #9e9e9e">
+                                        <label for="login">User Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="input-field">
+                                        <input id="pwd" type="password" class="validate loginfield">
+                                        <label for="pwd">Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-primary loginBtn btn-block" id="SubmitBtn">Login</button>
+                                    <p class="text-center" style="color:red;display:none;" id="ErrorMsg">Invalid Credentials</p>
+                                </div>
+                            </div>  COMMENTED BY BM END*@  
+                            @*<div class="row">
+                                <div class="col-sm-12">
+                                    <a href="#" class="forgotPwd">Forgot Password</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 changeloginStatus">
+                                    Dont have an account ? <a href="#" class="modal-trigger" id="signupLink" data-toggle="modal" data-target="#modalsignup">Sign up here</a>
+
+                                </div>
+                            </div>*@
+                        @* </div>
+    COMMENTED BY BM START
+                        <div class="col-sm-6 col-xs-6"  style="text-align: left;color:#0e5b91;border-left: 1px;border-left-style: none;border-left-style: solid;margin-top: -32px;">
+                            <h5 ><strong>What we have inside?</strong></h5>
+                            <ul>
+                                <li style="padding:10px 0 0 0; font-size:14px">
+                                    <i class="material-icons">shopping_cart</i>
+                                    Flights, Hotels, Activities and Tours
+                                </li>
+                                <li style="padding:10px 0 0 0; font-size:14px">
+                                    <i class="material-icons">receipt</i>
+                                   1000+ Supplier Marketplace
+                                </li>
+                                <li style="padding:10px 0 0 0; font-size:14px">
+                                    <i class="material-icons">timeline</i>
+                                    Sales Revenue Analysis
+                                </li>
+                                <li style="padding:10px 0 0 0; font-size:14px">
+                                    <i class="material-icons">account_balance</i>
+                                    Accounts Management and Reconciliations
+                                </li>
+                            </ul>
+
+
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div> COMMENTED BY BM END
+ *@
+    <div class="modal fade customModal loginsignup" id="modalsignup" tabindex="-1" role="dialog" aria-labelledby="signModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-field">
+                                <input id="loginsup" type="text" class="validate loginfield" style="border:0px solid; border-bottom:1px solid #9e9e9e">
+                                <label for="loginsup">User Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-field">
+                                <input id="pwdsup" type="password" class="validate loginfield">
+                                <label for="pwdsup">Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-field">
+                                <input id="cpwdsup" type="password" class="validate loginfield">
+                                <label for="cpwdsup">Confirm Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="#" class="btn btn-primary loginBtn">Sign Up</a>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                       <div class="col-sm-12">
+                          <a href="#" class="forgotPwd">Forgot Password</a>
+                       </div>
+                    </div> -->
+                    <!-- <div class="row">
+                       <div class="col-sm-12 changeloginStatus">
+                          Already have an account ? <a href="#" class="modal-trigger" id="loginLink" data-toggle="modal" data-target="#modalLogin">Login</a>
+
+                       </div>
+                    </div> -->
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @if (Config.Session.UserFilter != null)
+                {
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select class="form-control globalFilter" id="globalFilter_Country">
+                                    <option>All</option>
+                                    @foreach (var item in Config?.Session?.UserFilter?.Countries)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Customer</label>
+                                <select class="form-control globalFilter" id="globalFilter_Customer">
+                                    <option>All</option>
+                                    @foreach (var item in Config?.Session?.UserFilter?.Customers)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Branches</label>
+                                <select class="form-control globalFilter" id="globalFilter_Branches">
+                                    <option>All</option>
+                                    @foreach (var item in Config?.Session?.UserFilter?.Branches)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Staffs</label>
+                                <select class="form-control globalFilter" id="globalFilter_Staffs">
+                                    <option>All</option>
+                                    @foreach (var item in Config?.Session?.UserFilter?.Staffs)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                }
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <environment names="Development">
+        <script src="~/assets/library/js/jquery-3.3.1.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/popper.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/bootstrap.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/materialize.js" asp-append-version="true"></script>
+        <script src="~/assets/functions/js/header.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/moment.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/DevopsChart.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.PieceLabel.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/linq.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/jquery.simplePagination.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/assets/library/js/jquery-3.3.1.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/popper.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/bootstrap.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/materialize.js" asp-append-version="true"></script>
+        <script src="~/assets/functions/js/header.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/moment.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/DevopsChart.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.PieceLabel.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/linq.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/jquery.simplePagination.js"></script>
+    </environment>
+    <script>
+        var _root;
+        var handleAJaxError;
+        $(function () {
+            _root = $("#_root").val();
+            handleAJaxError = function () { }
+            $(".globalFilter").change(function () {
+                var $this = $(this);
+                var selectedValue =
+                    $.post(_root + "Staff/GetUserFilterData",
+                        {
+                            countryId: $("#globalFilter_Country").val(),
+                            customerId: $("#globalFilter_Customer").val(),
+                            branchId: $("#globalFilter_Branches").val(),
+                            staffId: $("#globalFilter_Staffs").val()
+                        },
+                        function (r) {
+                            if (r.success) {
+                                $("#globalFilter_Country").data("val", $("#globalFilter_Country").val()).empty().append($("<option/>").text("All"));
+                                $("#globalFilter_Customer").data("val", $("#globalFilter_Customer").val()).empty().append($("<option/>").text("All"));
+                                $("#globalFilter_Branches").data("val", $("#globalFilter_Branches").val()).empty().append($("<option/>").text("All"));
+                                $("#globalFilter_Staffs").data("val", $("#globalFilter_Staffs").val()).empty().append($("<option/>").text("All"));
+                                $.each(r.data.countries, function () {
+                                    $("#globalFilter_Country").append($("<option/>").text(this.name).val(this.id));
+                                });
+                                $.each(r.data.customers, function () {
+                                    $("#globalFilter_Customer").append($("<option/>").text(this.name).val(this.id));
+                                });
+                                $.each(r.data.branches, function () {
+                                    $("#globalFilter_Branches").append($("<option/>").text(this.name).val(this.id));
+                                });
+                                $.each(r.data.staffs, function () {
+                                    $("#globalFilter_Staffs").append($("<option/>").text(this.name).val(this.id));
+                                });
+                                $("#globalFilter_Country").val($("#globalFilter_Country").data("val"));
+
+                                $("#globalFilter_Customer option[value='" + $("#globalFilter_Customer").data("val") + "']").attr("selected", true)
+                                $("#globalFilter_Branches").val($("#globalFilter_Branches").data("val"));
+                                $("#globalFilter_Staffs").val($("#globalFilter_Staffs").data("val"));
+                            }
+                        });
+            });
+        });
+
+    </script>
+    @section Scripts
+        {
+        <script src="~/lib/jquery/src/Staff/Login.js"></script>
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
