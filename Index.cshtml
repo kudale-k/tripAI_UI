@@ -1,0 +1,269 @@
+@using Microsoft.AspNetCore.Mvc;
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-2V3q1onbx0aLItSrZoK9N7pUC6wOYryFcRbtvs37kiZ8Pv3ipasHTRz2gjQfzPIaGL8gYjg1X2kFJaa9f/SmRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+@* <link href="../../assets/functions/css/index.css" rel="stylesheet"> *@
+<div class="topBanner">
+    <div class="container">
+        <div class="col-xs-12">
+            <div class="flightSelectionFormWrap">
+                <div class="topPadding">
+                    <ul class="nav nav-tabs" id="search_form_tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="flight-tab" data-toggle="tab" data-target="#flight" type="button" role="tab" aria-controls="flight" aria-selected="true">FLIGHTS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="hotel-tab" data-toggle="tab" data-target="#hotel" type="button" role="tab" aria-controls="hotel" aria-selected="false">HOTELS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="acivities-tab" data-toggle="tab" data-target="#acivities" type="button" role="tab" aria-controls="acivities" aria-selected="false">ACIVITIES</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="search_form">
+                    @if (Config.Session.IsAuthenticated)
+                    {
+                        <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
+                            <form name="input" method="post" action="@Url.Action("SearchFlight")">
+                                <div class="radioWrap">
+                                    <label>
+                                        <input class="with-gap radioClick" name="tripType" id="OneWay" type="radio" value="OneWay" />
+                                        <span>One Way</span>
+                                    </label>
+                                    <label>
+                                        <input class="with-gap radioClick" name="tripType" id="RoundTrip" type="radio" value="RoundTrip" checked="checked" />
+                                        <span>Round Trip</span>
+                                    </label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-row align-items-center">
+                                    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                        <label class="sr-only" for="flightDeparture">Name</label>
+                                        <input id="origin" min="3" required autocomplete="off" name="flightDeparture" type="text" class="validate autocomplete form-control" onkeydown="ShowHideDiv(false);" onkeyup="loadAirport(event, 'divFlightDeparture', this);" placeholder="Origin">
+                                        <div class="autocomplete" id="divFlightDeparture" style="display: none;"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                        <label class="sr-only" for="flightArrival">Name</label>
+                                        <input id="destination" min="3" required autocomplete="off" name="flightArrival" type="text" class="validate autocomplete form-control" onkeydown="ShowHideDiv(false);" onkeyup="loadAirport(event, 'divFlightArrival', this);" placeholder="Destination">
+                                        <div class="autocomplete" id="divFlightArrival" style="display: none;"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                        <label class="sr-only" for="flightDepartureDate">Name</label>
+                                        <input type="text" name="flightDepartureDate" value="@DateTime.Now.AddDays(15)" class="datepicker datePickerStyle form-control" id="dateFrom" placeholder="Departure Date">
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                        <label class="sr-only" for="flightReturnDate">Name</label>
+                                        <input type="text" name="flightReturnDate" value="@DateTime.Now.AddDays(16)" class="datepicker datePickerStyle form-control customDateWrapreturn" id="dateTo" placeholder="Return Date">
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                        <div class="dropdown">
+                                            <a data-dropup-auto="false" class="btn btn-default dropdown-toggle border form-control" href="#" role="input" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="passengercount">1</span> Traveler <span class="classSelected">Economy</span>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-item">
+                                                    <span class="leftLink"><span class="adultVal" name="adults">1</span> Adult</span>
+                                                    <input type="hidden" class="adultVal" value="1" name="adults" />
+                                                    <span class="rightLink">
+                                                        <div class="minus adultminus">-</div><div class="plus adultPlus">+</div>
+                                                    </span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="dropdown-item">
+                                                    <span class="leftLink"><span class="childVal" name="child">0</span> Child</span>
+                                                    <input type="hidden" class="childVal" value="0" name="child" />
+                                                    <span class="rightLink">
+                                                        <div class="minus childMinus">-</div><div class="plus childPlus">+</div>
+                                                    </span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="dropdown-item">
+                                                    <span class="leftLink"><span class="infantVal" name="infant">0</span> infant <br /><span class="font12">below 2 years</span></span>
+                                                    <input type="hidden" class="infantVal" value="0" name="infant" />
+                                                    <span class="rightLink">
+                                                        <div class="minus infantMinus">-</div><div class="plus infantPlus">+</div>
+                                                    </span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                                <div class="dropdown-item">
+                                                    <div class="radioWrap">
+                                                        <label>
+                                                            <input class="with-gap radioClick" name="class" type="radio" value="Economy" checked="checked" />
+                                                            <span>Economy</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-item">
+                                                    <div class="radioWrap">
+                                                        <label>
+                                                            <input class="with-gap radioClick" name="class" type="radio" value="Premium Economy" />
+                                                            <span>Premium Economy</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-item">
+                                                    <div class="radioWrap">
+                                                        <label>
+                                                            <input class="with-gap radioClick" name="class" type="radio" value="Business" />
+                                                            <span>Business</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-item">
+                                                    <div class="radioWrap">
+                                                        <label>
+                                                            <input class="with-gap radioClick" name="class" type="radio" value="First" />
+                                                            <span>First</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                        <button type="submit" class="btn btn-primary btn-block border-0"><span class="fa fa-search"></span> Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+                            <div id="Hotel">
+                                <form id="Hotel" name="input" method="post" action="@Url.Action("SearchHotel")">
+                                    <div class="form-row align-items-center">
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 my-1">
+                                            <label class="sr-only" for="HTLDest">Name</label>
+                                            <input id="HTLDest" min="3" required autocomplete="off" name="HTLDest" type="text" class="validate autocomplete form-control" onkeydown="ShowHideDiv(false);" onkeyup="loadAirport(event, 'divHTLDest', this);" placeholder="Destination">
+                                            <div class="autocomplete" id="divHTLDest" style="display: none;"></div>
+                                            <input id="divHTLDestLat" name="divHTLDestLat" type="hidden" style="display: none;">
+                                            <input id="divHTLDestLong" name="divHTLDestLong" type="hidden" style="display: none;">
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                            <label class="sr-only" for="HTLCheckInDate">Name</label><input type="text" name="HTLCheckInDate" value="@DateTime.Now.AddDays(15)" class="datepicker datePickerStyle form-control" id="HTLCheckInDate" placeholder="Departure Date">
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                            <label class="sr-only" for="HTLCheckOutDate">Name</label>
+                                            <input type="text" name="HTLCheckOutDate" value="@DateTime.Now.AddDays(16)" class="datepicker datePickerStyle form-control customDateWrapreturnHTL" id="HTLCheckOutDate" placeholder="Return Date">
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                            <div class="dropdown">
+                                                <a data-dropup-auto="false" class="btn btn-default dropdown-toggle border form-control" href="#" role="input" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="passengercount">1 </span> Traveler, 1 <span class="classSelected">Room</span>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <div class="dropdown-item">
+                                                        <span class="leftLink"><span class="adultVal" name="HTLadults">1</span> Adult</span>
+                                                        <input type="hidden" class="adultVal" value="1" name="HTLadults" />
+                                                        <span class="rightLink">
+                                                            <div href="#" class="minus adultminus">-</div><div href="#" class="plus adultPlus">+</div>
+                                                        </span>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="dropdown-item">
+                                                        <span class="leftLink"><span class="childVal" name="HTLchild">0</span> Child</span>
+                                                        <input type="hidden" class="childVal" value="0" name="HTLchild" />
+                                                        <span class="rightLink">
+                                                            <div href="#" class="minus childMinus">-</div><div href="#" class="plus childPlus">+</div>
+                                                        </span>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="dropdown-item">
+                                                        <span href="javascript:void(0)" class="leftLink"><span class="infantVal" name="HTLinfant">0</span> infant <br/><small class="font12">below 2 years</small></span>
+                                                        <span href="javascript:void(0)" class="rightLink">
+                                                            <input type="hidden" class="infantVal" value="0" name="HTLinfant" />
+                                                            <div href="#" class="minus infantMinus">-</div><div href="#" class="plus infantPlus">+</div>
+                                                        </span>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                            <button type="submit" class="btn btn-primary btn-block border-0"><span class="fa fa-search"></span> Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="acivities" role="tabpanel" aria-labelledby="acivities-tab">
+                            <div id="Activities">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="holidayInspirationContent">
+    <div class="container" id="holidayInspirationContent">
+    </div>
+</section>
+<section>
+    <br />
+    @*     <div class="greatFlightDealsWrap" id="greatFlightDealsWrap">
+    </div> *@
+</section>
+<section>
+    <div class="container" id="dealsFlyingFromWrap">
+    </div>
+</section>
+<section>
+    <div class="whyUs">
+        <div class="container">
+            <h5 class="colorBrick text-center">Why @Config.Company.COMPNAME</h5>
+            <div class="row" id="WhyUs">
+            </div>
+        </div>
+    </div>
+</section>
+@*<section>
+    <div class="gradientBG p15 colorWhite SearchWrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="searchTextMrgnTop">Get our top deals delivered to your inbox <span class="signupText">Sign up for offers</span></div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control searchField borderColorWhite colorWhite">
+                        <div class="input-group-btn ">
+                            <!--  <button class="btn btn-default btnSearch borderColorWhite" type="submit">
+                               <img src="../../assets/images/search.png" alt="">
+                               </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="bootmText">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            </p>
+        </div>
+    </div>
+</section>*@
+@section Scripts
+{
+    <script src="~/lib/jquery/src/Staff/Login.js"></script>
+    <script src="../../assets/functions/js/index.js" asp-append-version="true"></script>
+    <script src="~/assets/functions/js/HotelSearch.js" asp-append-version="true"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

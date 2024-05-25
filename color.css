@@ -1,0 +1,2216 @@
+body {
+    color: #2f3543;
+    background: #fff;
+}
+
+.colorBrick {
+    color: #dc2458;
+}
+
+.gradientColor {
+    background: linear-gradient(to right, #900e34 0%, #d21c4f 30%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.borderColor {
+    border-color: #dc2458;
+}
+
+.borderColorWhite {
+    border-color: #fff;
+}
+
+.borderBottom {
+    border-bottom-color: #dc2458;
+}
+
+.borderTop {
+    border-top-color: #dc2458;
+}
+
+.borderLeft {
+    border-left-color: #dc2458;
+}
+
+.borderRight {
+    border-right-color: #dc2458;
+}
+
+.bgColor {
+    background: #dc2458;
+}
+
+.borderColorWhite {
+    border-color: #fff;
+}
+
+.bgColorEven {
+    background: #fac807;
+}
+
+.colorWhite {
+    color: #fff !important;
+}
+
+.colorDark {
+    color: #323642 !important;
+}
+
+.bgBlack {
+    background: #2f3543;
+}
+
+.flightDealCard .Details h4:before {
+    content: '';
+    width: 45px;
+    height: 1px;
+    display: block;
+    background: #dc2458;
+    position: absolute;
+    bottom: -10px;
+}
+
+.gradientBG {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bb1140+1,422b3f+100 */
+    background: #bb1140;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #bb1140 1%, #422b3f 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #bb1140 1%,#422b3f 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #bb1140 1%,#422b3f 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bb1140', endColorstr='#422b3f',GradientType=1 );
+    /* IE6-9 */
+}
+
+.gradientBGBtn {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bb1140+1,422b3f+100 */
+    background: rgba(206,24,76,1);
+    background: -moz-linear-gradient(left, rgba(206,24,76,1) 0%, rgba(187,17,65,1) 57%, rgba(147,15,52,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(206,24,76,1)), color-stop(57%, rgba(187,17,65,1)), color-stop(100%, rgba(147,15,52,1)));
+    background: -webkit-linear-gradient(left, rgba(206,24,76,1) 0%, rgba(187,17,65,1) 57%, rgba(147,15,52,1) 100%);
+    background: -o-linear-gradient(left, rgba(206,24,76,1) 0%, rgba(187,17,65,1) 57%, rgba(147,15,52,1) 100%);
+    background: -ms-linear-gradient(left, rgba(206,24,76,1) 0%, rgba(187,17,65,1) 57%, rgba(147,15,52,1) 100%);
+    background: linear-gradient(to right, rgba(206,24,76,1) 0%, rgba(187,17,65,1) 57%, rgba(147,15,52,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ce184c', endColorstr='#930f34', GradientType=1 );
+}
+
+.bottomList li a {
+    color: #2f3543;
+}
+
+.footerTopBG {
+    background: #000000;
+}
+
+.radioWrap label {
+    color: #fff;
+}
+
+.radioWrap [type="radio"]:not(:checked) + span::before, .radioWrap [type="radio"]:not(:checked) + span::after {
+    border: 2px solid #fff;
+}
+
+.radioWrap [type="radio"]:checked + span::after, .radioWrap [type="radio"].with-gap:checked + span::after {
+    background-color: #dc2458;
+    ;
+}
+
+.radioWrap [type="radio"]:checked + span::after, .radioWrap [type="radio"].with-gap:checked + span::before, [type="radio"].with-gap:checked + span::after {
+    border: 2px solid #dc2458;
+    ;
+}
+
+.radioWrap [type="radio"]:not(:checked) + span, .radioWrap [type="radio"]:checked + span {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    -webkit-transition: .28s ease;
+    transition: .28s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .radioWrap [type="radio"]:checked + span:after, .radioWrap [type="radio"].with-gap:checked + span:after {
+        background-color: #dc2458;
+    }
+
+    .radioWrap [type="radio"]:checked + span:after, .radioWrap [type="radio"].with-gap:checked + span:before, .radioWrap [type="radio"].with-gap:checked + span:after {
+        border: 2px solid #dc2458;
+    }
+
+.checkWrap {
+}
+
+    .checkWrap label {
+       /* color: #fff;*/
+    }
+
+    .checkWrap [type="checkbox"].filled-in:checked + span:not(.lever)::after {
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border: 2px solid #dc2458;
+        background-color: #dc2458;
+        z-index: 0;
+    }
+
+    .checkWrap [type="checkbox"].filled-in:not(:checked) + span:not(.lever)::after {
+        height: 12px;
+        width: 12px;
+        background-color: transparent;
+        border: 2px solid #fff;
+        top: 0px;
+        z-index: 0;
+    }
+
+    .checkWrap [type="checkbox"].filled-in:checked + span:not(.lever):before {
+        top: -1px;
+        left: 1px;
+        width: 3px;
+        height: 8px;
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        -webkit-transform: rotateZ(37deg);
+        transform: rotateZ(37deg);
+        -webkit-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .checkWrap [type="checkbox"] + span:not(.lever) {
+        font-size: 12px;
+    }
+
+.reservationLeft .datePickerStyle {
+    border-left: 1px solid #9e9e9e !important;
+    border-bottom: none !important;
+    height: 116px !important;
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+    .reservationLeft .datePickerStyle.borderchange {
+        border-left: 1px solid #9e9e9e !important;
+        border-bottom: none !important;
+        height: 114px !important;
+        border-right: 1px solid #9e9e9e !important;
+    }
+
+.btn.readMore.borderColorWhite.colorWhite:hover {
+    background: #dc2458;
+    color: #FFF;
+    border: 1px dotted #dc2458
+}
+
+.flightDealCard .Details .readMore:hover {
+    background: #dc2458;
+    color: #fff;
+}
+
+a.viewDetails:hover {
+    color: #2f3543
+}
+
+.input-field > label {
+    color: #2f3543 !important;
+}
+
+.searchIcon {
+    color: #fff;
+}
+
+    .searchIcon:hover {
+        color: #fff;
+    }
+
+.reservationLeft {
+    background: #fff;
+}
+
+.reservationBanner {
+    background: rgba(0,0,0,0.4);
+}
+
+.passengerDetails.input.valid[type=text]:not(.browser-default) {
+    border-bottom: 1px solid transparent;
+    -webkit-box-shadow: 0 1px 0 0 transparent;
+    box-shadow: 0 1px 0 0 transparent;
+}
+
+.bgBlack {
+    background: #2f3543;
+}
+
+.listingLeft {
+    background: #fff;
+    border-radius: 4px;
+}
+
+.listingRight {
+    border-radius: 4px;
+    text-align: center;
+    padding: 5px;
+}
+
+.ListingContainerLeft {
+    border: 0px solid #9e9e9e;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
+}
+
+    .ListingContainerLeft hr {
+        border-bottom: 1px solid #eeeeee !important;
+    }
+
+.ListingContainerLeftBoxes .title {
+    color: #dc2458;
+}
+
+.ListingContainerLeftBoxes .count label {
+    background: #eee;
+}
+
+.ListingContainerLeftBoxes .count.active label {
+    background: #dc2458;
+    color: #fff;
+}
+
+.tripState li a {
+    color: #fff;
+}
+
+    .tripState li a:after {
+        content: '';
+    }
+
+    .tripState li a:hover {
+        text-decoration: none;
+    }
+
+    .tripState li a:after {
+        background: #fff;
+    }
+
+    .tripState li a.active {
+    }
+
+        .tripState li a.active:after {
+            background: #dc2458;
+        }
+
+.ListingContainerLeftBoxes .tabs .tab a.active {
+    border-bottom: 2px solid #dc2458;
+    color: #040001;
+}
+
+.ListingContainerLeftBoxes .tabs .tab a {
+    color: #040001;
+}
+
+    .ListingContainerLeftBoxes .tabs .tab a:hover {
+        color: #040001;
+    }
+
+.ListingContainerLeftBoxes .tabs {
+    border-bottom: 1px solid #eeeeee !important
+}
+
+.tabContainerLeft {
+    color: #040001;
+}
+
+    .tabContainerLeft span {
+        color: #b5b5b5;
+    }
+
+.timeCard {
+}
+
+.timeCardBorder {
+    border: 1px solid #9e9e9e;
+    border-right: none;
+}
+
+.timeCardBorderRight {
+    border-right: 1px solid #9e9e9e;
+}
+
+.timeContent {
+    border-top: 1px solid #9e9e9e;
+}
+
+    .timeContent.active {
+        color: #fff;
+        background: #dc2458;
+    }
+
+.sliderVal span {
+    color: #040
+}
+
+.pricingSlider .noUi-horizontal .noUi-handle, .pricingSlider .noUi-vertical .noUi-handle {
+    background-color: #dc2458 !important;
+}
+
+.pricingSlider .noUi-target.noUi-horizontal .noUi-tooltip {
+    background-color: #dc2458;
+    border: 5px solid #fff;
+}
+
+.pricingSlider .noUi-connect {
+    background: #dc2458;
+}
+
+.radioList .checkWrap [type="checkbox"].filled-in:checked + span:not(.lever)::after {
+    border: 2px solid #dc2458;
+    background-color: #dc2458;
+}
+
+.radioList .checkWrap [type="checkbox"].filled-in:checked + span:not(.lever):before {
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.radioList .checkWrap [type="checkbox"].filled-in:not(:checked) + span:not(.lever)::after {
+    background-color: transparent;
+    border: 1px solid #040001;
+}
+
+.tabContainerLeft .radioList span {
+    color: #040001;
+}
+
+.radioList .checkWrap label {
+    color: #040001;
+}
+
+.showMore {
+    color: #dc2458;
+    text-align: right;
+    text-decoration: underline;
+}
+
+#rightTab.tabs .tab a.active {
+    background-color: transparent;
+    color: #040001;
+    border-bottom: 4px solid #5e95ce;
+}
+
+#rightTab.tabs .tab a:hover {
+    background-color: transparent;
+    color: #040001;
+}
+
+#rightTab.tabs {
+    border-bottom: 1px solid #eeeeee !important;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.59);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.59);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.59);
+}
+
+    #rightTab.tabs .tab a {
+        color: #040001;
+        border-bottom: 4px solid #fff;
+    }
+
+        #rightTab.tabs .tab a:hover {
+            color: #040001;
+            text-decoration: none;
+        }
+
+        #rightTab.tabs .tab a span {
+            color: #5e95ce;
+        }
+
+.colorGrey {
+    color: #909090;
+}
+
+.timeBold {
+    color: #303548;
+    margin-top: 10px;
+}
+
+.duration {
+    color: #303548;
+}
+
+.customDrop select {
+    background: url(../../images/listing/down-arrow.png) no-repeat 95% #FFF !important;
+    color: #5d5d5d;
+}
+
+.dottedBorder {
+    border-bottom: 1px dotted #909090;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.shadowBorder {
+    /*box-shadow: 0px 3px #e5e5e5;*/
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin: 0px -12px 0px -12px;
+}
+
+.flightBgright {
+    width: 80px;
+    height: 20px;
+    background: url(../../images/listing/flight.png) no-repeat;
+    background-size: 100%;
+}
+
+.flightBgleft {
+    width: 80px;
+    height: 20px;
+    background: url(../../images/listing/flightleft.png) no-repeat;
+    background-size: 100%;
+}
+
+.moreOptions a {
+    color: #909090;
+}
+
+.bookNowBtngradient {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#da1950+59,8b0e30+100 */
+    background: #da1950; /* Old browsers */
+    background: -moz-linear-gradient(left, #da1950 59%, #8b0e30 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #da1950 59%,#8b0e30 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #da1950 59%,#8b0e30 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#da1950', endColorstr='#8b0e30',GradientType=1 ); /* IE6-9 */
+}
+
+.bookNowBtn {
+    color: #fff;
+    padding: 8px 15px;
+}
+
+    .bookNowBtn:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+.addtoQuote {
+    color: #5e95ce;
+    font-weight: bold;
+}
+
+.fligtDetails {
+    color: #909090;
+}
+
+.bottomTwoMore {
+    /*background:url(../../images/listing/border-bottomcurve.png);*/
+    color: #dc2458;
+}
+
+.statusUpdate li {
+    color: #909090;
+}
+
+    .statusUpdate li:before {
+        background: #dc2458;
+        color: #fff;
+    }
+
+    .statusUpdate li:before {
+        background: #dc2458;
+    }
+
+    .statusUpdate li:after {
+        background: #313443;
+    }
+
+    .statusUpdate li.active:before {
+        background: #dc2458 url(../../images/review/tick.png) no-repeat;
+    }
+
+    .statusUpdate li.active:before {
+        content: '1';
+        color: #fff;
+    }
+
+.blueGradient {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#32709f+72,043f6b+100 */
+    background: #32709f; /* Old browsers */
+    background: -moz-linear-gradient(left, #32709f 72%, #043f6b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #32709f 72%,#043f6b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #32709f 72%,#043f6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32709f', endColorstr='#043f6b',GradientType=1 ); /* IE6-9 */
+}
+
+.ReviewWrap {
+    border: 1px solid #909090;
+}
+
+.reviewHeader {
+    color: #fff;
+}
+
+.flightDesc span {
+    color: #313443;
+}
+
+.flightDesc label {
+    color: #dc2458;
+}
+
+.showMore {
+    color: #313443;
+}
+
+    .showMore:hover {
+        color: #313443;
+        text-decoration: none;
+    }
+
+.dottedHr {
+    border-bottom: 1px dotted #909090;
+}
+
+.addOnBtn {
+    color: #fff;
+    border-radius: 0;
+    padding: 5px 15px;
+}
+
+    .addOnBtn:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+.colorBlack {
+    color: #313443 !important;
+}
+
+.knowMore {
+    color: #32709f;
+}
+
+    .knowMore:hover {
+        color: #32709f;
+    }
+
+.lossCheckin {
+    color: #313443;
+}
+
+    .lossCheckin span {
+        color: #32709f;
+    }
+
+sup {
+    color: #ff0000;
+}
+
+.reviewForm .input-field > label {
+    color: #9e9e9e;
+}
+
+.reviewForm input:not([type]), input[type=text]:not(.browser-default),
+.reviewForm input[type=password]:not(.browser-default),
+.reviewForm input[type=email]:not(.browser-default),
+.reviewForm input[type=url]:not(.browser-default),
+.reviewForm input[type=time]:not(.browser-default),
+.reviewForm input[type=date]:not(.browser-default),
+.reviewForm input[type=datetime]:not(.browser-default),
+.reviewForm input[type=datetime-local]:not(.browser-default),
+.reviewForm input[type=tel]:not(.browser-default),
+.reviewForm input[type=number]:not(.browser-default),
+.reviewForm input[type=search]:not(.browser-default),
+.reviewForm textarea.materialize-textarea {
+    border: 1px solid #909090;
+}
+
+.rightAmout span {
+    color: #dc2458;
+}
+
+.reviewContinue {
+    color: #fff;
+}
+
+    .reviewContinue:hover {
+        color: #fff;
+    }
+
+.borderRight:after {
+    background: #909090;
+}
+
+.reviewInfo:after {
+    background: #909090;
+}
+
+.reviewHeaderDrop select {
+    color: #fff;
+    background: url(../../images/reviewstage2/down-arrow.png) no-repeat 95% transparent !important;
+}
+
+.flightto:after {
+    background: url(../../images/reviewstage2/flighto.png) no-repeat !important;
+}
+
+.flightdetailLink {
+    color: #dc2458;
+}
+
+.stage2padd .warning {
+    background: #f8edbf;
+    color: #313443;
+}
+
+.reviewStage2Content select {
+    border: 1px solid #A2A2A2;
+    background: url(../../images/reviewstage2/arrowgrey.png) no-repeat 95% transparent !important;
+}
+
+.txtStyled {
+    border: 1px solid #A2A2A2 !important;
+}
+
+.reviewStage2Content select.arrowmen {
+    background: url(../../images/reviewstage2/arrowmen.png) no-repeat 95% transparent !important;
+}
+
+.accordionWrap .collapsible-header {
+    background-color: #fff;
+}
+
+    .accordionWrap .collapsible-header label {
+        color: #32709f;
+    }
+
+.accordionWrap .collapsible-body {
+    background: #f2f6f9;
+}
+
+    .accordionWrap .collapsible-body select {
+        background: #fff url(../../images/reviewstage2/arrowgrey.png) no-repeat 95% !important;
+        color: #909090;
+    }
+
+    .accordionWrap .collapsible-body .txtStyled {
+        background: #fff;
+    }
+
+.accordionWrap li.active .collapsible-header {
+    background: url(../../images/reviewstage2/minus.png) no-repeat;
+    background-position: 0px 8px;
+}
+
+.accordionWrap li .collapsible-header {
+    background: url(../../images/reviewstage2/plus.png) no-repeat;
+    background-position: 0px 8px;
+}
+
+.checkedInBtn .rightBtn {
+    background: #f8c244;
+}
+
+.reviewStage2.checkWrap [type="checkbox"].filled-in:not(:checked) + span:not(.lever)::after {
+    background-color: transparent;
+    border: 2px solid #909090;
+}
+
+.reviewStage2.checkWrap [type="checkbox"].filled-in:checked + span:not(.lever)::after {
+    border: 2px solid #5299f5 !important;
+    background-color: #5299f5 !important;
+}
+
+.bottomnote {
+    color: #909090;
+}
+
+.checkedInBtn .rightBtn {
+    background: #f8c244;
+    color: #fff;
+}
+
+.checkedInBtn a {
+    color: #75b366;
+}
+
+.checkedInBtn {
+    border: 1px solid #f8c244;
+}
+
+.accordionWrap .collapsible-body .txtStyled {
+    background: #fff;
+}
+
+.rateText {
+    color: #313131;
+}
+
+.reviewTime {
+    color: #313443;
+}
+
+.reviewForm .input-field > label {
+    color: #9e9e9e;
+}
+
+.reviewForm input:not([type]), input[type=text]:not(.browser-default),
+.reviewForm input[type=password]:not(.browser-default),
+.reviewForm input[type=email]:not(.browser-default),
+.reviewForm input[type=url]:not(.browser-default),
+.reviewForm input[type=time]:not(.browser-default),
+.reviewForm input[type=date]:not(.browser-default),
+.reviewForm input[type=datetime]:not(.browser-default),
+.reviewForm input[type=datetime-local]:not(.browser-default),
+.reviewForm input[type=tel]:not(.browser-default),
+.reviewForm input[type=number]:not(.browser-default),
+.reviewForm input[type=search]:not(.browser-default),
+.reviewForm textarea.materialize-textarea {
+    border: 1px solid #909090;
+}
+
+.rightAmout {
+    color: #313443;
+}
+
+.borderRight:after {
+    background: #909090;
+}
+
+.statusUpdate li.secondItem {
+    color: #313443;
+}
+
+.reviewInfoList li {
+    color: #909090;
+}
+
+    .reviewInfoList li:before {
+        background: #8594a9;
+    }
+
+.reviewHeaderDrop select {
+    color: #fff;
+    background: url(../../images/reviewstage2/down-arrow.png) no-repeat 95% transparent !important;
+    background-size: 6px;
+}
+
+.paymentMethods li a {
+    border-right: 1px solid #dde6ef;
+    border-bottom: 1px solid #dde6ef;
+    color: #909090;
+}
+
+    .paymentMethods li a.active {
+        background: #e8f2fc;
+        color: #313131;
+    }
+
+.paymentConatiner {
+    -webkit-box-shadow: -2px 2px 5px 0px rgba(144,144,144,0.55);
+    -moz-box-shadow: -2px 2px 5px 0px rgba(144,144,144,0.55);
+    box-shadow: -0px 0px 1px 0px rgba(144, 144, 144, 0.55);
+    color: #909090;
+    border-radius: 3px;
+}
+
+.totalAmount {
+    border: 1px solid #e5e5e5;
+    color: #b3a3b0;
+    border-radius: 5px;
+}
+
+.amount {
+    float: right;
+    color: #dc2458;
+}
+
+.rightCol {
+    border: 1px solid #f3f4f8;
+}
+
+.termsCondition a {
+    color: #51c8ea;
+}
+
+.confirmSucess {
+    background: #f2f6f9;
+    color: #000;
+}
+
+    .confirmSucess span {
+        color: #dc2458;
+    }
+
+.leftBlue {
+    background: #196aac;
+    color: #fff;
+}
+
+.flightChartDetails {
+    border: 1px solid #878787;
+}
+
+.dateAirport {
+    color: #909090;
+}
+
+.flightChartDetails a.tooltipStyle {
+    color: #dc2458;
+}
+
+.timeReached {
+    color: #313131;
+}
+
+.PNRno {
+    color: #909090;
+}
+
+.PNRVal {
+    color: #000;
+}
+
+.travellerDetails {
+    color: #909090;
+}
+
+.nameTicket span {
+    color: #000;
+}
+
+.nameTicket a {
+    color: #dc2458;
+}
+
+.confirmStatus {
+    background: #316f9e;
+    color: #fff;
+}
+
+    .confirmStatus:hover {
+        color: #fff;
+    }
+
+.paymentSummary h5 {
+    color: #313541;
+}
+
+.paymentSummary table td {
+    color: #696768;
+}
+
+.paymentSummary table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+    .paymentSummary table tr.grandTotal {
+        border-top: 2px solid #dc2458;
+    }
+
+        .paymentSummary table tr.grandTotal td {
+            color: #313541;
+        }
+
+.borderTextbox {
+    border: 1px solid #909090 !important;
+}
+
+.searchIcon {
+    color: #fff;
+}
+
+    .searchIcon:hover {
+        color: #fff;
+    }
+
+.customDrop .dropdown-trigger {
+    color: #313443;
+}
+
+.dropdown-content:before {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+}
+
+.customDrop .dropdown-content li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+    .customDrop .dropdown-content li > a {
+        color: #26a69a;
+        color: #5d5d5d;
+    }
+
+        .customDrop .dropdown-content li > a span {
+            color: #26a69a;
+            color: #5d5d5d;
+        }
+
+@media screen and (min-width: 300px) and (max-width: 767px) {
+    .customHeader .navbar-expand-lg .navbar-nav .nav-link {
+        color: #fff !important;
+    }
+
+        .customHeader .navbar-expand-lg .navbar-nav .nav-link:hover {
+            color: #dc2458 !important;
+        }
+
+    .navbar-nav .nav-link:hover {
+        background: #fff;
+        color: #dc2458;
+    }
+
+    li.submenu a:hover {
+        background: #fff;
+        color: #dc2458 !important;
+        text-decoration: none;
+    }
+
+    li.submenu a {
+        color: #fff !important;
+        font-size: 1rem !important;
+        font-weight: 400;
+        padding-right: 10px;
+        text-transform: uppercase !important;
+    }
+
+    .timeCard {
+        border: 1px solid #909090;
+    }
+
+    .customDrop select {
+        border: 1px solid #909090;
+    }
+
+    .reservationLeft .datePickerStyle.borderchange {
+        border-left: none !important;
+        border-bottom: none !important;
+        height: 54px !important;
+        border-right: none !important;
+        border-bottom: 1px solid #909090 !important;
+    }
+
+    .reservationLeft .datePickerStyle {
+        border-left: none !important;
+        border-bottom: none !important;
+        height: 54px !important;
+        padding-left: 15px !important;
+        text-align: center !important;
+        border-bottom: 1px solid #909090 !important;
+    }
+
+    input.passengerDetails {
+        border-bottom: 1px solid #909090 !important;
+    }
+
+    .reservationBanner {
+        background: #fff;
+    }
+
+    .radioWrap label {
+        color: #313131;
+    }
+
+    .radioWrap [type="radio"]:not(:checked) + span::before, .radioWrap [type="radio"]:not(:checked) + span::after {
+        border: 2px solid #313131;
+    }
+
+    .checkWrap label {
+        color: #313131;
+    }
+
+    .reservationRight {
+        border-radius: 4px;
+        padding: 0;
+        width: 100%;
+        float: none;
+    }
+
+    .bottomTwoMore {
+        background: #fff;
+        color: #dc2458;
+    }
+
+    .shadowBorder {
+        box-shadow: none;
+        border-bottom: 1px solid #909090;
+    }
+}
+
+
+
+
+
+
+
+/*Product Color CSS Starts here*/
+.table.table-striped {
+    border-top: none;
+}
+
+.table thead tr {
+    border-bottom: none;
+}
+
+    .table thead tr th {
+        background: #2FB0C4;
+        color: #fff;
+    }
+
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+
+.table tbody tr td select {
+    background: #fff;
+    border: 1px solid #dc2458;
+    color: #dc2458;
+}
+
+.table td,
+.table td {
+    border-top: 1px solid #e3e6ea;
+}
+
+.table tbody tr td a {
+    color: #dc2458;
+}
+
+.card {
+    border: 1px solid#e3e6ea !important;
+}
+
+.light-theme a, .light-theme span {
+    color: #dc2458 !important;
+    border: 1px solid #dc2458 !important;
+}
+
+.light-theme .current {
+    background: #dc2458 !important;
+    color: #fff !important;
+    border-color: #dc2458 !important;
+}
+
+.report-title {
+    color: #dc2458;
+}
+
+select {
+    border: 1px solid rgba(14,91,145,0.5) !important;
+}
+
+
+.btn-primary {
+    border: none;
+    background: #d9255a !important;
+    background: linear-gradient(90deg, rgba(43, 37, 75, 1) 0%, rgba(217, 37, 90, 1) 100%);
+    border-radius: 3px;
+}
+
+/*New Client UI CSS Start*/
+a {
+    color: #ffffff;
+}
+
+    a:hover {
+        color: #d9255a;
+    }
+
+.btn-outline-primary {
+    color: #d9255a;
+    background-color: transparent;
+    background-image: none;
+    border-color: #FFF;
+}
+
+.btn-primary {
+    border: none;
+    background: rgb(43, 37, 75);
+    background: linear-gradient(90deg, rgba(43, 37, 75, 1) 0%, rgba(217, 37, 90, 1) 100%);
+    border-radius: 3px;
+}
+
+.text-primary {
+    color: #d9255a !important;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #ffffff;
+    background-color: #d9255a;
+    border-color: #d9255a;
+}
+
+
+/* Base */
+
+body {
+    color: #4d4d4d;
+}
+
+::-moz-selection {
+    background: #000;
+    color: #fff
+}
+
+::selection {
+    background: #000;
+    color: #fff
+}
+
+.text-black {
+    color: #000 !important
+}
+
+.bg-black {
+    background: #000 !important
+}
+
+.color-black-opacity-5 {
+    color: rgba(0, 0, 0, 0.5)
+}
+
+.color-white-opacity-5 {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.site-wrap:before {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.btn.btn-black {
+    color: #fff;
+    background-color: #000
+}
+
+    .btn.btn-black:hover {
+        color: #000;
+        background-color: #fff
+    }
+
+.btn.btn-outline-white {
+    border: 2px solid #fff
+}
+
+    .btn.btn-outline-white:hover {
+        background: #fff;
+        color: #d9255a !important
+    }
+
+.bg-black {
+    background: #000
+}
+
+.form-control:active,
+.form-control:focus {
+    border-color: #d9255a
+}
+
+.site-section-heading:after {
+    background: #d9255a
+}
+
+.site-section-heading.text-center:after {
+    background: #d9255a
+}
+
+.border-top {
+    border-top: 1px solid #edf0f5 !important
+}
+
+.text-white-opacity-05 {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.text-black-opacity-05 {
+    color: rgba(0, 0, 0, 0.5)
+}
+
+.bg-image.overlay:after {
+    background: rgba(0, 0, 0, 0.7)
+}
+
+.play-single-big {
+    border: 2px solid #fff;
+    color: #fff !important;
+}
+
+.ul-check.white li:before {
+    color: #fff
+}
+
+.ul-check.success li:before {
+    color: #8bc34a
+}
+
+.ul-check.primary li:before {
+    color: #d9255a
+}
+
+
+/* Navbar */
+
+.site-navbar .site-navigation.border-bottom {
+    border-bottom: 1px solid #f3f3f4 !important
+}
+
+.site-navbar .site-navigation .site-menu .active > a {
+    color: #d9255a;
+}
+
+.site-navbar .site-navigation .site-menu > li > a {
+    color: #fff;
+}
+
+    .site-navbar .site-navigation .site-menu > li > a:hover {
+        color: #d9255a;
+    }
+
+.site-navbar .site-navigation .site-menu .has-children .dropdown {
+    border-top: 2px solid #d9255a;
+    -webkit-box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid #edf0f5;
+    border-right: 1px solid #edf0f5;
+    border-bottom: 1px solid #edf0f5;
+    background: #fff;
+}
+
+    .site-navbar .site-navigation .site-menu .has-children .dropdown.arrow-top:before {
+        border-color: rgba(136, 183, 213, 0);
+        border-bottom-color: #fff;
+    }
+
+    .site-navbar .site-navigation .site-menu .has-children .dropdown a {
+        color: #343a40
+    }
+
+    .site-navbar .site-navigation .site-menu .has-children .dropdown .active > a {
+        color: #d9255a !important
+    }
+
+    .site-navbar .site-navigation .site-menu .has-children .dropdown > li > a:hover {
+        background: #f4f5f9;
+        color: #25262a
+    }
+
+    .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:hover > a,
+    .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:active > a,
+    .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children:focus > a {
+        background: #f4f5f9;
+        color: #25262a
+    }
+
+.site-navbar .site-navigation .site-menu .has-children:hover > a,
+.site-navbar .site-navigation .site-menu .has-children:focus > a,
+.site-navbar .site-navigation .site-menu .has-children:active > a {
+    color: #d9255a
+}
+
+.site-mobile-menu {
+    background: #fff;
+    -webkit-box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
+}
+
+    .site-mobile-menu .site-nav-wrap a {
+        color: #212529
+    }
+
+        .site-mobile-menu .site-nav-wrap a:hover {
+            color: #d9255a
+        }
+
+    .site-mobile-menu .site-nav-wrap li.active > a {
+        color: #d9255a
+    }
+
+    .site-mobile-menu .site-nav-wrap .arrow-collapse:hover {
+        background: #f8f9fa
+    }
+
+
+/* Blocks */
+
+.site-blocks-cover.overlay:before {
+    background: rgba(0, 0, 0, 0.4)
+}
+
+.site-blocks-cover h1 {
+    color: #fff
+}
+
+.site-blocks-cover p {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.site-block-subscribe .form-control {
+    border-color: #fff !important;
+    color: #fff;
+}
+
+    .site-block-subscribe .form-control::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .site-block-subscribe .form-control::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .site-block-subscribe .form-control:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .site-block-subscribe .form-control:-moz-placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+.bg-light {
+    background: #ccc
+}
+
+.team-member:before {
+    background: rgba(48, 227, 202, 0.8);
+}
+
+.team-member .text {
+    color: #fff
+}
+
+.podcast-entry {
+    -webkit-box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.1)
+}
+
+    .podcast-entry .sep {
+        color: #ccc
+    }
+
+.feature-blocks-1 {
+    color: #999
+}
+
+    .feature-blocks-1 .feature-block-1 p {
+        color: #ccc
+    }
+
+    .feature-blocks-1 .feature-block-1:hover,
+    .feature-blocks-1 .feature-block-1:focus,
+    .feature-blocks-1 .feature-block-1:active {
+        top: -10px;
+        -webkit-box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.4)
+    }
+
+        .feature-blocks-1 .feature-block-1:hover:before,
+        .feature-blocks-1 .feature-block-1:focus:before,
+        .feature-blocks-1 .feature-block-1:active:before {
+            background: rgba(0, 0, 0, 0.9)
+        }
+
+.site-blocks-vs .country {
+    color: rgba(255, 255, 255, 0.7)
+}
+
+.match-entry {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+}
+
+    .match-entry .small {
+        color: #ccc;
+    }
+
+    .match-entry:hover {
+        -webkit-box-shadow: 0 5px 40px -5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 40px -5px rgba(0, 0, 0, 0.1)
+    }
+
+.post-entry {
+    border: 1px solid #e6e6e6
+}
+
+    .post-entry .date {
+        color: #ccc;
+    }
+
+.site-block-tab .nav-item > a {
+    color: #ccc
+}
+
+    .site-block-tab .nav-item > a:hover,
+    .site-block-tab .nav-item > a.active {
+        border-bottom: 2px solid #d9255a;
+        color: #000
+    }
+
+
+/* -----------
+   NB: New nav style
+   ------------*/
+
+.owl-nav > div {
+    color: #cdcbcd;
+}
+
+.owl-nav .owl-prev,
+.owl-nav .owl-next {
+    background-color: #FFF;
+    -webkit-box-shadow: -5px 5px 10px -1px rgba(87, 87, 87, 0.5);
+    -moz-box-shadow: -5px 5px 10px -1px rgba(87, 87, 87, 0.5);
+    box-shadow: -5px 5px 10px -1px rgba(87, 87, 87, 0.5);
+    color: #495057;
+}
+
+.block-12 figure:before {
+    background: -moz-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(18%, transparent), color-stop(99%, rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8)));
+    background: -o-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#cc000000', GradientType=0)
+}
+
+.block-12 .text-overlay h2 {
+    color: #fff
+}
+
+.block-12 .text .meta {
+    color: #fff;
+}
+
+.block-12 .text .text-inner {
+    -webkit-box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3);
+    background: #fff;
+}
+
+    .block-12 .text .text-inner:before {
+        background: #d9255a;
+    }
+
+.block-16 figure .play-button {
+    background: #fff;
+    color: #d9255a !important
+}
+
+.block-25 ul li a .text .heading {
+    color: #999
+}
+
+.block-25 ul li a .meta {
+    color: #d9255a
+}
+
+.block-25 ul li a:hover .text .heading {
+    color: #fff
+}
+
+#date-countdown .countdown-block {
+    color: #b3b3b3
+}
+
+#date-countdown .label {
+    color: #000
+}
+
+.player .team-number {
+    background: #d9255a;
+    color: #fff
+}
+
+.player .position {
+    color: #b3b3b3;
+}
+
+.site-block-27 ul li a,
+.site-block-27 ul li span {
+    border: 1px solid #ccc
+}
+
+.site-block-27 ul li.active a,
+.site-block-27 ul li.active span {
+    background: #d9255a;
+    color: #fff;
+}
+
+.unit-1:after {
+    background: -moz-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(18%, transparent), color-stop(99%, rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8)));
+    background: -o-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#cc000000', GradientType=0)
+}
+
+.unit-1 .unit-1-text {
+    color: #fff;
+}
+
+.unit-1 p {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.h-entry .meta {
+    color: #b3b3b3;
+}
+
+.feature-1,
+.free-quote,
+.feature-3 {
+    background: #d9255a;
+}
+
+    .feature-1 .heading,
+    .free-quote .heading,
+    .feature-3 .heading {
+        color: #fff
+    }
+
+    .feature-1 .icon,
+    .free-quote .icon,
+    .feature-3 .icon {
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+        .feature-1 .icon > span,
+        .free-quote .icon > span,
+        .feature-3 .icon > span {
+            color: #fff;
+        }
+
+.free-quote {
+    background: #1edcc1
+}
+
+    .free-quote .form-control {
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        background: none;
+        color: #fff
+    }
+
+        .free-quote .form-control:active,
+        .free-quote .form-control:focus {
+            border: 2px solid #fff
+        }
+
+        .free-quote .form-control::-webkit-input-placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .free-quote .form-control::-moz-placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .free-quote .form-control:-ms-input-placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .free-quote .form-control:-moz-placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+.feature-3 {
+    background: #1dd3b9
+}
+
+.border-primary:after {
+    background: #d9255a
+}
+
+.text-muted {
+    color: #ccc !important;
+}
+
+.how-it-work-item .number {
+    background: #d9255a;
+    color: #fff;
+}
+
+.how-it-work-item h2 {
+    color: #fff
+}
+
+.how-it-work-item p {
+    color: #fff
+}
+
+.ul-social-circle li span {
+    background: #777;
+}
+
+.ul-social-circle li a span {
+    color: #fff;
+}
+
+.ul-social-circle li a:hover span {
+    background: #2b2b2b;
+    color: #fff
+}
+
+.custom-pagination a,
+.custom-pagination span {
+    display: inline-block;
+    background: #d9255a;
+    color: #fff
+}
+
+.custom-pagination span {
+    background: #e6e6e6;
+    color: #000
+}
+
+.search-cat-wrap {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+    .search-cat-wrap li {
+        border-right: 1px solid rgba(245, 239, 239, 0.1)
+    }
+
+.popular-category {
+    background: #fff;
+}
+
+    .popular-category .caption {
+        color: #666;
+    }
+
+    .popular-category .number {
+        background: #e9ecef;
+        color: #000;
+    }
+
+    .popular-category:hover {
+        background: #d9255a;
+        -webkit-box-shadow: 0 5px 30px -5px rgba(48, 227, 202, 0.5);
+        box-shadow: 0 5px 30px -5px rgba(48, 227, 202, 0.5);
+    }
+
+        .popular-category:hover .caption {
+            color: #fff
+        }
+
+        .popular-category:hover .icon {
+            color: #fff
+        }
+
+        .popular-category:hover .number {
+            background: #1bc5ad;
+            color: #fff
+        }
+
+.listing-item:after {
+    background: rgba(0, 0, 0, 0.4)
+}
+
+.listing-item .listing-item-content .category {
+    background: #d9255a;
+    color: #fff
+}
+
+.listing-item .listing-item-content h2,
+.listing-item .listing-item-content h2 a {
+    color: #fff
+}
+
+.listing-item .listing-item-content span {
+    color: #fff
+}
+
+.listing-item .listing-item-content .address {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.listing-item .bookmark {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+    .listing-item .bookmark:hover {
+        background: #f23a2e
+    }
+
+        .listing-item .bookmark:hover span {
+            color: #fff
+        }
+
+.accordion-item[aria-expanded="true"] {
+    color: #d9255a
+}
+
+.listing {
+    -webkit-box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.1);
+    background: #fff
+}
+
+    .listing .category {
+        background: rgb(104, 221, 25);
+        color: rgb(255, 255, 255);
+    }
+
+    .listing .category1 {
+        background: rgb(243, 159, 3);
+        color: rgb(255, 255, 255);
+    }
+
+    .listing .Available {
+        color: green;
+    }
+
+    .listing .Available1 {
+        color: rgb(0, 0, 0);
+    }
+
+    .listing .category-number {
+        background: rgb(206, 14, 62);
+        color: rgb(255, 255, 255);
+    }
+
+    .listing .lh-content .bookmark {
+        background: rgba(0, 0, 0, 0.03);
+    }
+
+        .listing .lh-content .bookmark:hover {
+            background: #f23a2e
+        }
+
+            .listing .lh-content .bookmark:hover span {
+                color: #fff
+            }
+
+.rangeslider.rangeslider--horizontal {
+    background: #e9ecef;
+}
+
+    .rangeslider.rangeslider--horizontal .rangeslider__fill {
+        background: #d9255a
+    }
+
+.rangeslider .rangeslider__handle:after {
+    background: #fff !important;
+    border: 3px solid #d9255a;
+}
+
+.overlap-category {
+    background: #fff;
+}
+/*Product CSS ends here*/
+
+
+
+/*Product CSS for Inner pages starts here*/
+
+/* Base */
+
+body {
+    color: #000000;
+}
+
+::-moz-selection {
+    background: #000;
+    color: #fff
+}
+
+::selection {
+    background: #000;
+    color: #fff
+}
+
+.text-black {
+    color: #000 !important
+}
+
+.bg-black {
+    background: #000 !important
+}
+
+.color-black-opacity-5 {
+    color: rgba(0, 0, 0, 0.5)
+}
+
+.color-white-opacity-5 {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.site-wrap:before {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.btn.btn-black {
+    color: #fff;
+    background-color: #000
+}
+
+    .btn.btn-black:hover {
+        color: #000;
+        background-color: #fff
+    }
+
+.btn.btn-outline-white {
+    border: 2px solid #fff
+}
+
+    .btn.btn-outline-white:hover {
+        background: #fff;
+        color: #d9255a !important
+    }
+
+.bg-black {
+    background: #000
+}
+
+.form-control:active,
+.form-control:focus {
+    border-color: #d9255a
+}
+/* Main Heading */
+
+.site-section12 .h5 {
+    color: black;
+}
+
+.site-section12-heading:after {
+    background: #000000;
+}
+
+.site-section12-heading.text-center:after {
+    background: #000000;
+}
+
+.site-section12 .rating-number {
+    background: rgb(206, 14, 62);
+    color: rgb(255, 255, 255);
+}
+/* Price And Date Card */
+
+.price1 {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.date1 {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* -----------
+NB: New nav style
+------------*/
+
+.owl-nav > div {
+    color: #cdcbcd;
+}
+
+.owl-nav .owl-prev,
+.owl-nav .owl-next {
+    background-color: #FFF;
+    -webkit-box-shadow: -5px 5px 10px -1px rgba(87, 87, 87, 0.5);
+    -moz-box-shadow: -5px 5px 10px -1px rgba(87, 87, 87, 0.5);
+    box-shadow: -5px 5px 10px -1px rgba(87, 87, 87, 0.5);
+    color: #495057;
+}
+
+.block-12 .text .text-inner {
+    -webkit-box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3);
+    background: #fff;
+}
+
+    .block-12 .text .text-inner:before {
+        background: #d9255a;
+    }
+
+/* Price Card */
+
+.site-section1 .card {
+    color: black;
+}
+
+    .site-section1 .card .keydetails {
+        color: black;
+    }
+/* Similar Tours Text */
+
+.section-recommended .similar {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+/* Collapse Class */
+
+.site-overview {
+    background: #fff;
+}
+
+    .site-overview .panel #collapseTwo .head1 {
+        color: black;
+    }
+    /*Line*/
+
+    .site-overview .panel #collapseTwo .timeline > li::before {
+        background-color: rgb(175, 164, 164);
+        color: black;
+    }
+    /*Circle*/
+
+    .site-overview .panel #collapseTwo .timeline > li::after {
+        border: 3px solid white;
+        background-color: #d9255a;
+    }
+    /*Content*/
+
+    .site-overview .panel #collapseTwo .timeline > li {
+        background-color: white;
+    }
+
+    .site-overview .panel-title > a,
+    .panel-title > a:active {
+        color: rgb(0, 0, 0);
+    }
+
+    .site-overview .panel-title .panel-body {
+        color: rgb(0, 0, 0);
+    }
+
+
+/* asthaf color code */
+
+.btn-outline-alternate:not(:disabled):not(.disabled):active,
+.btn-outline-alternate:not(:disabled):not(.disabled).active,
+.show > .btn-outline-alternate.dropdown-toggle {
+    background-color: #dc2458;
+    border-color: #dc2458;
+}
+
+.vertical-nav-menu li a:hover, .vertical-nav-menu li a.active {
+    background: #dc2458;
+    color: #fff;
+}
+
+.bg-arielle-smile {
+    background-image: radial-gradient(circle 248px at center, #f19f69 0%, #8b0e30 47%, #dc2458 100%) !important;
+}
+
+.btn-outline-alternate:not(:disabled):not(.disabled):active,
+.btn-outline-alternate:not(:disabled):not(.disabled).active,
+.show > .btn-outline-alternate.dropdown-toggle {
+    background-color: #dc2458;
+    border-color: #dc2458;
+}
+
+.modal-header {
+    background: #dc2458;
+}
+
+.loaderComplete::-webkit-scrollbar-thumb {
+    background-color: #dc2458;
+}
+
+.autocomplete ul.loaderComplete li:hover {
+    background-color: #dc2458 !important;
+}
+
+.table-heivh::-webkit-scrollbar-thumb {
+    background-color: #dc2458;
+}
+
+.autocomplete ul.table-heivh li:hover {
+    background-color: #dc2458 !important;
+}
+
+a.SpecialWalletDetails.modal-trigger {
+    color: #dc2458;
+}
+
+a.SpecialWalletDetails.modal-trigger {
+    color: #dc2458;
+}
+
+div#Product #leftMenu .title {
+    border: 1px solid #dc2458;
+}
+
+div#Product #leftMenu .menu {
+    border-top: 2px solid #dc2458;
+}
+
+div#Product #leftMenu .title.active {
+    background: #dc2458;
+}
+
+div#Product #leftMenu .title.bg-active {
+    background: #dc2458;
+}
+
+div#Product #leftMenu .title.active::after {
+    border-top: 20px solid #dc2458;
+}
+
+#leftMenu .menu > span.active {
+    background-color: #dc2458 !important;
+}
+
+#leftMenu .menu > span:hover {
+    background-color: #dc2458;
+}
+
+div#people-list {
+    background: #dc2458;
+}
+
+.containerChat {
+    background: #dc2458 !important;
+}
+
+.bk-nw {
+    border: 1px solid #dc2458;
+    color: #dc2458;
+}
+
+#loaderComplete::-webkit-scrollbar-thumb {
+    background-color: #dc2458;
+}
+
+#loaderComplete::-webkit-scrollbar-thumb {
+    background-color: #dc2458;
+}
+
+ul#Completeloader::-webkit-scrollbar-thumb {
+    background-color: #dc2458;
+}
+
+ul.site-menu.js-clone-nav.mr-auto.d-none.d-lg-block a.modal-trigger.cta span {
+    background: -webkit-linear-gradient(left, #da1950 59%,#8b0e30 100%);
+    background: linear-gradient(to right, #da1950 59%,#8b0e30 100%);
+}
+
+.ui-datepicker .ui-datepicker-header {
+    background: #dc2458;
+}
+
+div#plans .minus {
+    border: 1px solid #dc2458 !important;
+    color: #dc2458;
+}
+
+div#plans .plus {
+    border: 1px solid #dc2458 !important;
+    color: #dc2458;
+}
+
+.user-prof .nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    background-color: #dc2458;
+}
+
+.trav-price a {
+    border: 1px solid #dc2458;
+}
+
+.product-boodt .reviewHeader.blueGradient.btn-primary {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%) !important;
+    ;
+}
+
+.authfy-panel.panel-login.text-center a.lnk-toggler {
+    color: #dc2458 !important;
+}
+
+.authfy-panel.panel-forgot a.lnk-toggler {
+    color: #dc2458 !important;
+}
+
+.authfy-panel.panel-signup.text-center a.lnk-toggler {
+    color: #dc2458 !important;
+}
+
+.site-section12 h6 {
+    color: #000 !important;
+}
+
+.price1 {
+    color: #000 !important;
+}
+
+.ui-datepicker-calendar td a[data-custom]::after {
+    color: #000;
+}
+
+.price-list.d-block.d-md-flex.listing.vertical.card.shadow-sm.p-3.mb-5.bg-white.rounded h6.icon-clock-o.date1 {
+    color: #000;
+}
+
+@media (max-width: 1040px) {
+    .ui-datepicker-calendar td a[data-custom]::after {
+        color: #000;
+    }
+}
+
+.mm-active .anc-active {
+    background-color: #dc2458;
+}
+
+input#ProofFile::-webkit-file-upload-button {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%);
+}
+
+input#Logos::-webkit-file-upload-button {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%);
+}
+
+input#ProfilePhoto::-webkit-file-upload-button {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%);
+}
+
+input#Images::-webkit-file-upload-button {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%);
+}
+
+input#Photo::-webkit-file-upload-button {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%);
+}
+
+input#Logo::-webkit-file-upload-button {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%);
+}
+
+.autocomplete ul.loaderComplete li:hover {
+    background: #dc2458 !important;
+}
+
+.spinnerLoader {
+    border-top: 10px solid #d9255a !important;
+}
+
+.cart-home a span {
+    background: #dc2458;
+}
+
+span.badge.badge-primary {
+    background: linear-gradient(to right, #d9255a 72%, #97002b 100%);
+}
+
+.activeicon, .activeicon:hover {
+    color: #d9255a !important;
+}
+
+.spinner {
+    border: 5px solid #d9255a;
+}
+
+.spinnerfare {
+    border: 3px solid #d9255a;
+}

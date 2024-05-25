@@ -1,0 +1,494 @@
+﻿@using DOM.Domain.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="zxx">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Config.Company.COMPNAME</title>
+    <link rel="icon" href="~/assets/images/login/sq-@(Config.Company.COMPNAME.Trim(' ')).png">
+    <meta name='description' content='@Config.Company.COMPNAME'>
+    <meta name='abstract' content='@Config.Company.COMPNAME'>
+    <meta name='keywords' content='@Config.Company.COMPNAME'>
+    <meta name='author' content='@Config.Company.COMPNAME'>
+    <meta name='distribution' content='Global'>
+    <link href="~/@(Config.Company.WebManagement.WebTemplate.ColourSchemes)" rel="stylesheet" />
+    <link href="~/@(Config.Company.WebManagement.WebTemplate.Fonts)" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    @*@{
+    var ProThumbNail = ViewData["ThumbNail"] as Product;
+    }
+    <meta property="og:title" content="@((ProThumbNail?.Title.Length>45)?ProThumbNail?.Title.Substring(0,45)+"...":ProThumbNail?.Title)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@Config.Company.WebManagement.WebTemplate.BaseUrl" />
+    <meta property="og:image" content="@Config.Company.WebManagement.WebTemplate.BaseUrl@ProThumbNail?.ProductImages.FirstOrDefault(x=>x.IsDefault==true)?.FileName.Replace("~/","")" />
+    <meta property="og:description" content="@Config.Session.Staff.Branch.BranchName" />*@
+
+    <meta property="og:title" content="Test title lg bo old" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://partner.vendorics.com/" />
+    <meta property="og:image" content="/assets/images/header/dummy.png" />
+    <meta property="og:description" content="Site description" />
+
+
+    <link href="~/assets/library/css/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/assets/functions/css/footerProductClient.css" rel="stylesheet" />
+    <link href="~/assets/functions/css/headerProductClient.css" rel="stylesheet" />
+    <link href="~/assets/functions/css/login7-style.css" rel="stylesheet" />
+    <environment names="Development">
+        @*<link href="~/assets/library/css/materialize.css" rel="stylesheet">*@
+        <link href="~/assets/library/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/assets/library/css/jquery-ui.css" rel="stylesheet">
+        <link href="~/assets/library/css/nouislider.css" rel="stylesheet">
+    </environment>
+    <environment names="Staging,Production">
+        @*<link href="~/assets/library/css/materialize.css" rel="stylesheet">*@
+        <link href="~/assets/library/css/bootstrap.css" rel="stylesheet">
+        <link href="~/assets/library/css/jquery-ui.css" rel="stylesheet">
+        <link href="~/assets/library/css/nouislider.css" rel="stylesheet">
+    </environment>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/assets/library/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/assets/library/css/style.css" rel="stylesheet" />
+</head>
+<style>
+    /* CSS for the custom checkbox */
+    .custom-checkbox {
+        display: inline-block;
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+    }
+
+    .custom-checkbox:hover input ~ .checkmark {
+        background-color: #ddd;
+    }
+
+    .custom-checkbox input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .custom-checkbox input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    .custom-checkbox .checkmark:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .label-text {
+        margin-left: 5px;
+    }
+
+</style>
+<body>
+    <!-- Start Preloader -->
+    <!-- Preloader End -->
+    <input type="hidden" id="_root" value="@Url.Content("~/")" />
+    <section class="fxt-template-animation fxt-template-layout22 loaded" style='background:url("assets/images/login/loginbg.jpg")'>
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-5 col-xs-12 col-sm-8 col-md-5 col-12 fxt-bg-color signUp-content" style="display:none;">
+                    <div class="fxt-content">
+                        <div class="fxt-form">
+                            <div class="text-center"><img src="assets/images/login/TripAI-Logo.png" alt="TraiAI" /></div>
+                            <p class="mt-2"></p>
+                            <form name="signupForm" id="RegistrationForm">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="FirstName" class="input-label">First Name</label>
+                                        <input type="text" class="form-control" id="FirstName" placeholder="First name" aria-describedby="inputGroupPrepend" required="">
+                                        <span class="focus-input"></span>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="LastName" class="input-label">Last Name</label>
+                                        <input type="text" class="form-control" id="LastName" placeholder="Last name" aria-describedby="inputGroupPrepend" required="">
+                                        <span class="focus-input"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="Company" class="input-label">Company</label>
+                                        <input type="text" class="form-control" id="Company" placeholder="Company" aria-describedby="inputGroupPrepend" required="">
+                                        <span class="focus-input"></span>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="EmailId" class="input-label">Email Id</label>
+                                        <input type="email" class="form-control" id="EmailId" placeholder="Email ID" aria-describedby="inputGroupPrepend" required="">
+                                        <span class="focus-input"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="Country" class="input-label">Country</label>
+                                        <input type="text" class="form-control" id="Country" placeholder="Country" aria-describedby="inputGroupPrepend" required="">
+                                        <span class="focus-input"></span>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="Phone" class="input-label">Phone</label>
+                                        <input type="text" class="form-control" id="Phone" placeholder="Phone" required="">
+                                        <span class="focus-input"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12 text-center">
+                                        <input type="hidden" id="Domain" value="@Config.Company.WebManagement.HostingURL" />
+                                        @*<button id="registerBtn" class="btn btn-lg btn-primary btn-block" type="button">Sign up with email</button>*@
+                                        <button type="submit" class="fxt-btn-fill mt-4" id="registerBtn">Sign up with email</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="fxt-footer">
+                            <script>
+                                // Example starter JavaScript for disabling form submissions if there are invalid fields
+                                (function () {
+                                    'use strict';
+                                    window.addEventListener('load', function () {
+                                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                        var forms = document.getElementsByClassName('needs-validation');
+                                        // Loop over them and prevent submission
+                                        var validation = Array.prototype.filter.call(forms, function (form) {
+                                            form.addEventListener('submit', function (event) {
+                                                if (form.checkValidity() === false) {
+                                                    event.preventDefault();
+                                                    event.stopPropagation();
+                                                }
+                                                form.classList.add('was-validated');
+                                            }, false);
+                                        });
+                                    }, false);
+                                })();
+                            </script>
+
+                            <p class="m-0">
+                                <a class="switcher-text2 inline-text" id="lnkLoginContent" data-panel=".login-content" href="#">Already have an account?</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-12 col-sm-8 col-md-4 col-12 fxt-bg-color login-content">
+                    <div class="fxt-content ">
+                        <div class="fxt-form">
+                            <div class="text-center"><img src="assets/images/login/TripAI-Logo.png" alt="TraiAI" /></div>
+                            <p class="mt-2"></p>
+                            <form name="loginForm" method="POST">
+                                <div class="form-group">
+                                    <label for="email" class="input-label">Email Address</label>
+                                    <input type="email" class="form-control" id="login" name="username" placeholder="Email address" required="required">
+                                    <span class="focus-input"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd" class="input-label">Password</label>
+                                    <input type="password" class="form-control" id="pwd" name="password" placeholder="********" required="required">
+                                    <i toggle="#pwd" class="fa fa-fw toggle-password field-icon fa-eye"></i>
+                                    <span class="focus-input"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="fxt-checkbox-area">
+                                        <div class="checkbox">
+                                            <input id="checkbox1" type="checkbox">
+                                            <label for="checkbox1">Remember me</label>
+                                            <span class="label-text"></span>
+                                        </div>
+                                        <a href="#" class="switcher-text" id="lnkForgotPassword">Forgot Password</a>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center">
+                                    <span class="text-center" style="color:red;display:none;" id="ErrorMsg">Invalid Email</span>
+                                    <button type="button" id="SubmitBtn" class="fxt-btn-fill">Log in</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="fxt-footer">
+                            <p>
+                                Don’t have an account?
+                                <a class="switcher-text2 inline-text" id="lnkSignUpContent" data-panel=".signUp-content" href="#">Sign Up</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-12 col-sm-8 col-md-4 col-12 fxt-bg-color forgotPwd-content" style="display:none;">
+                    <div class="fxt-content">
+                        <div class="fxt-form">
+                            <div class="text-center"><img src="assets/images/login/TripAI-Logo.png" alt="TraiAI" /></div>
+                            <p class="mt-2"></p>
+                            <form name="forgetForm" class="forgetForm" action="#" method="POST">
+                                <div class="form-group">
+                                    <label for="email" class="input-label">Email Address</label>
+                                    <input type="email" id="Staff_EmailId" class="form-control" name="username" placeholder="Email address">
+                                    <span class="focus-input"></span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button class="fxt-btn-fill" id="RecoverPassword" type="button">Recover password</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="fxt-footer">
+                            <p>
+                                <a class="switcher-text2 inline-text" id="lnkLoginContent" data-panel=".login-content" href="#">Already have an account?</a>
+                                <br />
+                                <a class="switcher-text2 inline-text" id="lnkSignupContent" data-panel=".signup-content" href="#">Sign Up</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ./container -->
+    <!-- Javascript Files -->
+    <!-- initialize jQuery Library -->
+    <environment names="Development">
+        <script src="../../assets/library/js/jquery-3.3.1.js" asp-append-version="true"></script>
+        <script src="../../assets/library/js/popper.min.js" asp-append-version="true"></script>
+        <script src="../../assets/library/js/bootstrap.min.js" asp-append-version="true"></script>
+        <script src="../../assets/library/js/materialize.js" asp-append-version="true"></script>
+        <script src="../../assets/functions/js/header.js" asp-append-version="true"></script>
+        <script src="../../assets/library/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/moment.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/DevopsChart.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.PieceLabel.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/linq.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/jquery.simplePagination.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/assets/library/js/jquery-3.3.1.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/popper.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/bootstrap.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/materialize.js" asp-append-version="true"></script>
+        <script src="~/assets/functions/js/header.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/moment.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/DevopsChart.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/Chart.PieceLabel.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/linq.min.js" asp-append-version="true"></script>
+        <script src="~/assets/library/js/jquery.simplePagination.js"></script>
+    </environment>
+    <script src="~/assets/functions/js/index.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/src/Staff/Login.js" asp-append-version="true"></script>
+    <script>
+        !function (a) { "use strict"; a("html, body"); var e = a(".pwdMask > .form-control"), t = a(".pwd-toggle"); a(".lnk-toggler").on("click", function (t) { t.preventDefault(); var e = a(this).data("panel"); a(".authfy-panel.active").removeClass("active"), a(e).addClass("active") }), a(t).on("click", function (t) { t.preventDefault(), a(this).toggleClass("fa-eye-slash fa-eye"), a(this).hasClass("fa-eye") ? a(e).attr("type", "text") : a(e).attr("type", "password") }), a("#forget-lnk").on("click", function () { a(".authfy-login .nav-tabs").find("li").removeClass("active") }), a(window).on("load", function () { a(".square-block").fadeOut(), a("#preload-block").fadeOut("slow", function () { a(this).remove() }) }) }(jQuery);
+    </script>
+    @section Scripts
+    {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+    @* <footer class="site-footer LoginsetupDiv">
+    <div class="container">
+
+
+    <div class="row  text-center justify-content-center mb-2">
+    <div class="col-md-10">
+    <p style="font-size: 24px;"> Want to receive exclusive offers? Subscribe to our newsletter! </p>
+    </div>
+    </div>
+
+    <div class="row mb-4 text-center justify-content-center">
+    <div class="col-md-6">
+    <form action="#" method="post">
+    <div class="input-group mb-3">
+    <input type="hidden" value="@Config.Company.WebManagement.HostingURL" />
+    <input type="text" class="form-control form-control-lg border-secondary text-white " id="subscriptionBtn" placeholder="Enter your email..." aria-label="Enter Email" aria-describedby="button-addon2">
+    <div class="input-group-append">
+    <button class="btn btn-lg btn-primary text-white" type="button" id="button-addon2">
+    Subscibe
+    </button>
+    </div>
+    </div>
+    </form>
+    </div>
+
+    </div>
+
+    <div class="row align-center mt-2 ">
+
+    <div class="col-lg-10 mb-xl-0 col-xl-10 m-auto">
+
+    <ul class="list-inline text-center m-0">
+    <!-- 01 -->
+    <li class="list-inline-item ">
+    <span class="icon">
+    <img style="width: 120px;" src="assets/images/products/footer_image/paypal.png">
+    </li>
+    <!-- 02 -->
+    <li class=" list-inline-item ">
+    <span class="icon">
+    <img style="width: 90px;" src="assets/images/products/footer_image/visa.png">
+    </li>
+    <!-- 03 -->
+    <li class="list-inline-item ">
+    <span class="icon">
+    <img style="width: 120px;" src="assets/images/products/footer_image/mastercard.png">
+    </li>
+    <!-- 04 -->
+    <li class="list-inline-item ">
+    <span class="icon">
+    <img style="width: 120px;" src="assets/images/products/footer_image/maestro.png">
+    </li>
+    <!-- 05 -->
+    <li class="list-inline-item">
+    <span class="icon">
+    <img src="assets/images/products/footer_image/americanExpress.png">
+    </li>
+    <!-- 06 -->
+    <li class="list-inline-item">
+    <span class="icon">
+    <img src="assets/images/products/footer_image/razorpay.png">
+    </li>
+    <!-- 07 -->
+    </ul>
+    </div>
+    </div>
+
+    <div class="row pt-0 mt-3">
+    <div class="col-md-12">
+    <div class="border-top pt-3">
+    <div class="row">
+    <div class="col-md-8 offset-md-2 text-center pt-1">
+
+    <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+    <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+    <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+    <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+    <a href="#" class="pl-3 pr-3"><span class="icon-youtube-play"></span></a>
+
+    <p class="pt-3">
+    Copyright &copy;
+    @(DateTime.Now.Year)
+    @*<script>document.write(new Date().getFullYear());</script>*@
+    @*   @Config.Company.COMPNAME All rights reserved.
+    </p>
+
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    <div class="alert alert-success signupSuccuss" id="signupSuccuss" style="display:none;">
+    <strong style="padding-left: 26%;">
+    Thank you for signing up!
+    </strong><br />
+    Your account will get activated in 24 hours.
+
+    You will receive the details on your registered email id.
+    </div>
+    </div>
+    </footer> *@
+
+    <script>
+        // forgot content start
+        $('.forgotPwd-content #lnkSignupContent').on('click', function () {
+            $('.signUp-content').show();
+            $('.forgotPwd-content').hide();
+            $('.login-content').hide();
+        });
+        $('.forgotPwd-content #lnkLoginContent').on('click', function () {
+            $('.signUp-content').hide();
+            $('.forgotPwd-content').hide();
+            $('.login-content').show();
+        });
+        // forgot content end
+
+        // login content start
+        $('.login-content #lnkForgotPassword').on('click', function () {
+            $('.signUp-content').hide();
+            $('.forgotPwd-content').show();
+            $('.login-content').hide();
+        });
+        $('.login-content #lnkSignUpContent').on('click', function () {
+            $('.signUp-content').show();
+            $('.forgotPwd-content').hide();
+            $('.login-content').hide();
+        });
+        // forgot content end
+
+        // signup content start
+        $('.signUp-content #lnkLoginContent').on('click', function () {
+            $('.signUp-content').hide();
+            $('.forgotPwd-content').hide();
+            $('.login-content').show();
+        });
+        // signup content end
+
+        /*-------------------------------------
+        Toggle Class
+        -------------------------------------*/
+        $(".toggle-password").on('click', function () {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            console.log(input);
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+<script src="~/assets/functions/js/Banner.js"></script>
+<script>
+    $(document).ready(function () {
+        localStorage.setItem("ActiveMenuClass", "");
+    });
+</script>

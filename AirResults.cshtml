@@ -1,0 +1,802 @@
+﻿﻿@using Air.ViewModel;
+@using AirDataModels;
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model ResultVM
+{}
+<link href="assets/functions/css/listing.css" rel="stylesheet">
+<style>
+    .flt_hide {
+        display: none;
+    }
+
+    .modifySearchBtn {
+        outline: none;
+        box-shadow: none;
+        border: none;
+        height: auto;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        line-height: 20px;
+    }
+
+        .modifySearchBtn > img {
+            margin-right: 5px;
+        }
+
+    .swapIcon {
+        right: -17px;
+    }
+
+    @@media screen and (min-width: 300px) and (max-width: 767px) {
+        .radioWrap,
+        .checkWrap {
+            padding: 10px 0;
+        }
+
+            .radioWrap label,
+            .checkWrap label {
+                /* color: #ffffff; */
+            }
+
+            .radioWrap [type="radio"]:not(:checked) + span::before,
+            .radioWrap [type="radio"]:not(:checked) + span::after {
+                border: 2px solid #ffffff;
+            }
+
+            .radioWrap input[type="radio"] {
+                top: 15px;
+                right: -13px;
+            }
+
+            .radioWrap [type="radio"]:not(:checked) + span,
+            .radioWrap [type="radio"]:checked + span {
+                z-index: 1;
+            }
+
+        .listingLeft {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+            .listingLeft .listingLeftPad {
+                border-bottom: 1px solid #9e9e9e;
+            }
+
+        .swapIcon {
+            display: inline-block;
+            transform: rotate(90deg) translate(20px, -150px);
+            margin-left: 0;
+        }
+
+        .customDateWrap,
+        .customDateWrapreturn,
+        .customDrop {
+            text-align: left;
+            padding-left: 15px;
+        }
+
+        .modifySearchBtn {
+            width: 100%;
+            padding: 15px;
+        }
+
+        .timeCard {
+            padding: 0;
+        }
+
+        .timeCardBorder {
+            border: 1px solid #9e9e9e;
+            border-right: 1px solid #9e9e9e;
+            border-bottom: none;
+        }
+
+            .timeCardBorder:last-child {
+                border-bottom: 1px solid #9e9e9e;
+            }
+
+        .tblMrgnBtm {
+            height: auto;
+        }
+    }
+</style>
+<section>
+    @*<div class="lds-ripple" id="Loader">
+    <img src="~/assets/images/listing/DoubleRing.gif" />
+    </div>*@
+    <div class="topBanner" id="topBanner">
+        <div class="container">
+            <div class="col-xs-12">
+                <div class="topPadding">
+                    <div class="listingBannerWrap" id="search_form">
+                        @using (Html.BeginForm("SearchFlight", "Home"))
+                        {
+                            <div class="row">
+                                <div class="col-8 ol-xs-8 col-sm-8 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                                    <div class="radioWrap">
+                                        <label>
+                                            @{
+                                                string statusOneway = @Model.SearchRequest.SelectedTripType == "OneWay" ? "checked" : "";
+                                                string statusReturn = @Model.SearchRequest.SelectedTripType == "RoundTrip" ? "checked" : "";
+                                            }
+                                            <input class="with-gap radioClick" name="tripType" type="radio" value="OneWay" @statusOneway />
+                                            <span>One Way</span>
+                                        </label>
+                                        <label>
+                                            <input class="with-gap radioClick" name="tripType" id="RoundTrip" type="radio" value="RoundTrip" @statusReturn />
+                                            <span>Round Trip</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-4 ol-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                                    <div class="checkWrap listingCheck">
+                                        <label>
+                                            <input type="checkbox" class="filled-in" checked="checked" />
+                                            <span>Filled in</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row align-items-center">
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <label class="sr-only" for="flightDeparture">Name</label>
+                                    <input id="origin" min="3" required autocomplete="off" name="flightDeparture" type="text" value="@Model.SearchRequest.FromAirport" class="validate autocomplete form-control" onkeydown="ShowHideDiv(false);" onkeyup="loadAirport(event, 'divFlightDeparture', this);">
+                                    <div class="autocomplete" id="divFlightDeparture" style="display: none;"></div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <label class="sr-only" for="flightArrival">Name</label>
+                                    <input id="destination" min="3" required autocomplete="off" name="flightArrival" type="text" value="@Model.SearchRequest.ToAirport" class="validate autocomplete form-control" onkeydown="ShowHideDiv(false);" onkeyup="loadAirport(event, 'divFlightArrival', this);">
+                                    <div class="autocomplete" id="divFlightArrival" style="display: none;"></div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                    <label class="sr-only" for="flightDepartureDate">Name</label>
+                                    <input type="text" name="flightDepartureDate" value=" @(Convert.ToDateTime(Model.SearchRequest.DepartureDate)) " class="datepicker datePickerStyle form-control" id="dateFrom" placeholder="Departure Date">
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                    <label class="sr-only" for="flightReturnDate">Name</label>
+                                    <input type="text" name="flightReturnDate" value=" @(string.IsNullOrEmpty(Model.SearchRequest.ReturnDate) ? Convert.ToDateTime(Model.SearchRequest.DepartureDate) : @Convert.ToDateTime(Model.SearchRequest.ReturnDate))" class="datepicker datePickerStyle form-control customDateWrapreturn" id="dateTo" placeholder="Return Date">
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <div class="dropdown">
+                                        <a data-dropup-auto="false" class="btn btn-default dropdown-toggle border form-control" href="#" role="input" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="passengercount">@(Model.SearchRequest.Adults + Model.SearchRequest.Childs + Model.SearchRequest.Infants)</span> Traveler <span class="classSelected">@Model.SearchRequest.JourneyClass</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-item">
+                                                <span href="javascript:void(0)" class="leftLink"><span class="adultVal" name="adults">@Model.SearchRequest.Adults</span> Adult</span>
+                                                <input type="hidden" class="adultVal" value="@Model.SearchRequest.Adults" name="adults" />
+                                                <span href="javascript:void(0)" class="rightLink">
+                                                    <div href="#" class="minus adultminus">-</div><div href="#" class="plus adultPlus">+</div>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <span href="javascript:void(0)" class="leftLink"><span class="childVal" name="child">@Model.SearchRequest.Childs</span> Child</span>
+                                                <input type="hidden" class="childVal" value="@Model.SearchRequest.Childs" name="child" />
+                                                <span href="javascript:void(0)" class="rightLink">
+                                                    <div href="#" class="minus childMinus">-</div><div href="#" class="plus childPlus">+</div>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <span href="javascript:void(0)" class="leftLink"><span class="infantVal" name="infant">@Model.SearchRequest.Infants</span> infant <br /><small class="font12">below 2 years</small></span>
+                                                <span href="javascript:void(0)" class="rightLink">
+                                                    <input type="hidden" class="infantVal" value="@Model.SearchRequest.Infants" name="infant" />
+                                                    <div href="#" class="minus infantMinus">-</div><div href="#" class="plus infantPlus">+</div>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="class" type="radio" value="Economy" checked="checked" />
+                                                        <span>Economy</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="class" type="radio" value="Premium Economy" />
+                                                        <span>Premium Economy</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="class" type="radio" value="Business" />
+                                                        <span>Business</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="tripType" type="radio" value="First" />
+                                                        <span>First</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <button type="submit" class="btn btn-primary btn-block border-0"><span class="fa fa-search"></span> Modify Search</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="ListingContainer">
+            <div class="row">
+                <div class="col-sm-3" id="Filters">
+                    <div class="ListingContainerLeft">
+                        <h6 style="width:100px;"><div class="placeholder  u-disable-state-blue"></div></h6>
+                        <a href="#" class="resetAll colorBrick">Reset All </a>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="ListingContainerLeftBoxes  colorBrick">
+                            <div class="title">Stops</div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="placeholder  u-disable-state-blue"></div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="ListingContainerLeftBoxes  colorBrick">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <ul class="tabs" id="leftTab">
+                                        <li class="tab col-sm-6"><a href="#outbound" class="active">Outbound</a></li>
+                                        <li class="tab col-sm-6"><a href="#return">Return</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tabContainerLeft">
+                                    <div id="outbound">
+                                        <div class="timings">
+                                            <p><span>Timings: </span></p>
+                                            <div class="row MR0 ML0">
+
+
+
+                                                <div class="col-sm-12 PL0 PR0">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricingSlider">
+                                            <div class="title">Price</div>
+                                            <div class="row">
+                                            </div>
+                                            <div class="placeholder  u-disable-state-blue"></div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <div id="return"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9" id="best" data-url="@Model.SessionID">
+                    <div class="col-sm-9" id="best">
+                        <div class="listmainContentRight">
+                            <div class="row">
+                                <div class="col-12 listmainContentRightContent customDrop">
+                                    <div class="col-sm-12">
+                                        <div class="row tblMrgnBtm" id="tblMrgnBtm">
+                                            <div class="col-sm-2">
+                                                <div>Sort by:</div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <select class="form-control">
+                                                            <option>Departure</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <select class="form-control">
+                                                            <option>Arrival</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <select class="form-control">
+                                                    <option>Duration</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <select class="form-control">
+                                                    <option>Price</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="listRowItem shadowBorder">
+                                        <div class="row ">
+                                            <div class="col-sm-9">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-tblitem">
+                                                            <div class="rowOdd dottedBorder">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2   text-left">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-7 ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-5 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3  PR0">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-tblitem">
+                                                            <div class="rowOdd">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2   text-left">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-7 ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-5 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3  PR0">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="row">
+                                                    <div class="col-sm-12 priceWrap">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 btnRightWrapList">
+                                                        <br />
+                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="listRowItem shadowBorder">
+                                        <div class="row ">
+                                            <div class="col-sm-9">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-tblitem">
+                                                            <div class="rowOdd dottedBorder">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2   text-left">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-7 ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-5 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3  PR0">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-tblitem">
+                                                            <div class="rowOdd">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2  text-left">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-7 ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-5 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3  PR0">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="row">
+                                                    <div class="col-sm-12 priceWrap">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 btnRightWrapList">
+                                                        <br />
+                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="listRowItem shadowBorder">
+                                        <div class="row ">
+                                            <div class="col-sm-9">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-tblitem">
+                                                            <div class="rowOdd dottedBorder">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2  text-left">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-7 ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-5 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3  PR0">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-tblitem">
+                                                            <div class="rowOdd">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2   text-left">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-7 ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-5 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 colorGrey">
+                                                                                <div class="placeholder  u-disable-state-blue"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3  PR0">
+                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="row">
+                                                    <div class="col-sm-12 priceWrap">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 btnRightWrapList">
+                                                        <br />
+                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btnFilterContainer">
+        <button type="button" id="btnModifySearch" class="btn btn-primary border-0 mr-2" data-toggle="modal" data-target="#modifySearchCenter">
+            <span class="fa fa-search"></span>  Modify Search
+        </button>
+        <button type="button" id="btnFilter" class="btn btn-primary border-0" data-toggle="modal" data-target="#filterModale">
+            <span class="fa fa-filter"></span> Filter
+        </button>
+        @* <button type="button" id="btnSort" class="btn btn-primary border-0" data-toggle="modal" data-target="#sortModaleCenter">
+            <span class="fa fa-sort"></span> Sort
+        </button> *@
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="filterModale" tabindex="-1" role="dialog" aria-labelledby="filterModaleLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="ListingContainerLeft">
+                        <h6 style="width:100px;"><div class="placeholder  u-disable-state-blue"></div></h6>
+                        <a href="#" class="resetAll colorBrick">Reset All </a>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="ListingContainerLeftBoxes  colorBrick">
+                            <div class="title">Stops</div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="placeholder  u-disable-state-blue"></div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="ListingContainerLeftBoxes  colorBrick">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <ul class="tabs" id="leftTab">
+                                        <li class="tab col-sm-6"><a href="#outbound" class="active">Outbound</a></li>
+                                        <li class="tab col-sm-6"><a href="#return">Return</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tabContainerLeft">
+                                    <div id="outbound">
+                                        <div class="timings">
+                                            <p><span>Timings: </span></p>
+                                            <div class="row MR0 ML0">
+                                                <div class="col-sm-12 PL0 PR0">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricingSlider">
+                                            <div class="title">Price</div>
+                                            <div class="row">
+                                            </div>
+                                            <div class="placeholder  u-disable-state-blue"></div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <div id="return"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modifySearchCenter" tabindex="-1" role="dialog" aria-labelledby="modifySearchCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="listingBannerWrap" id="search_form">
+                        @using (Html.BeginForm("SearchFlight", "Home"))
+                        {
+                            <div class="row">
+                                <div class="col-8 ol-xs-8 col-sm-8 col-md-10 col-lg-10 col-xl-10 col-xxl-10">
+                                    <div class="radioWrap">
+                                        <label>
+                                            @{
+                                                string statusOneway = @Model.SearchRequest.SelectedTripType == "OneWay" ? "checked" : "";
+                                                string statusReturn = @Model.SearchRequest.SelectedTripType == "RoundTrip" ? "checked" : "";
+                                            }
+                                            <input class="with-gap radioClick" name="tripType" type="radio" value="OneWay" @statusOneway />
+                                            <span>One Way</span>
+                                        </label>
+                                        <label>
+                                            <input class="with-gap radioClick" name="tripType" id="RoundTrip" type="radio" value="RoundTrip" @statusReturn />
+                                            <span>Round Trip</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-4 ol-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                                    <div class="checkWrap listingCheck">
+                                        <label>
+                                            <input type="checkbox" class="filled-in" checked="checked" />
+                                            <span>Filled in</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row align-items-center">
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <label class="sr-only" for="flightDeparture">Name</label>
+                                    <input id="origin" min="3" required autocomplete="off" name="flightDeparture" type="text" value="@Model.SearchRequest.FromAirport" class="validate autocomplete form-control" onkeydown="ShowHideDiv(false);" onkeyup="loadAirport(event, 'divFlightDepartureModal', this);">
+                                    <div class="autocomplete" id="divFlightDepartureModal" style="display: none;"></div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <label class="sr-only" for="flightArrival">Name</label>
+                                    <input id="destination" min="3" required autocomplete="off" name="flightArrival" type="text" value="@Model.SearchRequest.ToAirport" class="validate autocomplete form-control" onkeydown="ShowHideDiv(false);" onkeyup="loadAirport(event, 'divFlightArrivalModal', this);">
+                                    <div class="autocomplete" id="divFlightArrivalModal" style="display: none;"></div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                    <label class="sr-only" for="flightDepartureDate">Name</label>
+                                    <input type="text" name="flightDepartureDate" value=" @(Convert.ToDateTime(Model.SearchRequest.DepartureDate)) " class="datepicker datePickerStyle form-control" id="dateFromModal" placeholder="Departure Date">
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
+                                    <label class="sr-only" for="flightReturnDate">Name</label>
+                                    <input type="text" name="flightReturnDate" value=" @(string.IsNullOrEmpty(Model.SearchRequest.ReturnDate) ? Convert.ToDateTime(Model.SearchRequest.DepartureDate) : @Convert.ToDateTime(Model.SearchRequest.ReturnDate))" class="datepicker datePickerStyle form-control customDateWrapreturn" id="dateTo" placeholder="Return Date">
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <div class="dropdown">
+                                        <a data-dropup-auto="false" class="btn btn-default dropdown-toggle border form-control" href="#" role="input" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="passengercount">@(Model.SearchRequest.Adults + Model.SearchRequest.Childs + Model.SearchRequest.Infants)</span> Traveler <span class="classSelected">@Model.SearchRequest.JourneyClass</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-item">
+                                                <span href="javascript:void(0)" class="leftLink"><span class="adultVal" name="adults">@Model.SearchRequest.Adults</span> Adult</span>
+                                                <input type="hidden" class="adultVal" value="@Model.SearchRequest.Adults" name="adults" />
+                                                <span href="javascript:void(0)" class="rightLink">
+                                                    <div href="#" class="minus adultminus">-</div><div href="#" class="plus adultPlus">+</div>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <span href="javascript:void(0)" class="leftLink"><span class="childVal" name="child">@Model.SearchRequest.Childs</span> Child</span>
+                                                <input type="hidden" class="childVal" value="@Model.SearchRequest.Childs" name="child" />
+                                                <span href="javascript:void(0)" class="rightLink">
+                                                    <div href="#" class="minus childMinus">-</div><div href="#" class="plus childPlus">+</div>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <span href="javascript:void(0)" class="leftLink"><span class="infantVal" name="infant">@Model.SearchRequest.Infants</span> infant <br /><small class="font12">below 2 years</small></span>
+                                                <span href="javascript:void(0)" class="rightLink">
+                                                    <input type="hidden" class="infantVal" value="@Model.SearchRequest.Infants" name="infant" />
+                                                    <div href="#" class="minus infantMinus">-</div><div href="#" class="plus infantPlus">+</div>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="class" type="radio" value="Economy" checked="checked" />
+                                                        <span>Economy</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="class" type="radio" value="Premium Economy" />
+                                                        <span>Premium Economy</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="class" type="radio" value="Business" />
+                                                        <span>Business</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <div class="radioWrap">
+                                                    <label>
+                                                        <input class="with-gap radioClick" name="tripType" type="radio" value="First" />
+                                                        <span>First</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1">
+                                    <button type="submit" class="btn btn-primary btn-block border-0"><span class="fa fa-search"></span> Modify Search</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+   @*  <div class="modal fade" id="sortModaleCenter" tabindex="-1" role="dialog" aria-labelledby="sortModaleCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-12 listmainContentRightContent customDrop">
+                        <div class="col-sm-12">
+                            <div class="row tblMrgnBtm" id="tblMrgnBtm">
+                                <div class="col-sm-2">
+                                    <div>Sort by:</div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <select class="form-control">
+                                                <option>Departure</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="form-control">
+                                                <option>Arrival</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control">
+                                        <option>Duration</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control">
+                                        <option>Price</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> *@
+</section>
+
+@section Scripts
+{
+    <script src="assets/functions/js/listing.js" asp-append-version="true"></script>
+    <script src="assets/functions/js/index.js" asp-append-version="true"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

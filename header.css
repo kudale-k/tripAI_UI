@@ -1,0 +1,521 @@
+header {
+  padding: 5px 0;
+}
+
+.callDetails {
+  font-size: 26px;
+  font-weight: 400;
+  padding: 5px 5px 0 0;
+  line-height: 20px;
+  display:block;
+  float:right;
+}
+
+.callText {
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 0px;
+  width:45px;
+  display:block;
+  float:right;
+  text-align:center;
+}
+
+.customHeader {
+}
+
+.customHeader .navbar-expand-lg .navbar-nav .nav-link {
+  color: #313443;
+}
+
+li.submenu {
+  list-style: none;
+  padding-left: 0;
+  float: none;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+li.submenu.firstItem {
+  margin-left: 106px;
+}
+
+li.dropdown.submenu a {
+  padding: 5px 10px;
+}
+
+li.submenu a {
+  color: #313443;
+  font-size: 12px !important;
+  padding-right: 10px;
+  display:inline-block;
+}
+
+li.login.submenu a {
+  color: #dc2458;
+  font-size: 12px !important;
+  padding-right: 10px;
+}
+
+.navMrgn {
+  margin-right: 0 !important;
+}
+.navbar-nav .nav-item {
+	margin-right:10px;
+}
+
+.nav-link {
+	padding-bottom: 0;
+}
+.navbar-nav .dropdown-menu {
+	min-width:175px;
+}
+.navbar-nav .dropdown-menu li .nav-link {
+	padding-left:15px;
+}
+li.submenu .dropdown-menu {
+
+	margin-left:22px;
+}
+.navbar-nav .dropdown-menu .nav-link {
+	font-size: 14px;
+}
+
+.shortList img {
+	width: 12px;
+	margin-right: 5px;
+}
+
+.login img {
+  width: 15px;
+  margin-right: 5px;
+}
+
+.yourTrips img {
+  width: 10px;
+}
+
+.ContactDetails {
+  position: absolute;
+  left: -242px;
+  top: -36px;
+}
+
+.navbar {
+  padding-bottom: 0;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+.reservationLeft {
+    max-height: auto !important;
+
+}
+.customHeader{
+position: fixed;
+top: 0;
+left: 0;
+z-index: 999;
+background:#fff;
+width: 100%;
+border-bottom: 1px solid #9e9e9e;
+    box-shadow: 0 2px 3px 0 #9e9e9e!important;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background:#fff;
+  left: 0;
+  z-index: 9999;
+  border-bottom: 1px solid #9e9e9e;
+  
+}
+.topPadding{
+  padding-top: 80px;
+}
+.modal.customModal.loginsignup{
+      z-index: 9999;
+      max-width: 100%;
+      padding-right: 0 !important;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      width: 100%;
+}
+.modal.customModal.loginsignup .modal-dialog {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 400px;
+    position: absolute;
+    height: 300px;
+     top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+
+}
+.modal.customModal.loginsignup .modal-content{
+  padding: 0;
+}
+.loginsignup .input-field > label.active {
+   
+    top: 5px;
+    left: 15px;
+    color: #dc2458 !important;
+}
+.loginsignup .modal-header{
+  margin-bottom: 20px;
+
+}
+.loginsignup .input-field > label {
+   
+    top: -10px  !important;
+    left: 15px;
+}
+.loginsignup .loginfield{
+  padding-left: 0 !important;
+  height: 24px !important;
+  width: 100% !important;
+}
+.loginsignup .input-field > label {
+    color: #9e9e9e;
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    }
+    .loginsignup .input-field{
+      margin-bottom: 25px;
+    }
+    .loginBtn{
+      background: #dc2458;
+      color: #fff;
+      border: 1px solid #dc2458;
+      display: block;
+      padding: 8px 15px;
+      text-align: center;
+    }
+    
+    .loginBtn:hover{
+      background: rgba(220,36,88,0.8);
+      color: #fff;
+      border: 1px solid #dc2458;
+    }
+    .forgotPwd{
+      color:#dc2458;
+      font-size: 12px;
+      margin-top: 8px;
+      display: block;
+      text-align: center;
+      margin-bottom: 5px;
+
+    }
+    .forgotPwd:hover{
+      color:#dc2458;
+      text-decoration: underline;
+    }
+    .changeloginStatus{
+      color: #313131;
+      font-size: 12px;
+      text-align: center;
+
+    }
+    .changeloginStatus a{
+      color: #dc2458;
+      text-decoration: none;
+    }
+@media screen and (min-width: 300px) and (max-width: 767px) {
+  .logo img {
+    width: 170px;
+  }
+
+  .navbar-toggler {
+    position: fixed;
+    right: 15px;
+  }
+
+  .positionedNav {
+    position: absolute;
+    right: 0;
+    top: -24px;
+  }
+
+  .navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 15px;
+  }
+
+  .navMrgn {
+    margin-top: 0px;
+    margin-right: 0 !important;
+  }
+
+  .navbar-nav {
+		/*position: absolute;
+		width: 100%;
+		background: #fff;
+		z-index: 999;
+		left: 0;
+		padding: 15px;
+		top: 35px;*/
+    position: absolute;
+    background: #dc2458;
+    width: 321px;
+    z-index: 999;
+    left: -293px;
+    padding: 15px;
+    top: 35px;
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    background: #fff;
+  }
+
+  .callText {
+    display: none;
+  }
+
+  .callDetails {
+    display: none;
+  }
+
+  li.submenu.firstItem {
+    margin-left: 0px;
+  }
+
+  li.submenu img {
+    display: none;
+  }
+
+  li.dropdown.submenu a {
+    padding-left: 15px;
+  }
+
+  li.login.submenu a {
+    font-size: 1rem !important;
+  }
+
+  .nav-link {
+    padding: 5px 15px;
+  }
+
+  li.submenu {
+    list-style: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    float: none;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  header {
+    padding: 10px 0;
+  }
+
+  .shortList img {
+    width: 10px;
+    margin-right: 0px;
+  }
+
+  ul.subMenu {
+    list-style: none;
+    padding-left: 0;
+    float: none;
+  }
+
+  li.submenu a {
+    font-size: 1rem !important;
+    padding: 5px 15px;
+    margin-top: 0;
+    display: block;
+  }
+  .topPadding {
+    padding-top: 52px;
+}
+.modal.customModal.loginsignup .modal-dialog {
+    width: 100%;
+   
+}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .navbar-toggler {
+    position: absolute;
+    right: 0;
+  }
+
+  .positionedNav {
+    position: absolute;
+    right: 0;
+    top: 10px;
+  }
+
+  .navbar-nav {
+    position: absolute;
+    width: 300px;
+    background: #dc2458;
+    z-index: 999;
+    right: 0;
+    padding: 15px;
+    top: 22px;
+  }
+
+  .customHeader .navbar-expand-lg .navbar-nav .nav-link {
+    color: #fff;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  li.submenu.firstItem {
+    margin-left: 0;
+  }
+
+  li.submenu a {
+    color: #fff;
+    font-size: 16px !important;
+    padding-right: 10px;
+    text-transform: uppercase;
+  }
+
+  li.submenu a img {
+    display: none;
+  }
+
+  li.login.submenu a {
+    color: #fff;
+    font-size: 16px !important;
+    padding-right: 10px;
+  }
+
+  li.dropdown.submenu a {
+    padding: 5px 0px !important;
+  }
+
+  .navbar-nav {
+    position: absolute;
+    width: 300px;
+    background: #dc2458;
+    z-index: 999;
+    right: 0;
+    padding: 5px 15px 10px 15px;
+    top: 22px;
+  }
+
+  .searchField {
+    margin-top: 10px !important;
+  }
+
+  .cardMargin {
+    margin-left: 0px !important;
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    background: #fff;
+  }
+
+  .callText {
+    display: none;
+  }
+
+  .callDetails {
+    display: none;
+  }
+
+  .logo img {
+    width: 170px;
+  }
+  .reservationLeft {
+    max-height: 116px !important;
+
+}
+.topPadding {
+
+    padding-top: 70px;
+
+}
+}
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+.reservationLeft {
+    max-height: 117px !important;
+
+}
+li.submenu a {
+
+    font-size: 9px !important;
+
+}
+li.submenu.firstItem {
+
+    margin-left:54px;
+    }
+    .ContactDetails {
+
+    position: absolute;
+    left: -183px;
+    top: -36px;
+
+}
+.logo img {
+
+    width: 260px;
+
+}
+}
+
+.overlay.loading {
+	display: block;
+}
+
+.overlay {
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: #222;
+	display: none;
+	background-color: rgba(0,0,0,0.9);
+	z-index: 9999;
+}
+
+.overlay__inner {
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.overlay__content {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.spinner {
+	width: 75px;
+	height: 75px;
+	display: inline-block;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 255);
+	border-top-color: #111;
+	animation: spin 1s infinite linear;
+	border-radius: 100%;
+	border-style: solid;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
