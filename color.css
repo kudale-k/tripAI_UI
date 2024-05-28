@@ -448,8 +448,8 @@ a.viewDetails:hover {
 }
 
 .customDrop select {
-    background: url(../../images/listing/down-arrow.png) no-repeat 95% #FFF !important;
-    color: #5d5d5d;
+    /*background: url(../../images/listing/down-arrow.png) no-repeat 95% #FFF !important;
+    color: #5d5d5d;*/
 }
 
 .dottedBorder {
@@ -992,7 +992,7 @@ sup {
     }
 
     .customDrop select {
-        border: 1px solid #909090;
+        /*border: 1px solid #909090;*/
     }
 
     .reservationLeft .datePickerStyle.borderchange {

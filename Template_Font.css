@@ -1,0 +1,631 @@
+body {
+    /* font-family: 'Montserrat', sans-serif !important; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.mainTitle {
+    font-size: 24px;
+}
+
+.datePickerStyle {
+    font-size: 18px !important;
+    word-wrap: break-word;
+    font-weight: bold;
+}
+
+.inspirationContent h2 {
+    font-size: 36px;
+}
+/*}*/
+.inspirationContent p {
+    font-size: 20px;
+}
+
+.greatFlightDeals h3 {
+    font-size: 18px;
+}
+
+.flightDealCard .Details h4 {
+    font-size: 22px;
+}
+
+.flightDealCard .Details p {
+    font-size: 14px;
+}
+
+.flightDealCard .Details .readMore {
+    font-size: 14px;
+}
+
+.prizeTag {
+    font-size: 28px;
+}
+
+.dealsFlyingFromBox h5 {
+    font-size: 20px;
+}
+
+.dealsFlyingFromBox p {
+    font-size: 12px;
+}
+
+.viewDetails {
+    font-size: 14px;
+}
+
+.whyUs h5 {
+    font-size: 24px;
+}
+
+.whyUsDetails {
+    font-size: 16px;
+}
+
+.SearchWrap {
+    font-size: 18px;
+}
+
+.searchIcon {
+    font-size: 18px;
+}
+
+    .searchIcon:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .searchIcon img {
+        width: 20px;
+    }
+
+.labelSelected {
+    font-size: 22px !important;
+    font-weight: bold !important;
+}
+
+.ListingContainerLeft h4 {
+    font-size: 14px;
+}
+
+.resetAll {
+    font-size: 14px !important;
+}
+
+.listingRight .searchIcon {
+    font-size: 12px;
+}
+
+.ListingContainerLeftBoxes .prize {
+    font-size: 14px;
+}
+
+.ListingContainerLeftBoxes .count label {
+    font-size: 14px;
+}
+
+.ListingContainerLeftBoxes .prize label {
+    text-align: center;
+}
+
+.ListingContainerLeftBoxes .tabs .tab a {
+    font-size: 12px;
+}
+
+.radioList .checkWrap [type="checkbox"] + span:not(.lever) {
+    font-size: 14px;
+}
+
+.radioList .checkWrap label {
+    font-size: 14px;
+}
+
+#rightTab.tabs .tab a {
+    font-weight: bold !important;
+}
+
+    #rightTab.tabs .tab a span {
+        font-weight: normal !important;
+        font-size: 14px;
+    }
+
+.timeBold {
+    font-size: 17px;
+}
+
+.prizeEuro {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 22px;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.moreOptions {
+    font-size: 12px;
+}
+
+.fligtDetails {
+    font-size: 12px;
+    font-weight: 300 !important;
+}
+
+.bottomTwoMore {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.statusUpdate li {
+    font-size: 14px;
+}
+
+    .statusUpdate li.active:before {
+        font-size: 10px;
+    }
+
+    .statusUpdate li.active:before {
+        font-size: 10px;
+    }
+
+.reviewHeader span {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.reviewHeader a {
+    display: block;
+    color: #fff;
+    text-align: right;
+}
+
+.reviewCol {
+    font-size: 12px;
+}
+
+.showMore {
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.knowMore {
+    font-size: 12px;
+}
+
+.lossCheckin span {
+    font-size: 12px;
+}
+
+.reviewForm .input-field > label {
+    font-size: 16px !important;
+}
+
+.reviewForm input:not([type]),
+.reviewForm input[type=text]:not(.browser-default),
+.reviewForm input[type=password]:not(.browser-default),
+.reviewForm input[type=email]:not(.browser-default),
+.reviewForm input[type=url]:not(.browser-default),
+.reviewForm input[type=time]:not(.browser-default),
+.reviewForm input[type=date]:not(.browser-default),
+.reviewForm input[type=datetime]:not(.browser-default),
+.reviewForm input[type=datetime-local]:not(.browser-default),
+.reviewForm input[type=tel]:not(.browser-default),
+.reviewForm input[type=number]:not(.browser-default),
+.reviewForm input[type=search]:not(.browser-default),
+.reviewForm textarea.materialize-textarea {
+    font-size: 14px !important;
+}
+
+.rightAmout span {
+    color: #dc2458;
+    font-size: 25px;
+}
+
+.rateText {
+    font-size: 10px;
+}
+
+    .rateText.normal {
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+.flightdetailLink {
+    font-size: 12px;
+}
+
+.stage2padd .warning {
+    font-size: 12px;
+}
+
+.contentText {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.accordionWrap .collapsible-header {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.accordionWrap .collapsible-body select {
+    font-size: 13px;
+}
+
+.accordionWrap .collapsible-body span {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.bottomnote {
+    font-size: 12px;
+}
+
+.coloGreen {
+    font-size: 16px;
+}
+
+.checkedInBtn a {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.reviewCol {
+    font-size: 12px;
+}
+
+.flightRetailReview {
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+.reviewTime {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.reviewForm .input-field > label {
+    font-size: 16px !important;
+}
+
+.reviewForm input:not([type]), input[type=text]:not(.browser-default),
+.reviewForm input[type=password]:not(.browser-default),
+.reviewForm input[type=email]:not(.browser-default),
+.reviewForm input[type=url]:not(.browser-default),
+.reviewForm input[type=time]:not(.browser-default),
+.reviewForm input[type=date]:not(.browser-default),
+.reviewForm input[type=datetime]:not(.browser-default),
+.reviewForm input[type=datetime-local]:not(.browser-default),
+.reviewForm input[type=tel]:not(.browser-default),
+.reviewForm input[type=number]:not(.browser-default),
+.reviewForm input[type=search]:not(.browser-default),
+.reviewForm textarea.materialize-textarea {
+    font-size: 14px !important;
+}
+
+.rightAmout {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.flightRetailReview {
+}
+
+.reviewInfo {
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.reviewInfoList li {
+    font-size: 12px;
+}
+
+.reviewHeaderDrop select {
+    display: block;
+    border: none;
+    height: 30px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.flightdetailLink {
+    font-weight: normal;
+}
+
+.checkedInBtn a {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
+.paymentMethods li a {
+    font-size: 13px;
+}
+
+.paymentConatiner {
+    font-size: 12px;
+}
+
+.totalAmount {
+    font-size: 15px;
+}
+
+.amount {
+    font-weight: bold;
+    font-size: 18px;
+}
+.info-Payment {
+    font-size: 12px!important;
+}
+.rightCol {
+    font-size: 14px;
+}
+
+.termsCondition {
+    font-size: 12px;
+}
+
+.confirmSucess {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.onwardJorney span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    .onwardJorney span.dateTime {
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+.tripState li a {
+    font-size: 12px;
+}
+
+#rightTab.tabs .tab a {
+    font-weight: bold !important;
+    font-size: 12px;
+}
+
+.leftBlue {
+    font-size: 12px;
+}
+
+.placeTime {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dateAirport {
+    font-size: 12px;
+}
+
+.flightChartDetails a.tooltipStyle {
+    font-weight: bold;
+}
+
+.timeReached {
+    font-size: 12px;
+}
+
+.PNRVal {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.travellerDetails {
+    font-size: 14px;
+}
+
+.nameTicket span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nameTicket a {
+    font-weight: bold;
+}
+
+.confirmStatus {
+    font-size: 12px;
+    ;
+}
+
+.paymentSummary h5 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.paymentSummary table td {
+    ;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.paymentSummary table tr.grandTotal td {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.customDrop .dropdown-content li > a {
+    font-size: 16px;
+    font-size: 14px;
+}
+
+    .customDrop .dropdown-content li > a span {
+        font-size: 16px;
+        font-size: 14px;
+    }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .prizeTag {
+        font-size: 23px;
+    }
+
+    .dealsFlyingFromBox h5 {
+        font-size: 12px;
+    }
+
+    .inspirationContent h2 {
+        font-size: 18px;
+        line-height: 20px !important;
+    }
+
+    .inspirationContent p {
+        font-size: 13px;
+    }
+
+    .searchIcon {
+        font-size: 10px;
+        padding: 20px 10px;
+    }
+
+    .datePickerStyle {
+        font-size: 12px !important;
+    }
+
+    .flightDealCard .Details h4 {
+        font-size: 16px;
+    }
+
+    .listingRight .searchIcon {
+        font-size: 9px;
+    }
+
+    .bottomTwoMore {
+        font-size: 7px;
+        font-weight: bold;
+    }
+
+    .checkedInBtn a {
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+    .datepicker.datePickerStyle {
+        font-size: 13px !important;
+        padding-left: 0px !important;
+    }
+
+    .inspirationContent h2 {
+        font-size: 22px;
+        line-height: 24px !important;
+    }
+
+    .callDetails {
+        font-size: 22px !important;
+        font-weight: 400;
+        padding-left: 5px;
+        line-height: 20px;
+    }
+
+    .bottomTwoMore {
+        font-size: 9px;
+        font-weight: bold;
+    }
+
+    .checkedInBtn a {
+        font-size: 10px;
+        font-weight: bold;
+    }
+}
+
+
+/*New Client UI Start*/
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    /* font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.form-control {
+    /* font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.ul-check li:before {
+    font-family: "icomoon";
+}
+
+.site-navbar .site-navigation .site-menu .has-children > a:before {
+    font-family: 'icomoon'
+}
+
+.site-mobile-menu .site-nav-wrap .arrow-collapse:before {
+    font-family: "icomoon";
+}
+/*New Client UI End*/
+
+/*Font for inner pages*/
+
+.site-section12 .h5 {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.site-section12 .rating {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.price1 {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.date1 {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.site-section1 .card {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+    .site-section1 .card .keydetails {
+        /* font-family: Arial, Helvetica, sans-serif; */
+        font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+    }
+
+.section-recommended .similar {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+.site-overview .panel #collapseTwo .timeline {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: '$primeryfont$',Helvetica,Arial,sans-serif !important;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon' !important;
+}
+
+.autocomplete ul.loaderComplete li:hover {
+    background: #ff7c27 !important;
+}
+
+.vertical-nav-menu li a {
+    font-weight: 600;
+}
+
+h3.report-title {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+}

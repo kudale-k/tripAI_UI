@@ -161,7 +161,7 @@ body {
 }
 
     .checkWrap label {
-        color: #fff;
+        /*color: #fff;*/
     }
 
     .checkWrap [type='checkbox'].filled-in:checked + span:not(.lever)::after {
@@ -457,7 +457,7 @@ a.viewDetails:hover {
 
 .timeBold {
     color: #303548;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .duration {
@@ -465,8 +465,8 @@ a.viewDetails:hover {
 }
 
 .customDrop select {
-    background: url(../../images/listing/down-arrow.png) no-repeat 95% #fff !important;
-    color: #5d5d5d;
+    /*background: url(../../images/listing/down-arrow.png) no-repeat 95% #fff !important;
+    color: #5d5d5d;*/
 }
 
 .dottedBorder {
@@ -480,9 +480,9 @@ a.viewDetails:hover {
     /*box-shadow: 0px 3px #e5e5e5;*/
     /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);*/
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     margin: 0px -12px 0px -12px;
-    border-radius: 0.9rem;
+    border-radius: 0.5rem;
     border: 1px solid #ccc;
     margin-bottom: 9px;
 }
@@ -1015,7 +1015,7 @@ input[type='text']:not(.browser-default),
     }
 
     .customDrop select {
-        border: 1px solid #909090;
+        /*border: 1px solid #909090;*/
     }
 
     .reservationLeft .datePickerStyle.borderchange {

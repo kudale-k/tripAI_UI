@@ -156,7 +156,7 @@ a {
 }
 .ListingContainerLeft{
     padding: 20px 10px;
-    margin-top: 15px;
+    /*margin-top: 15px;*/
 	background-color : #fff;
 }
 .ListingContainerLeft h6{
@@ -290,7 +290,7 @@ a {
     line-height:  16px;
 }
 .listmainContentRight{
-    margin-top: 15px;
+    /*margin-top: 15px;*/
 }
 #rightTab.tabs {
     padding-left: 0;
@@ -320,18 +320,18 @@ a {
     width: 100%;
 }
 .tblMrgnBtm {
-    margin-bottom: 18px;
-  /*  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);*/
-    height: 45px;
+    margin-bottom: 15px;
+    /*  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);*/
+    /*height: 45px;*/
     border: 1px solid #ccc;
-    padding: 7px;
+    padding: 7px 7px 0 7px;
     border-radius: 0.3rem;
 }
 .timeBold{
     font-weight: bold;
 }
 .customDrop select {
-    width: 100%;
+    /*width: 100%;
     padding: 5px;
     border: none;
     border-radius: 2px;
@@ -339,10 +339,10 @@ a {
     display: block;
     -moz-appearance: none;
     -webkit-appearance: none;
-    text-align: left;
+    text-align: left;*/
 }
 .allignTop{
-    margin-top: -12px;
+   /* margin-top: -12px;*/
 }
 .duration{
     margin-top: 22px;
@@ -803,7 +803,7 @@ min-height: 0;
     z-index: 9999;
 }
 .SingleRow{
-	margin-top: 50px;
+	margin-top: 10px;
 }
 .customDateWrap{
     text-align:center;
@@ -1084,10 +1084,10 @@ min-height: 0;
 .customDrop select {
 
   
-    height: 34px;
+   /* height: 34px;
     text-align: left;
     border: 1px solid #909090;
-    margin-bottom: 15px;
+    margin-bottom: 15px;*/
 
 }
 .rowOdd .text-left{
@@ -1247,21 +1247,21 @@ min-height: 0;
         width: 82%;
     }
     .customDrop select {
-    border-radius: 2px;
+    /*border-radius: 2px;
     height: 30px;
     display: block;
-    font-size: 12px;
+    font-size: 12px;*/
 
 }
 }
 
 .tags {
-	margin: 0;
-	padding: 5px;
-	position: absolute;
-	left: 432px;
-	/*top: 28px;*/
-	list-style: none;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    right: 20px;
+    /*top: 28px;*/
+    list-style: none;
 }
 
 	.tags li, .tags a {

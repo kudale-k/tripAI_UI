@@ -2,7 +2,7 @@
 @using AirDataModels;
 @{
     ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_New.cshtml";
 
 }
 @model ResultVM
@@ -244,22 +244,16 @@
             <div class="row">
                 <div class="col-sm-3" id="Filters">
                     <div class="ListingContainerLeft">
-                        <h6 style="width:100px;"><div class="placeholder  u-disable-state-blue"></div></h6>
+                        <h6 style="width:100px;"><div class="placeholder u-disable-state-blue"></div></h6>
                         <a href="#" class="resetAll colorBrick">Reset All </a>
                         <div class="clearfix"></div>
                         <hr>
                         <div class="ListingContainerLeftBoxes  colorBrick">
                             <div class="title">Stops</div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="placeholder  u-disable-state-blue"></div>
-                                </div>
-
-
-                            </div>
+                            <div class="placeholder u-disable-state-blue"></div>
                         </div>
                         <hr>
-                        <div class="ListingContainerLeftBoxes  colorBrick">
+                        <div class="ListingContainerLeftBoxes colorBrick">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <ul class="tabs" id="leftTab">
@@ -271,11 +265,7 @@
                                     <div id="outbound">
                                         <div class="timings">
                                             <p><span>Timings: </span></p>
-                                            <div class="row MR0 ML0">
-
-
-
-                                                <div class="col-sm-12 PL0 PR0">
+                                            <div class="row MR0 ML0"><div class="col-sm-12 PL0 PR0">
                                                     <div class="placeholder  u-disable-state-blue"></div>
                                                 </div>
                                             </div>
@@ -295,248 +285,246 @@
                     </div>
                 </div>
                 <div class="col-sm-9" id="best" data-url="@Model.SessionID">
-                    <div class="col-sm-9" id="best">
-                        <div class="listmainContentRight">
-                            <div class="row">
-                                <div class="col-12 listmainContentRightContent customDrop">
-                                    <div class="col-sm-12">
-                                        <div class="row tblMrgnBtm" id="tblMrgnBtm">
-                                            <div class="col-sm-2">
-                                                <div>Sort by:</div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control">
-                                                            <option>Departure</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control">
-                                                            <option>Arrival</option>
-                                                        </select>
-                                                    </div>
+                    <div class="listmainContentRight">
+                        <div class="row">
+                            <div class="col-12 listmainContentRightContent customDrop">
+                                <div class="col-sm-12">
+                                    <div class="row tblMrgnBtm" id="tblMrgnBtm">
+                                        <div class="col-sm-2">
+                                            <div>Sort by:</div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <select class="form-control">
+                                                        <option>Departure</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control">
+                                                        <option>Arrival</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <select class="form-control">
-                                                    <option>Duration</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <select class="form-control">
-                                                    <option>Price</option>
-                                                </select>
-                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select class="form-control">
+                                                <option>Duration</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select class="form-control">
+                                                <option>Price</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="listRowItem shadowBorder">
-                                        <div class="row ">
-                                            <div class="col-sm-9">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="col-tblitem">
-                                                            <div class="rowOdd dottedBorder">
-                                                                <div class="row">
-                                                                    <div class="col-sm-2   text-left">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                    <div class="col-sm-7 ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-5 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
+                                </div>
+                                <div class="listRowItem shadowBorder">
+                                    <div class="row ">
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-tblitem">
+                                                        <div class="rowOdd dottedBorder">
+                                                            <div class="row">
+                                                                <div class="col-sm-2   text-left">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                                <div class="col-sm-7 ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-5 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-6 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-sm-3  PR0">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3  PR0">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="col-tblitem">
-                                                            <div class="rowOdd">
-                                                                <div class="row">
-                                                                    <div class="col-sm-2   text-left">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                    <div class="col-sm-7 ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-5 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-tblitem">
+                                                        <div class="rowOdd">
+                                                            <div class="row">
+                                                                <div class="col-sm-2   text-left">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                                <div class="col-sm-7 ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-5 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-6 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-sm-3  PR0">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3  PR0">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
 
-                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="row">
-                                                    <div class="col-sm-12 priceWrap">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12 btnRightWrapList">
-                                                        <br />
-                                                        <div class="placeholder  u-disable-state-blue"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="listRowItem shadowBorder">
-                                        <div class="row ">
-                                            <div class="col-sm-9">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="col-tblitem">
-                                                            <div class="rowOdd dottedBorder">
-                                                                <div class="row">
-                                                                    <div class="col-sm-2   text-left">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                    <div class="col-sm-7 ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-5 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-3  PR0">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="col-tblitem">
-                                                            <div class="rowOdd">
-                                                                <div class="row">
-                                                                    <div class="col-sm-2  text-left">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                    <div class="col-sm-7 ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-5 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-3  PR0">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-12 priceWrap">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <div class="row">
-                                                    <div class="col-sm-12 priceWrap">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12 btnRightWrapList">
-                                                        <br />
-                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 btnRightWrapList">
+                                                    <br />
+                                                    <div class="placeholder  u-disable-state-blue"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="listRowItem shadowBorder">
-                                        <div class="row ">
-                                            <div class="col-sm-9">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="col-tblitem">
-                                                            <div class="rowOdd dottedBorder">
-                                                                <div class="row">
-                                                                    <div class="col-sm-2  text-left">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                    <div class="col-sm-7 ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-5 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
+                                </div>
+                                <div class="listRowItem shadowBorder">
+                                    <div class="row ">
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-tblitem">
+                                                        <div class="rowOdd dottedBorder">
+                                                            <div class="row">
+                                                                <div class="col-sm-2   text-left">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                                <div class="col-sm-7 ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-5 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-sm-3  PR0">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                                        <div class="col-sm-6 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="col-tblitem">
-                                                            <div class="rowOdd">
-                                                                <div class="row">
-                                                                    <div class="col-sm-2   text-left">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
-                                                                    <div class="col-sm-7 ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-5 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 colorGrey">
-                                                                                <div class="placeholder  u-disable-state-blue"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-3  PR0">
-                                                                        <div class="placeholder  u-disable-state-blue"></div>
-                                                                    </div>
+                                                                <div class="col-sm-3  PR0">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <div class="row">
-                                                    <div class="col-sm-12 priceWrap">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-tblitem">
+                                                        <div class="rowOdd">
+                                                            <div class="row">
+                                                                <div class="col-sm-2  text-left">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                                <div class="col-sm-7 ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-5 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-6 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3  PR0">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12 btnRightWrapList">
-                                                        <br />
-                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-12 priceWrap">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 btnRightWrapList">
+                                                    <br />
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="listRowItem shadowBorder">
+                                    <div class="row ">
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-tblitem">
+                                                        <div class="rowOdd dottedBorder">
+                                                            <div class="row">
+                                                                <div class="col-sm-2  text-left">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                                <div class="col-sm-7 ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-5 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-6 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3  PR0">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-tblitem">
+                                                        <div class="rowOdd">
+                                                            <div class="row">
+                                                                <div class="col-sm-2   text-left">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                                <div class="col-sm-7 ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-5 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-6 colorGrey">
+                                                                            <div class="placeholder  u-disable-state-blue"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3  PR0">
+                                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="col-sm-12 priceWrap">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 btnRightWrapList">
+                                                    <br />
+                                                    <div class="placeholder  u-disable-state-blue"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -664,7 +652,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
                                     <label class="sr-only" for="flightDepartureDate">Name</label>
-                                    <input type="text" name="flightDepartureDate" value=" @(Convert.ToDateTime(Model.SearchRequest.DepartureDate)) " class="datepicker datePickerStyle form-control" id="dateFromModal" placeholder="Departure Date">
+                                    <input type="text" name="flightDepartureDate" value=" @(Convert.ToDateTime(Model.SearchRequest.DepartureDate)) " class="datepicker datePickerStyle form-control" id="dateFrom placeholder="Departure Date">
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-1 datePickerWrap">
                                     <label class="sr-only" for="flightReturnDate">Name</label>

@@ -1,0 +1,446 @@
+﻿﻿@using Air.ViewModel;
+@using AirDataModels;
+@model ResultVM
+@{
+}
+<head>
+    <!-- Other head elements -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .flightdetailsection {
+            width:170px;
+            
+        }
+        @@media screen and (min-width: 300px) and (max-width: 767px) {
+            .listRowItem {
+                margin-bottom: 20px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+                border-bottom: none;
+                border-radius: 8px;
+                padding: 20px 5px;
+            }
+
+                .listRowItem .tags {
+                    position: static;
+                    padding: 0;
+                }
+
+                    .listRowItem .tags a {
+                        margin-left: 0;
+                    }
+
+                .listRowItem .text-left {
+                    text-align: left !important;
+                }
+
+                .listRowItem .tblIconThumb {
+                    margin-top: 0;
+                }
+
+                .listRowItem .allignTop {
+                    margin-top: 0;
+                }
+
+                .listRowItem .timeBold {
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                }
+
+                .listRowItem .l-divider {
+                    display: none;
+                }
+
+                .listRowItem .city-flight-info-wrap {
+                    justify-content: space-between;
+                }
+
+                    .listRowItem .city-flight-info-wrap:after {
+                        display: none;
+                    }
+
+                .listRowItem .fligtDetails.modal-trigger {
+                    color: #313443;
+                }
+
+        
+        }
+        
+    </style>
+</head>
+
+<div id="statusDiv" style="display:none">@Model.IsCompleted</div>
+<div class="listmainContentRightContent customDrop">
+    <div id="best1" data-url="@Model.SessionID">
+        <div class="row tblMrgnBtm">
+            <div class="col-sm-2">
+                <div>Sort by:</div>
+            </div>
+            @if (Model.PricedItineraries != null && Model.PricedItineraries.Count > 0)
+            {
+                <div class="col-sm-5">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            @if (Model.PricedItineraries.FirstOrDefault(x => x.ReturnOptions != null && x.ReturnOptions.Count > 0) != null)
+                            {
+                                <select onchange="handleSelectChange(this)" class="form-control form-control-sm mb-2">
+                                    <option class="sortItems" value="depart">Depart (@Model.PricedItineraries.FirstOrDefault().OutwardOptions.FirstOrDefault().FlightSegments[0].DepartureAirport.AirportCode)</option>
+                                    <option class="sortItemsR" value="departreturn">Depart (@Model.PricedItineraries.FirstOrDefault().OutwardOptions.FirstOrDefault().FlightSegments[0].ArrivalAirport.AirportCode)</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <select onchange="SortItems(this, 'depart')" class="form-control form-control-sm mb-2">
+                                    <option value="desc">Depart (Latest) </option>
+                                    <option value="desc">Depart (Earliest) </option>
+                                </select>
+                                @*  <div class="sortItems" onclick="SortItems(this,'depart')">Departure</div>  *@    // Code by Abhin and Team
+                            }
+                        </div>
+                        <script>
+                            function handleSelectChange(select) {
+                                if (select.value === "depart") {
+                                    SortItems(select, 'depart');
+                                } else if (select.value === "departreturn") {
+                                    SortItemsReturn(select, 'depart');
+                                }
+                            }
+                        </script>
+                        <div class="col-sm-6">
+                            @if (Model.PricedItineraries.FirstOrDefault(x => x.ReturnOptions != null && x.ReturnOptions.Count > 0) != null)
+                            {
+                                <select onchange="handleSelectChangeArrival(this)" class="form-control form-control-sm mb-2">
+                                    <option class="sortItems" value="arrival">Arrival (@Model.PricedItineraries.FirstOrDefault().OutwardOptions.FirstOrDefault().FlightSegments[0].ArrivalAirport.AirportCode)</option>
+                                    <option class="sortItemsR" value="arrivalreturn">Arrival (@Model.PricedItineraries.FirstOrDefault().OutwardOptions.FirstOrDefault().FlightSegments[0].DepartureAirport.AirportCode)</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <select onchange="SortItems(this, 'arrival')" class="form-control form-control-sm mb-2">
+                                    <option value="desc">Arrival (Latest)</option>
+                                    <option value="desc">Arrival (Earliest)</option>
+                                </select>
+                                @*  <div class="sortItems" onclick="SortItems(this,'arrival')">Arrival</div> *@ // Code by Abhin and Team
+                            }
+                        </div>
+                        <script>
+                            function handleSelectChangeArrival(select) {
+                                if (select.value === "arrival") {
+                                    SortItems(select, 'arrival');
+                                } else if (select.value === "arrivalreturn") {
+                                    SortItemsReturn(select, 'arrival');
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    @if (Model.PricedItineraries.FirstOrDefault(x => x.ReturnOptions != null && x.ReturnOptions.Count > 0) != null)
+                    {
+                        <select onchange="SortItems(this, 'duration')" class="form-control form-control-sm mb-2">
+                            <option class="sortItems" onclick="SortItems(this,'duration')">Duration @Model.PricedItineraries.FirstOrDefault().OutwardOptions.FirstOrDefault().FlightSegments[0].DepartureAirport.AirportCode</option>
+                            <option class="sortItemsR" onclick="SortItemsReturn(this,'duration')">Duration @Model.PricedItineraries.FirstOrDefault().OutwardOptions.FirstOrDefault().FlightSegments[0].ArrivalAirport.AirportCode</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <select onchange="SortItems(this, 'duration')" class="form-control form-control-sm mb-2">
+                            <option value="desc">Duration (Shortest)</option>
+                            <option value="desc">Duration (Longest)</option>
+                        </select>
+                        @* <div class="sortItems" onclick="SortItems(this,'duration')">Duration </div> *@ // Code by Abhin and Team
+                    }
+                </div>
+                @* <div class="col-sm-2">
+            <div class="sortItems" onclick="SortItems(this,'price')"></div>
+            </div> *@ // Code by Abhin and Team
+
+                <div class="col-sm-2">
+                    <select onchange="SortItems(this, 'price')" class="form-control form-control-sm mb-2">
+                        <option value="des">High Price</option>
+                        <option value="des">Low Price</option>
+                    </select>
+                </div>
+            }
+        </div>
+
+        @foreach (PricedItinerary PI in Model.PricedItineraries)
+        {
+            if (PI.ReturnOptions.Count > 0)
+            {
+                <div class="listRowItem shadowBorder">
+                    <div style="width:100%">
+                        <ul class="tags">
+                            <li>
+                                <a href="#"> Fare Source: @PI.Source You have saved @PI.AirItineraryPricingInfo.ItinTotalFare.CommissionEarned.Amount</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <br />
+                    <div class="row clearfix">
+                        <div class="col-sm-8 rowList">
+                            <div class="row  flight_detailsRow" id="Outward@(PI.OutwardOptions.FirstOrDefault().FlightID)" data-depart="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions.FirstOrDefault().FilterKey">
+                                <div class="col-sm-12">
+                                    <div class="col-tblitem">
+                                        <div class="rowOdd dottedBorder ">
+                                            <div class="row">
+                                                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
+                                                    <div class="radioWrap">
+                                                        <label>
+                                                            <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.OutwardOptions.FirstOrDefault().FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                @{
+                                                    await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions.FirstOrDefault().FlightSegments[0] as ReservationItem);
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (PI.OutwardOptions.Count > 1)
+                            {
+                                <div class="bottomTwoMore outward marginTopAdjusted" id="@PI.GroupID" onmousedown="toggleClick(@PI.GroupID)">+ @Convert.ToInt32(PI.OutwardOptions.Count - 1) More options </div>
+
+                                <div class="expandMore outward" id="expandMore@(PI.GroupID)">
+
+                                    @for (int index = 1; index < PI.OutwardOptions.Count; index++)
+                                    {
+                                        <div class="row  flight_detailsRow" id="outward@(PI.OutwardOptions[index].FlightID)" data-depart="@PI.OutwardOptions[index].FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions[index].FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions[index].FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions[index].FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions[index].FilterKey">
+                                            <div class="col-sm-12">
+                                                <div class="col-tblitem">
+                                                    <div class="rowOdd">
+                                                        <div class="row">
+                                                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
+                                                                <div class="radioWrap">
+                                                                    <label>
+                                                                        <input type="radio" class="with-gap radioClick" id="@PI.OutwardOptions[index].FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            @{
+                                                                await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions[index].FlightSegments.FirstOrDefault() as ReservationItem);
+                                                            }
+                                                        </div>
+                                                        <hr />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            <div class="row  flight_detailsRowReturn" id="Return@(PI.ReturnOptions.FirstOrDefault().FlightID)" data-depart="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].JourneyDuration" data-arrival="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.ReturnOptions.FirstOrDefault().FilterKey">
+                                <div class="col-sm-12">
+                                    <div class="col-tblitem">
+                                        <div class="rowOdd">
+                                            <div class="row">
+                                                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
+                                                    <div class="radioWrap">
+                                                        <label>
+                                                            <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.ReturnOptions.FirstOrDefault().FlightID" name="Return@(Model.SessionID)_@(PI.GroupID)" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                @{
+                                                    await Html.RenderPartialAsync("ResultsLevel2Partial", PI.ReturnOptions.FirstOrDefault().FlightSegments[0] as ReservationItem);
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (PI.ReturnOptions.Count > 1)
+                            {
+                                <div class="bottomTwoMore return" id="Return@(PI.GroupID)" onmousedown="toggleClick(Return@(PI.GroupID))">+ @Convert.ToInt32(PI.ReturnOptions.Count - 1) More options </div>
+                                <div class="expandMore return" id="expandMoreReturn@(PI.GroupID)">
+                                    @for (int indexReturn = 1; indexReturn < PI.ReturnOptions.Count; indexReturn++)
+                                    {
+                                        <div class="row flight_detailsRowReturn" id="Return@(PI.ReturnOptions[indexReturn].FlightID)" data-depart="@PI.ReturnOptions[indexReturn].FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.ReturnOptions[indexReturn].FlightSegments[0].JourneyDuration" data-arrival="@PI.ReturnOptions[indexReturn].FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.ReturnOptions[indexReturn].FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.ReturnOptions[indexReturn].FilterKey">
+                                            <div class="col-sm-12">
+                                                <div class="col-tblitem">
+                                                    <div class="rowOdd">
+                                                        <div class="row">
+                                                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
+                                                                <div class="radioWrap">
+                                                                    <label>
+                                                                        <input type="radio" class="with-gap radioClick" id="@PI.ReturnOptions[indexReturn].FlightID" name="Return@(Model.SessionID)_@(PI.GroupID)" />
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            @{
+                                                                await Html.RenderPartialAsync("ResultsLevel2Partial", PI.ReturnOptions[indexReturn].FlightSegments.FirstOrDefault() as ReservationItem);
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <div class="prizeEuro">
+                                        <img src="assets/images/listing/@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode).png" alt="@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode)" style="width: 30px;">
+                                        @PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount
+                                    </div>
+                                    <div class="font12">Price for all pax</div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 btnRightWrapList">                                    
+                                    <a id="@(Model.SessionID)_@(PI.GroupID)" onclick="BookNow(this)" class="btn bookNowBtngradient bookNowBtn ">Book Now</a>
+                                    <div><a href="#" class="addtoQuote font12"><img src="assets/images/listing/mail.png" alt="">Add to quote</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="float-left pl-2">
+                                @if (PI.IsRefundable)
+                                {
+                                    <a href="#" class="fligtDetails">Refundable </a>
+                                }
+                                else
+                                {
+                                    <a href="#" class="fligtDetails">Non Refundable</a>
+                                }
+                            </div>
+                            <div class="float-right pr-2"><a class="fligtDetails modal-trigger" data-toggle="modal" data-target="#modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" onclick="PopUp(event,this)" id="@(Model.SessionID)_@(PI.GroupID)">Flight Details</a></div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="listRowItem shadowBorder">
+                    <div style="width:100%">
+                        <ul class="tags">
+                            <li>
+                                <a href="#"> Fare Source: @PI.Source You have saved @PI.AirItineraryPricingInfo.ItinTotalFare.CommissionEarned.Amount</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <br />
+                    <div class="row clearfix">
+                        <div class="col-sm-8 rowList">
+                            <div class="row  flight_detailsRow" id="outward@(PI.OutwardOptions.FirstOrDefault().FlightID)" data-depart="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].MarketingAirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions.FirstOrDefault().FilterKey">
+                                <div class="col-sm-12">
+                                    <div class="col-tblitem">
+                                        <div class="rowOdd">
+                                            <div class="row SingleRow">
+                                                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
+                                                    <div class="radioWrap">
+                                                        <label>
+                                                            <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.OutwardOptions.FirstOrDefault().FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                @{
+                                                    await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions.FirstOrDefault().FlightSegments[0] as ReservationItem);
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (PI.OutwardOptions.Count > 1)
+                            {
+                                <div class="bottomTwoMore outward" id="@PI.GroupID" onmousedown="toggleClick(@PI.GroupID)">+ @Convert.ToInt32(PI.OutwardOptions.Count - 1) More options </div>
+
+                                <div class="expandMore outward" id="expandMore@(PI.GroupID)">
+                                    @for (int index = 1; index < PI.OutwardOptions.Count; index++)
+                                    {
+                                        <div class="row flight_detailsRow" id="Outward@(PI.OutwardOptions[index].FlightID)  " data-depart="@PI.OutwardOptions[index].FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions[index].FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions[index].FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions[index].FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions.FirstOrDefault().FilterKey">
+                                            <div class="col-sm-12">
+                                                <div class="col-tblitem">
+                                                    <div class="rowOdd">
+                                                        <div class="row SingleRow">
+                                                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
+                                                                <div class="radioWrap">
+                                                                    <label>
+                                                                        <input type="radio" class="with-gap radioClick" id="@PI.OutwardOptions[index].FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            @{
+                                                                await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions[index].FlightSegments.FirstOrDefault() as ReservationItem);
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <div class="prizeEuro">
+                                        <img src="assets/images/listing/@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode).png" alt="@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode)" style="width: 50px; height: 18px;">
+                                        @PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount
+                                    </div>
+                                    <div class="font12">Price for all pax</div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 btnRightWrapList">                                    
+                                    <a id="@(Model.SessionID)_@(PI.GroupID)" onclick="BookNow(this)" class="btn bookNowBtngradient bookNowBtn ">Book Now</a>
+                                    <div><a href="#" class="addtoQuote font12"><img src="assets/images/listing/mail.png" alt="">Add to quote</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="float-left pl-2">
+                                @if (PI.IsRefundable)
+                                {
+                                    <a href="#" class="fligtDetails">Refundable </a>
+                                }
+                                else
+                                {
+                                    <a href="#" class="fligtDetails">Non Refundable</a>
+                                }
+                            </div>
+                            <div class="float-right pr-2"><a class="fligtDetails modal-trigger" data-toggle="modal" data-target="#modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" onclick="PopUp(event,this)" id="@(Model.SessionID)_@(PI.GroupID)">Flight Details</a></div>
+
+                        </div>
+                    </div>
+
+                    </div>
+
+            }
+            <div class="modal fade customModal" id="modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Flight Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="modal-body@(Model.SessionID)_@(PI.GroupID)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

@@ -1094,7 +1094,8 @@ ul {
 .radioWrap [type='radio']:not(:checked) + span, .radioWrap [type='radio']:checked + span {
  padding-left:0; margin:0 10px 0 0;
 }
-.reviewForm input:not([type]), input[type='text']:not(.browser-default), .reviewForm input[type='password']:not(.browser-default), .reviewForm input[type='email']:not(.browser-default), .reviewForm input[type='url']:not(.browser-default), .reviewForm input[type='time']:not(.browser-default), .reviewForm input[type='date']:not(.browser-default), .reviewForm input[type='datetime']:not(.browser-default), .reviewForm input[type='datetime-local']:not(.browser-default), .reviewForm input[type='tel']:not(.browser-default), .reviewForm input[type='number']:not(.browser-default), .reviewForm input[type='search']:not(.browser-default), .reviewForm textarea.materialize-textarea {
+.reviewForm input:not([type]), input[type='text']:not(.browser-default), .reviewForm input[type='password']:not(.browser-default), .reviewForm input[type='email']:not(.browser-default), .reviewForm input[type='url']:not(.browser-default), .reviewForm input[type='time']:not(.browser-default), .reviewForm input[type='date']:not(.browser-default), .reviewForm input[type='datetime']:not(.browser-default), .reviewForm input[type='datetime-local']:not(.browser-default), .reviewForm input[type='tel']:not(.browser-default), .reviewForm input[type='number']:not(.browser-default), .reviewForm input[type='search']:not(.browser-default), .reviewForm textarea.materialize-textarea,
+select{
     border: 1px solid #ced4da;
 }
 .radioWrap label { margin:0px;
@@ -1426,6 +1427,6 @@ font-weight:normal;}
 }
 
 /*Date picker container*/
-.ui-datepicker {
-    z-index: 3000;
+#ui-datepicker-div {
+    z-index: 99999 !important;
 }
