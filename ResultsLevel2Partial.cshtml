@@ -13,29 +13,29 @@ margin-top: 8px;
     }
 </style>
 
-<div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 col-xxl-3 PL0 text-left">
+<div class="col-10 col-sm-10 col-md-2 col-lg-2 col-xl-2 col-xxl-2 PL0 text-center">
     @* <div class="tblIconThumb"><img src="~/assets/images/listing/Airline/@(Model.MarketingAirline.AirlineCode).png" style="width:60px; height:40px" alt=""></div> *@
     <div class="tblIconThumb">
-        <img src="~/assets/images/listing/Airline/@(Model.MarketingAirline.AirlineCode).png" style="width:36px;" alt="">
+        <img src="~/assets/images/listing/Airline/@(Model.MarketingAirline.AirlineCode).png" style="height:40px;" alt="@Model.MarketingAirline.AirlineName" title="@Model.MarketingAirline.AirlineName">
     </div>
 
-    <span class="colorGrey font12">@(Model.MarketingAirline.AirlineName.Count() > 16 ? Model.MarketingAirline.AirlineName.Substring(0, 14) + ".." : Model.MarketingAirline.AirlineName)</span>
+    <span class="colorGrey font12 text-center">@(Model.MarketingAirline.AirlineName.Count() > 16 ? Model.MarketingAirline.AirlineName.Substring(0, 14) + ".." : Model.MarketingAirline.AirlineName)</span>
 </div>
-<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 textAlignCenter">
+<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 text-center">
     <div class="row city-flight-info-wrap">
         <div class="col-4 col-sm-4 col-md-6 col-lg-6 col-xl-6 col-xxl-6 colorGrey city-name">
-            <small class="allignTop">@Model.DepartureAirport.CityName</small>
+            <small class="allignTop d-block mt-2 mb-2">@Model.DepartureAirport.CityName</small>
             <div class="timeBold">@Model.DepartureDateTime.ToString("HH:mm")</div>
         </div>
         <div class="col-4 col-sm-4 col-md-6 col-lg-6 col-xl-6 col-xxl-6 colorGrey city-name">
-            <small class="allignTop">@Model.ArrivalAirport.CityName</small>
+            <small class="allignTop d-block mt-2 mb-2">@Model.ArrivalAirport.CityName</small>
             <div class="timeBold">@Model.ArrivalDateTime.ToString("HH:mm")</div>
         </div>
     </div>
     <div class="flightBgright"></div>
 </div>
-<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 PL0 PR0 textAlignCenter">
-    <div class="duration">
+<div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 PL0 PR0 text-center">
+    <div class="duration mt-2 mb-2">
         @{
             string val = string.Empty;
             if (Model.StopQuantity == 0)
@@ -47,9 +47,9 @@ margin-top: 8px;
                 val = Model.StopQuantity + " Stop(s)";
             }
         }
-        @Model.JourneyDuration <span class="l-divider"> | </span> <span class="colorGrey">@Model.StopQuantityInfo.LocationCode</span> @val*
+        @Model.JourneyDuration <span class="colorGrey">@Model.StopQuantityInfo.LocationCode</span> @val*
     </div>  
-    <div class="textemission-left">
+    <div class="textemission-left mb-2">
         @((Model.EmissionsInKg != null ? Model.EmissionsInKg.ToString() : "0.0")) Kg CO<sub>2</sub>
     </div>
 

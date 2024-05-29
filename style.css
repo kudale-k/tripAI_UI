@@ -6,7 +6,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     height: 100%;
-    line-height: 1.7;
+    line-height:normal !important;
     vertical-align: baseline;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1096,7 +1096,7 @@ ul {
 }
 .reviewForm input:not([type]), input[type='text']:not(.browser-default), .reviewForm input[type='password']:not(.browser-default), .reviewForm input[type='email']:not(.browser-default), .reviewForm input[type='url']:not(.browser-default), .reviewForm input[type='time']:not(.browser-default), .reviewForm input[type='date']:not(.browser-default), .reviewForm input[type='datetime']:not(.browser-default), .reviewForm input[type='datetime-local']:not(.browser-default), .reviewForm input[type='tel']:not(.browser-default), .reviewForm input[type='number']:not(.browser-default), .reviewForm input[type='search']:not(.browser-default), .reviewForm textarea.materialize-textarea,
 select{
-    border: 1px solid #ced4da;
+    border: 1px solid #ced4da !important;
 }
 .radioWrap label { margin:0px;
 }

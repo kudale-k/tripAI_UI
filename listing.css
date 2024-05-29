@@ -344,8 +344,9 @@ a {
 .allignTop{
    /* margin-top: -12px;*/
 }
-.duration{
-    margin-top: 22px;
+.duration {
+    /*margin-top: 22px;*/
+    font-size: 12px;
 }
 .textAlignCenter{
     text-align: center;
@@ -364,7 +365,7 @@ a {
 .flightBgright{
     position: absolute;
     left: 0;
-    top: 0;
+    top: 16px;
     bottom: 0;
     right: 0;
     margin: auto;
@@ -377,7 +378,7 @@ a {
 .btnRightWrapList{
     text-align: center;
     border-radius:none;
-	padding-top:15px;
+	/*padding-top:20px;*/
 }
 .addtoQuote{
     display: block;
@@ -1256,8 +1257,8 @@ min-height: 0;
 }
 
 .tags {
-    margin: 0;
-    padding: 5px;
+    /*margin: 0;
+    padding: 5px;*/
     position: absolute;
     right: 20px;
     /*top: 28px;*/
