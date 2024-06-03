@@ -1,0 +1,868 @@
+body {
+    color: #313443;
+}
+
+a {
+    -webkit-transition: all .15s linear;
+    -moz-transition: all .15s linear;
+    -ms-transition: all .15s linear;
+    -o-transition: all .15s linear
+}
+
+.PL0 {
+    padding-left: 0 !important;
+}
+
+.PR0 {
+    padding-right: 0 !important;
+}
+
+.PL3 {
+    padding-left: 3px !important;
+}
+
+.PR3 {
+    padding-right: 3px !important;
+}
+
+.PL10 {
+    padding-left: 10px !important;
+}
+
+.PR10 {
+    padding-right: 10px !important;
+}
+
+.FR {
+    float: right;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.posRelative {
+    position: relative;
+}
+
+.flightStatusBar {
+    margin-top: 30px;
+}
+
+.statusUpdate {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 56px;
+}
+
+    .statusUpdate li {
+        width: 33%;
+        display: inline-block;
+        position: relative;
+        padding-left: 40px;
+    }
+
+        .statusUpdate li:before {
+            position: absolute;
+            content: '';
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            left: 0;
+            top: -5px;
+            padding-top: 5px;
+        }
+
+        .statusUpdate li:after {
+            position: absolute;
+            content: '';
+            width: 270px;
+            height: 1px;
+            height: 1px;
+            left: 180px;
+            top: 10px;
+        }
+
+        .statusUpdate li.active:before {
+            content: '';
+            text-align: center;
+            padding-top: 8px;
+            font-size: 10px;
+            background-size: 12px;
+            background-position: center center;
+        }
+
+        .statusUpdate li.firstItem:before {
+            content: '1';
+        }
+
+        .statusUpdate li.firstItem.active:before {
+            content: '';
+        }
+
+.stars {
+    text-align: left;
+    float: right;
+}
+
+    .stars i {
+        display: inline;
+        float: left;
+        color: #FFC904;
+        font-size: 16px;
+    }
+.material-icons {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: 'liga';
+    -moz-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+}
+
+.secondItem {
+    text-align: center;
+}
+
+.statusUpdate li.secondItem:before {
+    content: '2';
+}
+
+.statusUpdate li.secondItem.active:before {
+    content: '';
+}
+
+.statusUpdate li.thirdItem:before {
+    content: '3';
+    text-align: center;
+}
+
+.thirdItem {
+    text-align: right;
+}
+
+.statusUpdate li.thirdItem.active:before {
+    content: '';
+}
+
+.statusUpdate li.secondItem:before {
+    left: 100px;
+}
+
+.statusUpdate li.secondItem:after {
+    left: 280px;
+    width: 310px;
+}
+
+.statusUpdate li.thirdItem:before {
+    left: 240px;
+}
+
+.statusUpdate li.thirdItem:after {
+    display: none;
+}
+
+.reviewHeader {
+    padding: 12px 15px;
+    border-top-left-radius: 0.7rem;
+    border-top-right-radius: 0.7rem;
+}
+
+.reviewContent {
+    padding: 10px;
+}
+
+.reviewCol {
+    text-align: center;
+}
+
+.flightRetailReview {
+    margin-top: 5px;
+}
+
+    .flightRetailReview span {
+        display: block;
+    }
+
+.flightDesc span {
+    display: block;
+}
+
+.reviewCheck {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.knowMore {
+    display: inline-block;
+    margin-top: 12px;
+    text-decoration: none;
+}
+
+.lossCheckin span {
+    display: block;
+}
+
+.reviewForm {
+}
+
+    .reviewForm .input-field > label {
+        position: absolute;
+        top: 6px;
+        left: 15px !important;
+        cursor: text;
+    }
+
+    .reviewForm input:not([type]),
+    input[type=text]:not(.browser-default),
+    input[type=number]:not(.browser-default),
+    input[type=date]:not(.browser-default),
+    input[type=email]:not(.browser-default),
+    .reviewForm input[type=password]:not(.browser-default),
+    .reviewForm input[type=url]:not(.browser-default),
+    .reviewForm input[type=time]:not(.browser-default),
+    .reviewForm input[type=datetime]:not(.browser-default),
+    .reviewForm input[type=datetime-local]:not(.browser-default),
+    .reviewForm input[type=tel]:not(.browser-default),
+    .reviewForm input[type=search]:not(.browser-default),
+    .reviewForm textarea.materialize-textarea,
+    .flightStatusBar select {
+        /* padding-left: 15px !important;
+        height: 40px !important;
+        margin-top: 15px;
+        border-radius:4px;*/
+        margin-bottom: 14px;
+    }
+
+    .reviewForm .addOnBtn {
+        margin-top: 20px;
+        padding: 5px 25px;
+    }
+
+.rightAmout {
+    text-align: right;
+}
+
+.Stage2.rightAmout .reviewContinue {
+    margin-top: 0;
+    padding: 5px 20px;
+}
+
+.rightAmout span {
+    font-weight: normal;
+    margin-left: 15px;
+}
+
+    .rightAmout span img {
+        width: 22px;
+        margin-right: 10px;
+    }
+
+.reviewContinue {
+    border-radius: 0;
+    margin-top: 15px;
+}
+
+.borderRight:after {
+    content: '';
+    width: 1px;
+    height: 70px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+}
+
+.reviewInfo {
+    position: relative;
+}
+
+    .reviewInfo:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 26px;
+    }
+
+.reviewInfoList {
+    padding-left: 0;
+}
+
+    .reviewInfoList li {
+        display: inline-block;
+        list-style: none;
+        position: relative;
+        padding-left: 15px;
+        padding-right: 30px;
+    }
+
+        .reviewInfoList li:before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 100% !important;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            display: block;
+        }
+
+.reviewTopBar {
+    margin-bottom: 38px;
+}
+
+.reviewHeader span {
+    margin-top: 5px;
+    display: block;
+}
+
+.reviewHeaderDrop select {
+    display: block;
+    border: none;
+    height: 30px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+    .reviewHeaderDrop select:active, .reviewHeaderDrop select:focus {
+        outline: 0;
+    }
+
+.flightto:after {
+    content: '';
+    width: 109px;
+    height: 19px;
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+
+.reviewCol.stage2 span {
+    display: block;
+    text-align: left;
+}
+
+.specialCol span {
+    margin-left: 0;
+}
+
+.specialCol {
+    width: 100px;
+    float: right;
+}
+
+.HeadermrgnBottom {
+    margin-bottom: 35px;
+}
+
+.stage2padd {
+    padding: 25px 20px;
+}
+
+    .stage2padd .warning {
+        padding: 10px 15px;
+        margin-bottom: 14px;
+    }
+
+.reviewStage2Content {
+}
+
+.contentText {
+    margin-top: 10px;
+    display: block;
+}
+
+.reviewStage2Content select {
+    display: block;
+    height: 42px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+.txtStyled {
+    margin-top: 0 !important;
+    border: 1px solid #A2A2A2 !important;
+}
+
+.accordionWrap ul.collapsible {
+    padding-left: 0;
+    border: none;
+    /*width: 1000px;*/
+}
+
+.accordionWrap .collapsible-header {
+    padding: 5px 0;
+    border-bottom: none;
+}
+
+    .accordionWrap .collapsible-header img {
+        width: 12px;
+        height: 12px;
+        vertical-align: baseline;
+        margin-right: 10px;
+        margin-top: 2px;
+    }
+
+.accordionWrap .collapsible-body {
+    padding: 20px;
+}
+
+    .accordionWrap .collapsible-body span {
+        display: block;
+        margin-top: 12px;
+    }
+
+.MB16 {
+    margin-bottom: 16px;
+}
+
+.accordionWrap .collapsible-body .txtStyled {
+   /* width: 96.5%;*/
+}
+
+.accordionWrap .collapsible-body {
+    margin-bottom: 15px;
+}
+
+.accordionWrap li .collapsible-header {
+    padding-left: 25px;
+}
+
+.checkedInBtn {
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-style: italic;
+    margin-top: 25px;
+    margin-top: 18px;
+}
+
+    .checkedInBtn a {
+        padding: 15px 30px;
+    }
+
+        .checkedInBtn a:hover {
+            text-decoration: none;
+        }
+
+    .checkedInBtn .rightBtn {
+        border-radius: 0px 25px 25px 0px;
+        display: block;
+        padding-left: 15px;
+    }
+
+.reviewStage2.checkWrap [type="checkbox"].filled-in:not(:checked) + span:not(.lever)::after {
+    height: 12px;
+    width: 12px;
+    top: 0px;
+    z-index: 0;
+}
+
+.reviewStage2.checkWrap [type="checkbox"].filled-in:checked + span:not(.lever)::after {
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    z-index: 0;
+}
+
+.reviewStage2.checkWrap [type="checkbox"].filled-in:checked + span:not(.lever):before {
+    top: 4px;
+}
+
+.reviewStage2.reviewCheck {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.reviewStage2.checkWrap span img {
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: baseline;
+}
+
+.bottomnote {
+    margin-left: 20px;
+}
+
+
+.placeholder {
+    width: 100%;
+    height: 20px;
+    background: #eee;
+}
+
+    .placeholder.small {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+.u-disable-state {
+    position: relative;
+    overflow: hidden;
+}
+
+    .u-disable-state:before,
+    .u-disable-state-blue:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        left: 0;
+        -webkit-animation: left-right 1s linear infinite;
+        animation: left-right 1s linear infinite
+    }
+
+.u-disable-state-blue:before {
+    background: linear-gradient(right,#e4e4e4,rgba(0,0,0,.03),#e4e4e4);
+    background: -webkit-linear-gradient(right,#e4e4e4,rgba(0,0,0,.03),#e4e4e4);
+    background: -o-linear-gradient(right,#e4e4e4,rgba(0,0,0,.03),#e4e4e4);
+    background: -moz-linear-gradient(right,#e4e4e4,rgba(0,0,0,.03),#e4e4e4);
+}
+
+.u-disable-state-blue {
+    position: relative;
+    overflow: hidden;
+}
+
+.u-animated {
+    -webkit-animation-duration: .4s;
+    animation-duration: .4s
+}
+
+.customModal.modal {
+    width: 40% !important;
+    overflow: auto;
+    max-height: 30%;
+    top: 15% !important;
+}
+
+@media screen and (min-width: 300px) and (max-width: 767px) {
+    .PR0 {
+        padding-right: 15px !important;
+    }
+
+    .PL0 {
+        padding-left: 15px !important;
+    }
+
+    .flightDealCard .Details {
+        padding: 28px 10px 28px 10px;
+    }
+
+    .PR3 {
+        padding-right: 15px !important;
+    }
+
+    .PL3 {
+        padding-left: 15px !important;
+    }
+
+    .PR10 {
+        padding-right: 15px !important;
+    }
+
+    .statusUpdate li {
+        display: block;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .secondItem {
+        text-align: left;
+    }
+
+    .statusUpdate li.secondItem::before {
+        left: 0;
+    }
+
+    .statusUpdate li.secondItem::before {
+        text-align: center;
+    }
+
+    .thirdItem {
+        text-align: left;
+    }
+
+    .statusUpdate li.thirdItem::before {
+        left: 0;
+    }
+
+    .statusUpdate li::after {
+        position: absolute;
+        content: '';
+        width: 1px;
+        height: 50px;
+        left: 15px;
+        top: 25px;
+    }
+
+    .statusUpdate li.secondItem::after {
+        left: 15px;
+        top: 25px;
+        width: 1px;
+        height: 50px;
+    }
+
+    .reviewHeader a {
+        text-align: left;
+    }
+
+    .reviewCheck {
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+
+    .lossCheckin span {
+        margin-bottom: 10px;
+    }
+
+    .reviewForm .addOnBtn {
+        margin-top: 0px;
+    }
+
+    .flightRetailReview {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .flightto {
+        margin-bottom: 60px;
+    }
+
+        .flightto::after {
+            content: '';
+            width: 109px;
+            height: 19px;
+            position: absolute;
+            left: 20px;
+            top: 50px;
+        }
+
+    .specialCol {
+        width: 100px;
+        float: none;
+        margin-top: 20px;
+    }
+
+    .reviewForm input:not([type]), input[type="text"]:not(.browser-default), .reviewForm input[type="password"]:not(.browser-default), .reviewForm input[type="email"]:not(.browser-default), .reviewForm input[type="url"]:not(.browser-default), .reviewForm input[type="time"]:not(.browser-default), .reviewForm input[type="date"]:not(.browser-default), .reviewForm input[type="datetime"]:not(.browser-default), .reviewForm input[type="datetime-local"]:not(.browser-default), .reviewForm input[type="tel"]:not(.browser-default), .reviewForm input[type="number"]:not(.browser-default), .reviewForm input[type="search"]:not(.browser-default), .reviewForm textarea.materialize-textarea {
+        /*width: 93%;*/
+        margin-bottom: 14px;
+    }
+
+    .reviewStage2Content select {
+        margin-bottom: 15px;
+    }
+
+    .accordionWrap .collapsible-body .txtStyled {
+        /*width: 92.5%;*/
+    }
+
+    .checkedInBtn .rightBtn {
+        display: block;
+        padding-left: 7px;
+        padding-top: 25px;
+    }
+
+    .checkedInBtn {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .statusUpdate li {
+        font-size: 12px;
+        display: inline-block;
+        width: 32%;
+    }
+
+        .statusUpdate li:after {
+            content: '';
+            width: 100px;
+            left: 155px;
+        }
+
+        .statusUpdate li.secondItem::after {
+            left: 210px;
+            width: 100px;
+        }
+
+        .statusUpdate li.secondItem::before {
+            left: 44px;
+        }
+
+        .statusUpdate li.thirdItem::before {
+            left: 100px;
+        }
+
+    .reviewForm .input-field > label {
+        font-size: 13px !important;
+    }
+
+    .checkedInBtn a {
+        padding: 10px 24px;
+        text-align: center;
+    }
+
+    .checkedInBtn .rightBtn {
+        display: block;
+        padding-left: 9px;
+        display: inline-block;
+        padding-top: 16px;
+    }
+
+    .reviewInfo::after {
+        right: -12px;
+    }
+
+    .flightRetailReview span {
+        margin-bottom: 15px;
+    }
+
+    .flightto::after {
+        content: '';
+        width: 109px;
+        height: 19px;
+        position: absolute;
+        right: 0;
+        top: 11px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+    .statusUpdate li {
+        font-size: 12px;
+        display: inline-block;
+        width: 32%;
+    }
+
+        .statusUpdate li:after {
+            content: '';
+            width: 172px;
+            left: 155px;
+        }
+
+        .statusUpdate li.secondItem::after {
+            left: 210px;
+            width: 172px;
+        }
+
+        .statusUpdate li.secondItem::before {
+            left: 44px;
+            text-align: center;
+        }
+
+        .statusUpdate li.secondItem {
+            text-align: left;
+            padding-left: 85px;
+        }
+
+        .statusUpdate li.thirdItem::before {
+            left: 100px;
+        }
+
+        .statusUpdate li.thirdItem {
+            text-align: left;
+            padding-left: 144px;
+        }
+
+    .flightRetailReview span {
+        margin-bottom: 15px;
+    }
+
+    .flightto::after {
+        content: '';
+        width: 109px;
+        height: 19px;
+        position: absolute;
+        right: 0;
+        top: 11px;
+    }
+}
+.room-image {
+    margin-bottom: 10px;
+    display: flex;
+    margin-left: 6px;
+}
+
+    .room-image img {
+        cursor: pointer;
+        width: 220px;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+.hotel {
+    padding: 10px;
+    margin-left: 5px;
+}
+
+    .hotel .room-rating {
+        height: 22px;
+        height: 18px;
+    }
+
+    .hotel .room-stars {
+      
+        color: #ffb700;
+    }
+
+        .hotel .room-stars i {
+            font-size: 14px;
+          
+        }
+
+    .hotel .review-score {
+        color: #0f0e0e;
+        font-size: 16px;
+        font-family: "Calibri", sans-serif;
+    }
+
+.hotel-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 3px;
+}
+.description {
+    font-size: 16px;
+    font-family: "Calibri", sans-serif;
+}
+
+.price-table {
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 620px;
+    width: 30%;
+    height: 160px;
+    margin-top: -135px;
+}
+
+    .price-table table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    .price-table td {
+        padding: 4px;
+        font-size: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .price-table td.bold {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .price-table td.value {
+            font-size: 12px;
+        }
+
+   
+    .price-table tr:last-child td {
+        padding-bottom: 13px;
+    }
+    .price-table tr:last-child td {
+        font-weight: bold;
+    }

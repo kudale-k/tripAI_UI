@@ -1,0 +1,718 @@
+﻿﻿@using Air.ViewModel;
+@using AirDataModels;
+@model PassengerDetailsVM
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<link href="assets/functions/css/reviewStage2.css" rel="stylesheet">
+<link href="~/assets/functions/css/styleDetails.css" rel="stylesheet" />
+
+<link href="~/assets/functions/css/payment.css" rel="stylesheet">
+<style>
+    .travelInfoFormWrap .paymentConatiner .totalAmount {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    @@media screen and (min-width: 300px) and (max-width: 767px) {
+        .flightStatusBar {
+            margin-top: 60px;
+        }
+
+        .statusUpdateWrap .statusUpdate {
+            display: flex;
+            text-align: center;
+        }
+
+            .statusUpdateWrap .statusUpdate .list-item {
+                width: 33%;
+                margin: 0;
+                text-align: center;
+                padding: 30px 20px 0 20px;
+                line-height: 20px;
+            }
+
+            .statusUpdateWrap .statusUpdate li::after {
+                transform: translate(110px, -40px) rotate(90deg);
+            }
+
+            .statusUpdateWrap .statusUpdate li::before {
+                margin: 0 auto;
+                right: 0;
+            }
+
+            .statusUpdateWrap .statusUpdate li.thirdItem::after {
+                display: none;
+            }
+
+        .flightReviewCard .flightDesc .flight-icon {
+            width: 100%;
+            transform: scale(2.8);
+        }
+
+        .flightReviewCard .overflowHidden {
+            overflow: hidden
+        }
+
+        .flightReviewCard .flightNumber {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .flightReviewCard .flightNumber > img {
+                width: 70px !important;
+                height: 70px !important;
+                object-fit: contain;
+            }
+
+            .flightReviewCard .flightNumber .flightRetailReview {
+                display: flex;
+            }
+
+        .travelInfoFormWrap .accordionInputField ul.collapsible {
+            width: 100%;
+        }
+
+        .travelInfoFormWrap .accordionInputField .collapsible-body .txtStyled {
+            width: 94.5%;
+            margin-bottom: 15px;
+        }
+
+        .travelInfoFormWrap input,
+        .travelInfoFormWrap select {
+            box-sizing: border-box !important;
+            width: 100% !important;
+            display: block !important;
+            margin: 15px 0 0 0 !important;
+        }
+
+        .travelInfoFormWrap .termsCondition input {
+            width: auto !important;
+        }
+
+        .travelInfoFormWrap .termsCondition {
+            padding: 15px;
+        }
+
+
+        .travelInfoFormWrap .paymentConatiner .labelBox {
+            padding-right: 30px;
+        }
+    }
+</style>
+<secton>
+    <div class="Loader" id="Loader"></div>
+    <div class="topPadding">
+        <div class="container">
+            <div class="flightStatusBar">
+                <div class="row statusUpdateWrap">
+                    <div class="col-sm-12">
+                        <ul class="statusUpdate">
+                            <li class="list-item firstItem active"><span class="label-txt">Choose your flight</span></li>
+                            <li class="list-item secondItem active"><span class="label-txt">Enter your Detailst</span></li>
+                            <li class="list-item thirdItem"><span class="label-txt">Final Details</span></li>
+                        </ul>
+                    </div>
+                </div>
+                @*<div class="row">
+                <div class="col-sm-12">
+                <div class="reviewTopBar">
+                <div class="row">
+                <div class="col-sm-9">
+                <div class="row">
+                <div class="col-sm-3">
+                <div class="reviewInfo">
+                Save Time & Login to get
+                </div>
+                </div>
+                <div class="col-sm-9">
+                <ul class="reviewInfoList">
+                <li>Discounts</li>
+                <li>Autofill your Details</li>
+                <li>Cashback</li>
+                </ul>
+                </div>
+                </div>
+                </div>
+                <div class="col-sm-3">
+                <div class="rightAmout Stage2">
+                <a href="#" class="btn bookNowBtngradient reviewContinue">Login</a>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>*@
+                @{
+                    if (Model != null && Model.AirRevalidateResponseList != null)
+                    {
+                        @foreach (AirRevalidateResponse response in Model.AirRevalidateResponseList)
+                        {
+                            <div class="card container mb-3">
+                                <div class="card-header bg-danger row">
+                                    <div class="col-10 col-xs-12 col-sm-12 com-md-9 col-lg-10 text-white mt-2 pl-0">BOOKING SUMMARY</div>
+                                    <div class="col-2 col-xs-12 col-sm-12 com-md-3 col-lg-2 pr-0 pl-0">
+                                        <select class="form-control form-control-sm mb-0">
+                                            <option>@(response.AirItineraryInfo.IsRefundable ? "Refundable" : "Non Refundable")</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    @{
+                                        await Html.RenderPartialAsync("FlightDetailsLevel2Partial", response.AirItineraryInfo.ItineraryDetails);
+                                    }
+                                </div>
+                            </div>
+                        }
+
+                        <form method="post" action="@Url.Action("InitiateBooking", new { id = Model.AirRevalidateResponseList.FirstOrDefault().SessionID })">
+                            <div class="card mb-3">
+                                <div class="card-header blueGradient text-white">
+                                    TRAVEL INFORMATION
+                                </div>
+                                <div class="card-body">
+                                    <div class="p-2 mb-2 bg-warning text-dark" role="alert">
+                                        Traveler(s) name should be same as per their passport
+                                    </div>
+                                    @{
+                                        //foreach (AirRevalidateResponse revalidateResponse in Model.AirRevalidateResponseList)
+                                        AirRevalidateResponse revalidateResponse = Model.AirRevalidateResponseList.FirstOrDefault();
+                                        {
+                                            for (int indexPaxType = 0; indexPaxType < revalidateResponse.AirItineraryInfo.PricingInfo.PTC_FareBreakdowns.Count; indexPaxType++)
+                                            {
+                                                string paxType = revalidateResponse.AirItineraryInfo.PricingInfo.PTC_FareBreakdowns[indexPaxType].PassengerTypeQuantity.Code == PassengerType.ADT ? "ADULT" : (revalidateResponse.AirItineraryInfo.PricingInfo.PTC_FareBreakdowns[indexPaxType].PassengerTypeQuantity.Code == PassengerType.CHD ? "CHILD" : "INFANT");
+                                                string psptStatus = ""; // revalidateResponse.MandatoryParameterList.FirstOrDefault(x => x.ParameterType == Convert.ToString(MandatoryParameterEnum.Passport)) != null ? "required" : "";
+                                                string dobStatus = revalidateResponse.MandatoryParameterList.FirstOrDefault(x => x.ParameterType == Convert.ToString(MandatoryParameterEnum.DateOfBirth)) != null ? "required" : "";
+                                                for (int index = 0; index < revalidateResponse.AirItineraryInfo.PricingInfo.PTC_FareBreakdowns[indexPaxType].PassengerTypeQuantity.Quantity; index++)
+                                                {
+                                                    <div class="row">
+                                                        <div class="col-sm-1">
+                                                            <span class="contentText">@paxType @(index + 1)</span>
+                                                        </div>
+                                                        <div class="col-sm-11">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    @if (paxType == "ADULT")
+                                                                    {
+                                                                        <select class="form-control" id="Title@(paxType)@(index)" name="Title@(paxType)@(index)">
+                                                                            <option value="MR">MR</option>
+                                                                            <option value="MRS">MRS</option>
+                                                                            <option value="MS">MS</option>
+                                                                        </select>
+                                                                    }
+                                                                    else if (paxType == "CHILD")
+                                                                    {
+                                                                        <select class="form-control" id="Title@(paxType)@(index)" name="Title@(paxType)@(index)">
+                                                                            <option value="MSTR">MSTR</option>
+                                                                            <option value="MISS">MISS</option>
+                                                                        </select>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <select class="form-control" id="Title@(paxType)@(index)" name="Title@(paxType)@(index)">
+                                                                            <option value="MSTR">MSTR</option>
+                                                                            <option value="MISS">MISS</option>
+                                                                        </select>
+                                                                    }
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="input-field">
+                                                                        <input id="FirstName@(paxType)@(index)" name="FirstName@(paxType)@(index)" type="text" class="validate txtStyled form-control" placeholder="First Name" required>
+                                                                        <!--   <label for="origin">Email <sup>*</sup></label> -->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="input-field">
+                                                                        <input id="LastName@(paxType)@(index)" name="LastName@(paxType)@(index)" type="text" class="validate txtStyled form-control" placeholder="Last Name" required>
+                                                                        <!--  <label for="origin">Email <sup>*</sup></label> -->
+                                                                    </div>
+                                                                </div> @*<div class="col-sm-2 PL0"> <select class="arrowmen">  <option>Male</option>  <option>Female</option> </select>*@
+                                                                <!--<div class="col-sm-3">
+                                                                    <div class="input-field">
+                                                                        <input type="date" id="DOB@(paxType)@(index)" name="DOB@(paxType)@(index)" class="validate txtStyled" placeholder="Date of Birth" @dobStatus @psptStatus>
+                                                                    </div>
+                                                                </div> AEC by Abhin & team -->
+                                                                <div class="col-sm-3">
+                                                                    <div class="input-field">
+                                                                        <input type="date" id="DOB@(paxType)@(index)" name="DOB@(paxType)@(index)" class="validate txtStyled form-control" placeholder="Date of Birth" @dobStatus @psptStatus
+                                                                               min="1900-01-01" max="@DateTime.Now.ToString("yyyy-MM-dd")" pattern="\d{2}-\d{2}-\d{4}">
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="accordionWrap accordionInputField">
+                                                                <ul class="collapsible">
+                                                                    <li class="@(psptStatus == "required" ? "active" : "")">
+                                                                        <div class="collapsible-header"><!-- <img src="assets/images/reviewStage2/minus.png" alt=""> -->Passport Information(<label>@(psptStatus == "required" ? "Mandatory" : "Optional") </label>)</div>
+                                                                        <div class="collapsible-body">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-3">
+                                                                                    <div class="input-field">
+                                                                                        <input id="PSPTNumber@(paxType)@(index)" name="PSPTNumber@(paxType)@(index)" type="text" class="validate txtStyled form-control" placeholder="Passport Number" @psptStatus>
+                                                                                        <!--  <label for="origin">Email <sup>*</sup></label> -->
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--  <div class="col-sm-3">
+                                                                                    <div class="input-field">
+                                                                                        <input type="date" id="PSPTExpiry@(paxType)@(index)" name="PSPTExpiry@(paxType)@(index)" class="form-control validate txtStyled" placeholder="Date of Birth" @psptStatus>
+                                                                                    </div>
+                                                                                </div>
+                                                                                AEC by Abhin & team-->
+                                                                                <div class="col-sm-3">
+                                                                                    <div class="input-field">
+                                                                                        <input type="date" id="PSPTExpiry@(paxType)@(index)" name="PSPTExpiry@(paxType)@(index)" class="form-control validate txtStyled" placeholder="Passport Expiry Date" @psptStatus
+                                                                                               min="@DateTime.Now.ToString("yyyy-MM-dd")" max="3000-01-01" pattern="\d{2}-\d{2}-\d{4}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <select id="Nationality@(paxType)@(index)" class="Nationality form-control" name="Nationality@(paxType)@(index)" @psptStatus>
+                                                                                        <option>Nationality</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <select id="Country@(paxType)@(index)" class="Country form-control" name="Country@(paxType)@(index)" @psptStatus>
+                                                                                        <option>Issuing Country</option>
+                                                                                    </select>
+                                                                                </div>
+
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="accordionWrap accordionInputField">
+                                                                <ul class="collapsible">
+                                                                    <li class="@(revalidateResponse.AirItineraryInfo.SpecialServices != null ? "active" : "")">
+                                                                        <div class="collapsible-header"><!-- <img src="assets/images/reviewStage2/minus.png" alt=""> -->Special Services(<label>Optional </label>)</div>
+                                                                        <div class="collapsible-body">
+                                                                            <div class="row MB16">
+                                                                                @{
+                                                                                    var group = from meals in revalidateResponse.AirItineraryInfo.SpecialServices.Meals
+                                                                                                group meals by new
+                                                                                                {
+                                                                                                    name = meals.Assosiations.OriginLocationCode + meals.Assosiations.DestinationLocationCode
+                                                                                                } into grp
+                                                                                                select grp.Key.name;
+                                                                                    foreach (var ass in group)
+                                                                                    {
+
+                                                                                        if (revalidateResponse.AirItineraryInfo.SpecialServices.Meals.Count > 0)
+                                                                                        {
+                                                                                            <label for="origin">@ass</label>
+                                                                                            <div class="col-sm-2 ">
+                                                                                                <select id="Meals@(paxType)@(index)@ass" class="form-control" name="Meals@(paxType)@(index)@ass">
+                                                                                                    <option value="-1">Meals</option>
+                                                                                                    @for (int indexMeal = 0; indexMeal < revalidateResponse.AirItineraryInfo.SpecialServices.Meals.Count; indexMeal++)
+                                                                                                    {
+                                                                                                        if (ass == revalidateResponse.AirItineraryInfo.SpecialServices.Meals[indexMeal].Assosiations.OriginLocationCode + revalidateResponse.AirItineraryInfo.SpecialServices.Meals[indexMeal].Assosiations.DestinationLocationCode)
+                                                                                                        {
+                                                                                                            string[] mealsVal = @revalidateResponse.AirItineraryInfo.SpecialServices.Meals[indexMeal].MealCode.Split(',');
+
+                                                                                                            foreach (string str in mealsVal)
+                                                                                                            {
+                                                                                                                <option value="@str">@str - @revalidateResponse.AirItineraryInfo.SpecialServices.Meals[indexMeal].MealPrice.Amount</option>
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        }
+                                                                                    }
+
+                                                                                    group = from Baggage in revalidateResponse.AirItineraryInfo.SpecialServices.Baggage
+                                                                                            group Baggage by new
+                                                                                            {
+                                                                                                name = Baggage.Associations.OriginLocationCode + Baggage.Associations.DestinationLocationCode
+                                                                                            } into grp
+                                                                                            select grp.Key.name;
+                                                                                    foreach (var ass in group)
+                                                                                    {
+                                                                                        if (revalidateResponse.AirItineraryInfo.SpecialServices.Baggage.Count > 0)
+                                                                                        {
+                                                                                            <label for="origin">@ass</label>
+                                                                                            <div class="col-sm-3">
+                                                                                                <select id="Baggage@(paxType)@(index)@ass" class="form-control" name="Baggage@(paxType)@(index)@ass">
+                                                                                                    <option value="-1">Baggage</option>
+                                                                                                    @for (int indexBaggage = 0; indexBaggage < revalidateResponse.AirItineraryInfo.SpecialServices.Baggage.Count; indexBaggage++)
+                                                                                                    {
+                                                                                                        if (ass == revalidateResponse.AirItineraryInfo.SpecialServices.Baggage[indexBaggage].Associations.OriginLocationCode + revalidateResponse.AirItineraryInfo.SpecialServices.Baggage[indexBaggage].Associations.DestinationLocationCode)
+                                                                                                        {
+                                                                                                            <option value="@revalidateResponse.AirItineraryInfo.SpecialServices.Baggage[indexBaggage].BaggageCode">@revalidateResponse.AirItineraryInfo.SpecialServices.Baggage[indexBaggage].BaggageCode - @revalidateResponse.AirItineraryInfo.SpecialServices.Baggage[indexBaggage].BaggagePrice.Amount</option>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        }
+                                                                                    }
+
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+
+                                        <div class="row pb-3">
+                                            <div class="col-sm-1">
+                                                <span class="contentText">Contact</span>
+                                            </div>
+                                            <div class="col-sm-11">
+
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <select id="CountryPhone" name="CountryPhone" class="form-control">
+                                                            <option>India(91)</option>
+                                                            <option>Australia(71)</option>
+                                                            <option>United Arab Emirates(971)</option>
+                                                            <option>United States(01)</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="input-field">
+                                                            <input id="Mobile" type="number" name="Mobile" class="validate txtStyled form-control" placeholder="Mobile Number" required>
+                                                            <!--   <label for="origin">Email <sup>*</sup></label> -->
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                        <div class="input-field">
+                                                            <input id="Email" type="email" name="Email" class="validate txtStyled form-control" placeholder="Email ID" required>
+                                                            <!--   <label for="origin">Email <sup>*</sup></label> -->
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        @*<div class="row">
+                            <div class="col-sm-1">
+
+                            </div>
+                            <div class="col-sm-11">
+                            <div class="row">
+                            <div class="col-sm-5">
+                            <div class="checkedInBtn">
+                            <div class="row">
+                            <a href="#" class="col-10 leftBtn"><img src="assets/images/reviewStage2/tick.png" alt=""> Great you will be checked-in online</a>
+                            <a href="#" class="col-2 rightBtn">Edit</a>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-sm-7">
+                            <div class="rightAmout">
+                            <div><span><img src="assets/images/reviewstage2/@(revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.CurrencyCode).png" alt="@revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.CurrencyCode"> @revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.Amount</span></div>
+
+                            <input type="submit" value="Continue Booking" class="btn bookNowBtngradient reviewContinue">
+                            </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-12">
+                            <div class="checkWrap listingCheck reviewCheck reviewStage2">
+                            <label>
+                            <input type="checkbox" name="OnlineBoardingPass" class="filled-in" checked="checked" />
+                            <span class="colorBlack boldText">Online  Check-In and Boarding pass <img src="assets/images/reviewStage2/cardlabel.png" alt=""> <img src="assets/images/reviewStage2/eurogreen.png" alt=""><span class="coloGreen">10</span> <img src="assets/images/reviewStage2/questions.png" alt=""></span>
+                            </label>
+                            </div>
+                            <div class="bottomnote">
+                            A smarter experience awaits you! Enjoy trouble-free check-in and get your boarding pass sitting at home with us. We help your time and fuss at the airport
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>*@
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-danger text-white">
+                                    PAYMENT
+                                </div>
+                                <div class="card-body">
+                                    <div class="reviewContent paymentContent">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <ul class="paymentMethods">
+                                                    <li style="@(Config.Session.Staff.LevelId == 6?"display:none":"display:block")"><a href="javascript:void(0)" class="active tabReverse" title="tab1"><img src="assets/images/payments/knet.jpg" alt="">FROM @Config.Company.COMPNAME WALLET</a></li>
+                                                    @*<li><a href="javascript:void(0)" class="tabReverse" title="tab2"><img src="assets/images/payments/visa.jpg" alt="">VISA CHECKOUT</a></li>*@
+                                                    <li><a href="javascript:void(0)" class="tabReverse @(Config.Session.Staff.LevelId == 6?"active":"")" title="tab3"><img src="assets/images/payments/credit.jpg" alt="">CREDIT CARD / DEBIT CARD</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6">
+
+                                                <div class="tabWrapReverse" id="tab1" style='@(Config.Session.Staff.LevelId == 6?"display:none":"display:block")'>
+                                                    <div class="paymentConatiner">
+                                                        <div class="totalAmount d-flex justify-content-between">
+                                                            <div class="labelBox"><span>YOUR CURRENT BALANCE</span></div>
+                                                            <div class="amount text-left">
+                                                                <span class="d-flex align-items-center">
+                                                                    <img src="assets/images/review/usd.png" alt="" style="width: 50px; height: 15px;">
+                                                                    @(Model.Wallet != null ? (Model.Wallet.Currency + " " + Model.Wallet.AvailableBalanceAmount) : "0")
+                                                                    <a href="#" class="tooltipped" data-position="right" data-tooltip="I am a tooltip">
+                                                                        <img src="assets/images/payments/information.png" alt="">
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="totalAmount d-flex justify-content-between">
+                                                            <div class="labelBox"><span>TOTAL AMOUNT PAYABLE</span></div>
+                                                            <div class="amount text-left">
+                                                                <div>
+                                                                    <span class="d-flex align-items-center">
+                                                                        <img src="assets/images/reviewstage2/@(revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.CurrencyCode).png"
+                                                                             alt="@revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.CurrencyCode"
+                                                                             style="width: 50px; height: 15px;">
+                                                                        @revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.Amount
+                                                                    </span>
+                                                                </div>
+
+                                                                
+
+                                                            </div>
+                                                        </div>
+                                                        <input type="submit" value="Pay Now" class="btn bookNowBtngradient reviewContinue">
+                                                        <input type="hidden" id="Price" value="@revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.Amount" />
+                                                        <div style="text-align:right@((Model.Wallet?.AvailableBalanceAmount>0)?"":";display:none")">
+                                                            @*<a class="btn bookNowBtngradient @(Model.BookingDetailsRS!=null?"reviewContinue":"reviewContinueProduct")"><img src="assets/images/payments/lock.png" alt="">PAY NOW</a>*@
+                                                        </div>
+
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tabWrapReverse" id="tab3" style="@(Config.Session.Staff.LevelId == 6?"display:block":"display:none")">
+                                                    <div class="paymentConatiner ">
+                                                        <div class="totalAmount  d-flex justify-content-between">
+                                                            <div class="labelBox"><span>TOTAL AMOUNT PAYABLE</span></div>
+                                                            <div class="amount text-left">
+
+                                                                <div><span class="d-flex align-items-center"><img src="assets/images/reviewstage2/@(revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.CurrencyCode).png" alt="@revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.CurrencyCode" style="width: 50px; height: 15px;"> @revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.Amount</span></div>
+
+                                                                <input type="submit" value="Pay Now" class="btn bookNowBtngradient reviewContinue">
+                                                                <input type="hidden" id="Price" value="@revalidateResponse.AirItineraryInfo.PricingInfo.ItinTotalFare.TotalFare.Amount" />
+
+                                                            </div>
+                                                        </div>@*href="@Url.Action("ConfirmBooking", new {BookingID=Model.FirstOrDefault().OrderID,  SessionID = Model.FirstOrDefault().SessionID })"*@
+                                                        @*<div style="text-align:right"><a class="text-white btn bookNowBtngradient reviewContinue"><img src="assets/images/payments/lock.png" alt="">PAY NOW</a><p id="erromessage" style="display:none">Please check to agree to our terms and conditions down below</p></div>*@
+
+                                                        <p>You might be redirected to the partner site to verify your credentials before we proceed to authorize your payment</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="rightCol">
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex align-items-center pb-3">
+                                                            <img src="assets/images/payments/safe.png" alt="">
+                                                            <p class="ml-2">SAFE & SECURE</p>
+                                                        </div>
+                                                        <div class="col-12 d-flex align-items-center pb-3">
+                                                            <img src="assets/images/payments/trust.png" alt="">
+                                                            <p class="ml-2">TRUSTED WORLDWIDE</p>
+                                                        </div>
+                                                        <div class="col-12 d-flex align-items-center pb-3">
+                                                            <img src="assets/images/payments/easy.png" alt="">
+                                                            <p class="ml-2">EASY PAYMENTS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3 dnone">
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="termsCondition">
+                                                    <input type="checkbox" value="1" id="TermsCheckBox" /> By clicking on the 'Pay Now' button, I understand that @Config.Company.COMPNAME Adventure and Experience Pvt Ltd is only a BOOKING PLATFORM and not an operator for this tour and I am fully aware of the inclusions, exclusions, cancellation policies and other terms and conditions of the tour from the supplier and I have read, understood and accepted the Conditions of Contract and waiver of liability on the following pages.<a href="@Url.Action("Company","Terms & Conditions")">Terms & Conditions</a> of this website
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        if (Model.FailedItineraryCount > 0 || Model.IsPriceChanged || (Model.AirRevalidateResponseList.FirstOrDefault().Errors.FirstOrDefault() != null && Model.AirRevalidateResponseList.FirstOrDefault().Errors.Count > 0))
+
+                        {
+                            <div class="modal fade customModal" style=" max-height:300px; top:130px;background-color:#ff !important" id="modalFlightDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Flight Details</h5>
+
+                                        </div>
+                                        <div class="modal-body" id="modal-body">
+                                            @if (Model.AirRevalidateResponseList.FirstOrDefault().Errors.FirstOrDefault() != null)
+                                            {
+                                                @Model.AirRevalidateResponseList.FirstOrDefault().Errors.FirstOrDefault().Message
+                                                ;
+                                            }
+                                            <br />
+                                            <button id="GoBack" class="btn bookNowBtngradient bookNowBtn">Go to Results</button>
+                                            @if (Model.IsPriceChanged)
+                                            {
+                                                <button type="button" class="btn bookNowBtngradient bookNowBtn" data-dismiss="modal" aria-label="Close">OK</button>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="ReviewWrap HeadermrgnBottom">
+                                    <div class="reviewHeader bg-danger">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <span>BOOKING SUMMARY</span>
+                                            </div>
+                                            <div class="col-sm-2 reviewHeaderDrop">
+                                                <select class="form-control">
+                                                    <option>Non-Refundable</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="reviewContent stage2padd">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <div class="reviewCol">
+                                                    <div class="flightRetailReview"> <div class="placeholder  u-disable-state-blue"></div></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="reviewCol flightRetailReview">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="reviewCol">
+                                                    <div class="flightDesc">
+                                                        <div class="placeholder  u-disable-state-blue"></div>
+
+                                                        <img src="assets/images/review/flight.png" alt="">
+
+                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="reviewCol flightRetailReview">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <div class="reviewCol">
+                                                    <div class="flightRetailReview"> <div class="placeholder  u-disable-state-blue"></div></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="reviewCol flightRetailReview">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="reviewCol">
+                                                    <div class="flightDesc">
+
+                                                        <img src="assets/images/review/flight.png" alt="">
+
+                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="reviewCol flightRetailReview">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <div class="reviewCol">
+                                                    <div class="flightRetailReview"> <div class="placeholder  u-disable-state-blue"></div></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="reviewCol flightRetailReview">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="reviewCol">
+                                                    <div class="flightDesc">
+
+                                                        <img src="assets/images/review/flight.png" alt="">
+
+                                                        <div class="placeholder  u-disable-state-blue"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="reviewCol flightRetailReview">
+                                                    <div class="placeholder  u-disable-state-blue"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</secton>
+
+@section Scripts
+{
+    <script src="assets/functions/js/reviewStage2.js" asp-append-version="true"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            $('.tabReverse').click(function () {
+
+                var div = $(this).attr('title');
+                $(".tabWrapReverse").hide();
+                $(".tabReverse").removeClass("active");
+                $(this).addClass("active");
+                $('#' + div).show();
+            });
+        });
+    </script>
+}

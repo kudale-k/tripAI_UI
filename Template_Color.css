@@ -722,7 +722,7 @@ input[type='text']:not(.browser-default),
 }
 
     .accordionWrap .collapsible-body select {
-        background: #fff url(../../images/reviewstage2/arrowgrey.png) no-repeat 95% !important;
+        /*background: #fff url(../../images/reviewstage2/arrowgrey.png) no-repeat 95% !important;*/
         color: #909090;
     }
 

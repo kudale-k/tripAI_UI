@@ -1433,3 +1433,11 @@ font-weight:normal;}
 .close {
     font-size: 1.5rem !important;
 }
+
+.card {
+    border-radius: 1rem !important;
+    border: 1px solid #bdbbbb !important;
+}
+.card-header {
+    border-radius: 1rem 1rem 0 0 !important
+}

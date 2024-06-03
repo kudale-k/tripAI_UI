@@ -13,10 +13,10 @@ margin-top: 8px;
     }
 </style>
 
-<div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-xxl-2 text-center">
+<div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-xxl-2 mt-2 mb-2 text-center">
     @* <div class="tblIconThumb"><img src="~/assets/images/listing/Airline/@(Model.MarketingAirline.AirlineCode).png" style="width:60px; height:40px" alt=""></div> *@
     <div class="tblIconThumb">
-        <img src="~/assets/images/listing/Airline/@(Model.MarketingAirline.AirlineCode).png" style="height:40px;" alt="@Model.MarketingAirline.AirlineName" title="@Model.MarketingAirline.AirlineName">
+        <img src="~/assets/images/listing/Airline/@(Model.MarketingAirline.AirlineCode).png" style="height:20px;" alt="@Model.MarketingAirline.AirlineName" title="@Model.MarketingAirline.AirlineName">
     </div>
 
     <span class="colorGrey font12 text-center">@(Model.MarketingAirline.AirlineName.Count() > 16 ? Model.MarketingAirline.AirlineName.Substring(0, 14) + ".." : Model.MarketingAirline.AirlineName)</span>
