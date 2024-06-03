@@ -195,42 +195,43 @@
                                         </div>
 
                                     </div>
-                                </div>
-                            </div>
-
-                            @if (PI.OutwardOptions.Count > 1)
-                            {
-                                <div class="bottomTwoMore outward marginTopAdjusted" id="@PI.GroupID" onmousedown="toggleClick(@PI.GroupID)">+ @Convert.ToInt32(PI.OutwardOptions.Count - 1) More options </div>
-
-                                <div class="expandMore outward" id="expandMore@(PI.GroupID)">
-
-                                    @for (int index = 1; index < PI.OutwardOptions.Count; index++)
+                                    @if (PI.OutwardOptions.Count > 1)
                                     {
-                                        <div class="row  flight_detailsRow" id="outward@(PI.OutwardOptions[index].FlightID)" data-depart="@PI.OutwardOptions[index].FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions[index].FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions[index].FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions[index].FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions[index].FilterKey">
-                                            <div class="col-sm-12">
-                                                <div class="col-tblitem">
-                                                    <div class="rowOdd">
-                                                        <div class="row">
-                                                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
-                                                                <div class="radioWrap">
-                                                                    <label>
-                                                                        <input type="radio" class="with-gap radioClick" id="@PI.OutwardOptions[index].FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
-                                                                        <span></span>
-                                                                    </label>
+                                        <div class="bottomTwoMore outward marginTopAdjusted" id="@PI.GroupID" onmousedown="toggleClick(@PI.GroupID)">+ @Convert.ToInt32(PI.OutwardOptions.Count - 1) More options </div>
+
+                                        <div class="expandMore outward" id="expandMore@(PI.GroupID)">
+
+                                            @for (int index = 1; index < PI.OutwardOptions.Count; index++)
+                                            {
+                                                <div class="row  flight_detailsRow" id="outward@(PI.OutwardOptions[index].FlightID)" data-depart="@PI.OutwardOptions[index].FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions[index].FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions[index].FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions[index].FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions[index].FilterKey">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-tblitem">
+                                                            <div class="rowOdd">
+                                                                <div class="row">
+                                                                    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
+                                                                        <div class="radioWrap">
+                                                                            <label>
+                                                                                <input type="radio" class="with-gap radioClick" id="@PI.OutwardOptions[index].FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    @{
+                                                                        await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions[index].FlightSegments.FirstOrDefault() as ReservationItem);
+                                                                    }
                                                                 </div>
+                                                                <hr />
                                                             </div>
-                                                            @{
-                                                                await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions[index].FlightSegments.FirstOrDefault() as ReservationItem);
-                                                            }
                                                         </div>
-                                                        <hr />
                                                     </div>
                                                 </div>
-                                            </div>
+                                            }
                                         </div>
                                     }
                                 </div>
-                            }
+                            </div>
+
+                            
                             <div class="row  flight_detailsRowReturn" id="Return@(PI.ReturnOptions.FirstOrDefault().FlightID)" data-depart="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].JourneyDuration" data-arrival="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.ReturnOptions.FirstOrDefault().FlightSegments[0].MarketingAirline.AirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.ReturnOptions.FirstOrDefault().FilterKey">
                                 <div class="col-sm-12">
                                     <div class="col-tblitem">
@@ -322,26 +323,27 @@
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
-                        </div>                        
+                        </div>
                     </div>
-                    <br/>
+                    <br />
                     <div class="row mt-3">
                         <div class="col-12 col-xs-12 col-sm-8 col-md-8 col-lg-8 p-0">
                             <div class="container">
                                 <div class="row flight_detailsRow" id="outward@(PI.OutwardOptions.FirstOrDefault().FlightID)" data-depart="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].MarketingAirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions.FirstOrDefault().FilterKey">
                                     <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
-                                        <label>
-                                            <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.OutwardOptions.FirstOrDefault().FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
-                                            <span></span>
-                                        </label>
+                                        <div class="radioWrap">
+                                            <label>
+                                                <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.OutwardOptions.FirstOrDefault().FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
+                                                <span></span>
+                                            </label>
+                                        </div>
                                     </div>
                                     @{
                                         await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions.FirstOrDefault().FlightSegments[0] as ReservationItem);
                                     }
                                 </div>
                             </div>
-                        </div>
-                        @if (PI.OutwardOptions.Count > 1)
+                            @if (PI.OutwardOptions.Count > 1)
                         {
                             <div class="bottomTwoMore outward" id="@PI.GroupID" onmousedown="toggleClick(@PI.GroupID)">+ @Convert.ToInt32(PI.OutwardOptions.Count - 1) More options </div>
 
@@ -372,6 +374,8 @@
                                 }
                             </div>
                         }
+                        </div>
+                        
                         <div class="col-sm-4">
                             <div class="row">
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6  text-center">
@@ -393,8 +397,8 @@
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 btnRightWrapList">
                                     <a id="@(Model.SessionID)_@(PI.GroupID)" onclick="BookNow(this)" class="btn btn-sm bookNowBtngradient bookNowBtn ">Book Now</a>
 
-                                   
-                                    <a class="fligtDetails modal-trigger d-block" data-toggle="modal" data-target="#modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" onclick="PopUp(event,this)" id="@(Model.SessionID)_@(PI.GroupID)">Flight Details</a>
+
+                                    <a class="fligtDetails modal-trigger d-block mt-2" data-toggle="modal" data-target="#modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" onclick="PopUp(event,this)" id="@(Model.SessionID)_@(PI.GroupID)">Flight Details</a>
                                 </div>
                             </div>
                         </div>
@@ -402,12 +406,15 @@
                 </div>
 
             }
-            <div class="modal fade customModal" id="modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" id="modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            @* <div> *@
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Flight Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div class="modal-header p-2 pl-3 pr-3">
+                            <h5 class="modal-title text-white" id="exampleModalLongTitle">Flight Details</h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -417,6 +424,5 @@
                 </div>
             </div>
         }
-
     </div>
 </div>

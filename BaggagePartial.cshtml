@@ -1,0 +1,85 @@
+﻿@using Air.ViewModel;
+@using AirDataModels;
+
+@model AirRulesRS
+
+<div class="insert-content">
+    @if (Model.Baggage != null && Model.Baggage.Count > 0)
+    {
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr class="bg-grey">
+                        <th></th>
+                        <th colspan="2" class="text-center bold">Adult </th>
+                        @if (Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.CHD) != null)
+                        {
+                            <th colspan="2" class="text-center bold">Child </th>
+                        }
+                        @if (Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.INF) != null)
+                        {
+                            <th colspan="2" class="text-center bold">Infant </th>
+                        }
+                    </tr>
+                    <tr class="baggage-sub-head">
+                        <th>Sector/Flight</th>
+                        <th>Cabin</th>
+                        <th>Check In</th>
+                        @if (Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.CHD) != null)
+                        {
+                            <th>Cabin</th>
+                            <th>Check In</th>
+                        }
+                        @if (Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.INF) != null)
+                        {
+                            <th>Cabin</th>
+                            <th>Check In</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>@Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.ADT).Associations.OriginLocationCode   →  @Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.ADT).Associations.DestinationLocationCode</strong></td>
+
+                        <td>5-7 kg</td>
+                        <td>@Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.ADT).WeightLimit</td>
+                        @if (Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.CHD) != null)
+                        {
+                            <td><strong>c.Associations.OriginLocationCode <img src="/Content/Images/common/domestic-return/dr-airtime-icon.png" alt=""> @Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.CHD).Associations.DestinationLocationCode</strong></td>
+
+                            <td>5-7 kg</td>
+                            <td>@Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.CHD).WeightLimit</td>
+                        }
+                        @if (Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.INF) != null)
+                        {
+                            <td><strong>@Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.INF).Associations.OriginLocationCode <img src="/Content/Images/common/domestic-return/dr-airtime-icon.png" alt=""> @Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.INF).Associations.DestinationLocationCode</strong></td>
+
+                            <td>5-7 kg</td>
+                            <td>@Model.Baggage.FirstOrDefault(x => x.PassengerTypeQuantity.Code == PassengerType.INF).WeightLimit</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td width="30%">
+                            Baggages *
+                        </td>
+                        <td width="70%">
+
+                            The baggage information is just for reference. Please check with airline before check-in. For more information , visit Airlines website
+
+                            1 piece baggage is equivalent to 23 kgs or 50 lbs for adult/child and 10 kgs or 22 lbs for infants
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+    }
+    else
+    {
+        <div class="farerule-select tc mb10">
+            <span class="select-rule sort-active">
+                Sorry, we couldnt retrieve rules from our supplier. The fare you are checking might have elapsed.
+            </span>
+        </div>
+    }
+</div>

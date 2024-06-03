@@ -1430,3 +1430,6 @@ font-weight:normal;}
 #ui-datepicker-div {
     z-index: 99999 !important;
 }
+.close {
+    font-size: 1.5rem !important;
+}

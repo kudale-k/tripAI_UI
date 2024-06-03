@@ -1,0 +1,142 @@
+﻿@using Air.ViewModel;
+@using AirDataModels;
+@model PricedItinerary
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="margiTopTab">
+            <div class="reviewTime">
+                <span>@Model.OutwardOptions.FirstOrDefault().FlightSegments.FirstOrDefault().DepartureAirport.CityName</span> <span><img src="assets/images/listing/right-arrow.png" alt=""></span>
+                <span>@Model.OutwardOptions.FirstOrDefault().FlightSegments.LastOrDefault().ArrivalAirport.CityName</span>
+            </div>
+            @*Wed, 10 oct 2018,*@
+            <div><span>@Model.OutwardOptions.FirstOrDefault().FlightSegments.FirstOrDefault().DepartureDateTime</span></div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <h3 class="trip-price fr">
+            <span class="fs-lg bold">
+                <i class="rs mr5">@Model.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode </i>@Model.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount
+            </span>
+            <span class="per-adult">(Net Payable)</span>
+            <span class="fs-11 text-error block tr mb5">1 seat(s) left</span>
+        </h3>
+    </div>
+</div>
+<div class="customTabWrap row">
+    <ul class="customTabMenu">
+        <li><a href="#" id="flightDetails" class="active">Flight Details</a></li>
+        <li><a href="#" id="fareSmmary">Fare Summary & Rules</a></li>
+        @* <li><a href="#"  id="baggageInfo">Baggage Info</a></li> *@
+    </ul>
+    <div class="customTabContent container">
+        <div class="flightDetails">
+            @for (int index = 0; index < Model.OutwardOptions.FirstOrDefault().FlightSegments.Count; index++)
+            {
+                <div class="row dottedBorder">
+                    @{
+                        await Html.RenderPartialAsync("ResultsLevel2Partial", Model.OutwardOptions.FirstOrDefault().FlightSegments[index] as ReservationItem);
+                    }
+                </div>
+            }
+            @if (Model.ReturnOptions.Count > 0)
+            {
+                @for (int index = 0; index < Model.ReturnOptions.FirstOrDefault().FlightSegments.Count; index++)
+                {
+                    <div class="row ">
+                        @{
+                            await Html.RenderPartialAsync("ResultsLevel2Partial", Model.ReturnOptions.FirstOrDefault().FlightSegments[index] as ReservationItem);
+                        }
+                    </div>
+                }
+            }
+        </div>
+        <div class="fareSmmary">
+            <div class="row fare-summary-rules">
+                <div class="one-fourth col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="insert-content">
+                        <table class="fareSummary" width="100%" cellspacing="0" cellpadding="0" style="position:relative;">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">
+                                        <h3 class="bold">Fare Summary</h3>
+                                    </th>
+                                    @for (int index = 0; index < Model.AirItineraryPricingInfo.PTC_FareBreakdowns.Count; index++)
+                                    {
+                                        <th class="tr bold">@Model.AirItineraryPricingInfo.PTC_FareBreakdowns[index].PassengerTypeQuantity.Code x @Model.AirItineraryPricingInfo.PTC_FareBreakdowns[index].PassengerTypeQuantity.Quantity</th>
+                                    }
+
+                                </tr>
+                            </thead>
+                            <tbody id="firstTR">
+                                <tr class="detailtax">
+                                    <td colspan="4"> Base Fare </td>
+                                    @for (int index = 0; index < Model.AirItineraryPricingInfo.PTC_FareBreakdowns.Count; index++)
+                                    {
+                                        <td colspan="4">@Model.AirItineraryPricingInfo.PTC_FareBreakdowns[index].PassengerFare.BaseFare.CurrencyCode @Model.AirItineraryPricingInfo.PTC_FareBreakdowns[index].PassengerFare.BaseFare.Amount </td>
+                                    }
+                                </tr>
+                                <tr class="detailtax">
+                                    <td colspan="4"> Total Tax </td>
+                                    @for (int index = 0; index < Model.AirItineraryPricingInfo.PTC_FareBreakdowns.Count; index++)
+                                    {
+                                        <td colspan="4"> @Model.AirItineraryPricingInfo.PTC_FareBreakdowns[index].PassengerFare.TotalTax.CurrencyCode @Model.AirItineraryPricingInfo.PTC_FareBreakdowns[index].PassengerFare.TotalTax.Amount </td>
+                                    }
+                                </tr>
+                                <tr class="detailtax">
+                                    <td colspan="4"> Transaction Chanrges  </td>
+                                    <td colspan="4"> @Model.AirItineraryPricingInfo.ItinTotalFare.TransactionCharges.CurrencyCode @Model.AirItineraryPricingInfo.ItinTotalFare.TransactionCharges.Amount </td>
+                                </tr>
+                                <tr class="detailtax">
+                                    <td colspan="4"> Discount  </td>
+                                    <td colspan="4">
+                                        @Model.AirItineraryPricingInfo.ItinTotalFare.CommissionEarned.CurrencyCode.@Model.AirItineraryPricingInfo.ItinTotalFare.CommissionEarned.Amount
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="detailtax bg-grey" ng-show="channel=='b2c'">
+                                <tr class="">
+                                    <td colspan="4" class="bold no-border"> Total </td>
+                                    <td colspan="4" class="tr bold no-border">
+                                        <i class="rs">@Model.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode.</i> @Model.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                    <p class="ltr-gray mt10 fs-sm">
+                        <sup>*</sup>Total fare displayed above has been rounded off and may thus show a slight difference.
+                    </p>
+                </div>
+                <div class="one-sixth col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="loading" id="Loader">
+                        <div class="overlay__inner">
+                            <div class="overlay__content">
+                                <span class="spinner"></span>
+                                <div>
+                                    <span style="color:white"> Please wait...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="baggageInfo">
+            <div class="row fare-summary-rules">
+                <div class="baggageData" style="width:100%">
+                    <div class="overlay loading" id="Loader">
+                        <div class="overlay__inner">
+                            <div class="overlay__content">
+                                <span class="spinner"></span>
+                                <div>
+                                    <span style="color:white"> Please wait...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
