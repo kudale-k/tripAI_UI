@@ -184,7 +184,7 @@
                                             <div class="row">
                                                 <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
                                                     <div class="radioWrap">
-                                                        <label>
+                                                        <label>1
                                                             <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.OutwardOptions.FirstOrDefault().FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
                                                             <span></span>
                                                         </label>
@@ -209,7 +209,7 @@
                                             <div class="row">
                                                 <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
                                                     <div class="radioWrap">
-                                                        <label>
+                                                        <label>2
                                                             <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.ReturnOptions.FirstOrDefault().FlightID" name="Return@(Model.SessionID)_@(PI.GroupID)" />
                                                             <span></span>
                                                         </label>
@@ -237,7 +237,7 @@
                                                         <div class="row">
                                                             <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
                                                                 <div class="radioWrap">
-                                                                    <label>
+                                                                    <label>3
                                                                         <input type="radio" class="with-gap radioClick" id="@PI.ReturnOptions[indexReturn].FlightID" name="Return@(Model.SessionID)_@(PI.GroupID)" />
                                                                         <span></span>
                                                                     </label>
@@ -260,14 +260,10 @@
                             <div class="row">
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 text-center">
                                     <div class="prizeEuro">
-                                        <img src="assets/images/listing/@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode).png" alt="@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode)" style="width: 30px;">
-                                        @PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount
+                                        @* <img src="assets/images/listing/@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode).png" alt="@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode)" style="width: 50px; height: 18px;"> *@
+                                        <small class="font12">@(PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.CurrencyCode)</small> @PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount
                                     </div>
                                     <div class="font12">Price for all pax</div>
-                                </div>
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 btnRightWrapList">
-                                    <a id="@(Model.SessionID)_@(PI.GroupID)" onclick="BookNow(this)" class="btn bookNowBtngradient bookNowBtn ">Book Now</a>
-                                    <div><a href="#" class="addtoQuote font12"><img src="assets/images/listing/mail.png" alt="">Add to quote</a></div>
                                     @if (PI.IsRefundable)
                                     {
                                         <a href="#" class="fligtDetails">Refundable </a>
@@ -276,7 +272,13 @@
                                     {
                                         <a href="#" class="fligtDetails">Non Refundable</a>
                                     }
-                                    <a class="fligtDetails modal-trigger d-block" data-toggle="modal" data-target="#modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" onclick="PopUp(event,this)" id="@(Model.SessionID)_@(PI.GroupID)">Flight Details</a>
+                                    @* <div><a href="#" class="addtoQuote font12"><img src="assets/images/listing/mail.png" alt="">Add to quote</a></div> *@
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 btnRightWrapList">
+                                    <a id="@(Model.SessionID)_@(PI.GroupID)" onclick="BookNow(this)" class="btn btn-sm bookNowBtngradient bookNowBtn ">Book Now</a>
+
+
+                                    <a class="fligtDetails modal-trigger d-block mt-2" data-toggle="modal" data-target="#modalFlightDetails@(Model.SessionID)_@(PI.GroupID)" onclick="PopUp(event,this)" id="@(Model.SessionID)_@(PI.GroupID)">Flight Details</a>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +299,7 @@
                                                     <div class="row">
                                                         <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
                                                             <div class="radioWrap">
-                                                                <label>
+                                                                <label>4
                                                                     <input type="radio" class="with-gap radioClick" id="@PI.OutwardOptions[index].FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
                                                                     <span></span>
                                                                 </label>
@@ -322,7 +324,10 @@
             {
                 <div class="listRowItem shadowBorder container">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
+                            <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.OutwardOptions.FirstOrDefault().FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
+                        </div>
+                        <div class="col-6">
                             <ul class="tags">
                                 <li>
                                     <a href="#"> Fare Source: @PI.Source You have saved @PI.AirItineraryPricingInfo.ItinTotalFare.CommissionEarned.Amount</a>
@@ -336,14 +341,6 @@
                         <div class="col-12 col-xs-12 col-sm-8 col-md-8 col-lg-8 p-0">
                             <div class="container">
                                 <div class="row flight_detailsRow" id="outward@(PI.OutwardOptions.FirstOrDefault().FlightID)" data-depart="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].DepartureDateTime.ToString("HHmm")" data-duration="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].JourneyDuration" data-arrival="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].ArrivalDateTime.ToString("HHmm")" data-airline="@PI.OutwardOptions.FirstOrDefault().FlightSegments[0].MarketingAirlineCode" data-price="@PI.AirItineraryPricingInfo.ItinTotalFare.TotalFare.Amount" filter="@PI.OutwardOptions.FirstOrDefault().FilterKey">
-                                    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
-                                        <div class="radioWrap">
-                                            <label>
-                                                <input type="radio" checked="checked" class="with-gap radioClick" id="@PI.OutwardOptions.FirstOrDefault().FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                    </div>
                                     @{
                                         await Html.RenderPartialAsync("ResultsLevel2Partial", PI.OutwardOptions.FirstOrDefault().FlightSegments[0] as ReservationItem);
                                     }
@@ -394,7 +391,7 @@
                                                     <div class="row SingleRow">
                                                         <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 textAlignCenter">
                                                             <div class="radioWrap">
-                                                                <label>
+                                                                <label>6
                                                                     <input type="radio" class="with-gap radioClick" id="@PI.OutwardOptions[index].FlightID" name="Outward@(Model.SessionID)_@(PI.GroupID)" />
                                                                     <span></span>
                                                                 </label>
