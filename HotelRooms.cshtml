@@ -1,0 +1,416 @@
+﻿@using HotelDataModels;
+@using Microsoft.AspNetCore.Http;
+@using DOM.Domain.Models;
+@using Hotel.ViewModel;
+@{
+    ViewData["Title"] = "RoomDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model RoomDetailsVM
+<link href="~/assets/functions/css/HotelRoom.css" rel="stylesheet" />
+<link href="~/assets/functions/css/listing.css" rel="stylesheet">
+@* <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    .h5-custom {
+        margin-bottom: 18px;
+        font-size: 16px;
+    }
+
+</style>
+<section>
+    <div class="wrap container">
+        <!--breadcrumbs-->
+        <div class="topPadding">
+        </div>
+        <!--//breadcrumbs-->
+
+        <div class="row">
+            <!--sidebar-->
+            <!--//sidebar-->
+            <!--three-fourth content-->
+            <div class="hotel col-12">
+                 <h4>@Model.Name</h4>
+                <div class="room-rating">
+                    <span class="room-stars">
+                        @for (int idxStar = 0; Model.Rating != null && idxStar < Convert.ToInt16(Model.Rating); idxStar++)
+                        {
+                            <i class="material-icons">&#xE838;</i>
+                        }
+                    </span>
+                </div>
+               @*  <span class="review-score">Reviews - @Model.ReviewScore / 10</span> *@
+            </div>
+            <div class="col-sm-12 three-fourth" id="best" >
+                <div class="slider-and-small-images-container row">
+                    <div class="slider-container col-12 col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        @if (Model.PhotoUrls != null)
+                        {
+                            @foreach (var pho in Model.PhotoUrls.Skip(0))
+                            {
+                                <img class="mySlides" src="@pho.ToString()" alt="Slide">
+                            }
+                        }
+                        <button class="prev" onclick="plusDivs(-1)">&#10094;</button>
+                        <button class="next" onclick="plusDivs(1)">&#10095;</button>
+                    </div>
+                    <div class="small-images-container col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        @if (Model.PhotoUrls != null)
+                        {
+                            @foreach (var pho in Model.PhotoUrls.Take(4))
+                            {
+                                <div class="small-image">
+                                    <img src="@pho.ToString()" alt="Small Image" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';">
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>           
+                @{
+                    List<Room> RoomList = Model.Rooms;
+                 }
+                <div class="hotel-description">
+                    <h4 class="about-stay">About this stay</h4>
+                    <span class="hotel-description-text">@Model.HotelDescription</span>
+                </div>
+                <div class="amenities">
+                    @if (Model.Amenities != null)
+                    {
+                        <h4 class="amenity-name">Key Amenities</h4>
+                        <div class="amenities-list">
+                            @foreach (var amn in Model.Amenities)
+                            {
+                                <div class="amenity">
+                                    <span class="description">@amn.Description</span>
+                                    
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+                <p class="select-room">Choose Your Room</p>
+                <div class="row">
+                @for (int i = 0; RoomList != null && i < RoomList.Count; i++)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="">
+                            <!--deal-->
+                            <article class="">
+                                <div class="details">
+                                    <h4 class="hotel-name">
+                                        <span>Room: @RoomList[i].Name</span>
+                                    </h4>
+
+                                    <h5 class= "bed-type">
+                                        @foreach(var bed in RoomList[i].Beds)
+                                        {
+                                           <span class="bed-entry"><i class="fas fa-bed"></i> @bed.Count @bed.Type</span>
+                                        }
+                                    </h5>
+                                    <div class="">
+                                        <div class="room-image">
+                                                @if (RoomList[i].PhotoUrls != null)
+                                                {<div class="small_room-image">
+                                                    @foreach (var pho in RoomList[i].PhotoUrls.Take(6))
+                                                    {
+                                                        <img src="@pho.ToString()" alt="Small Image" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';">
+                                                    }
+                                                    </div>
+                                                 }
+                                                @if (RoomList[i].PhotoUrls.Count() == 0)
+                                                {
+                                                    <div class="missing-image">
+                                                        <img src="@Model.PhotoUrls[Model.PhotoUrls.Count()-6].ToString()" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';" />
+                                                        <img src="@Model.PhotoUrls[Model.PhotoUrls.Count()-1].ToString()" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';"/>
+                                                        <img src="@Model.PhotoUrls[Model.PhotoUrls.Count()-3].ToString()" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';" />
+                                                        <img src="@Model.PhotoUrls[Model.PhotoUrls.Count()-4].ToString()" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';" />
+                                                    </div>
+
+                                                }
+
+                                        </div>
+                                        @for (int j = 0; RoomList[i].Rates != null && j < RoomList[i].Rates.Count; j++)
+                                        {
+                                            <div class="">
+                                              <div class="rate-container container">
+                                                   @if (RoomList[i].Rates[j].CancellationRefund == 0 && RoomList[i].Rates[j].BoardType == "room_only")
+                                                   {
+                                                        @* <div class="nonrefund"> *@
+                                                            <div class="description-hotel row">
+                                                                <ul class="policy-list col-8">
+                                                                    <h5 class="h5-custom"><span>Non Refundable</span></h5>
+                                                                    <li>
+                                                                    <span> No meals, @RoomList[i].Rates[j].BoardType</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>Non-Refundable</span>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <span>Sourced from @RoomList[i].Rates[j].Source</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>At least @RoomList[i].Rates[j].Quantity room(s) available</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="room-price col-4">
+                                                                    
+                                                                    <span class="room-price-value">@RoomList[i].Rates[j].Currency @RoomList[i].Rates[j].TotalAmt for @Model.NightsStay nights</span>
+                                                                    <a id="@(Model.SessionID)|@(RoomList[i].Rates[j].Id)" onclick="PurchaseNow(this)" class="btn btn-sm  bookNowBtngradient bookNowBtn d-block">Book Now</a>
+                                                                </div>
+                                                            </div>
+                                                        @* </div> *@
+                                                   }
+                                                    else if (RoomList[i].Rates[j].CancellationRefund == 0 && RoomList[i].Rates[j].BoardType=="breakfast")
+                                                    {
+                                                        @* <div class="nonrefund-breakfast"> *@
+                                                            <div class="description-hotel row">
+                                                                <ul class="policy-list col-8">
+                                                                    <h5 class="h5-custom"><span>Non Refundable With Breakfast</span></h5>
+                                                                    <li>
+                                                                        <span>Included @RoomList[i].Rates[j].BoardType</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>Non-Refundable</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>Sourced from @RoomList[i].Rates[j].Source</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>At least @RoomList[i].Rates[j].Quantity room(s) available</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="room-price col-4">
+                                                                    <span class="room-price-value">@RoomList[i].Rates[j].Currency @RoomList[i].Rates[j].TotalAmt for @Model.NightsStay nights</span>
+                                                                    <a id="@(Model.SessionID)|@(RoomList[i].Rates[j].Id)" onclick="PurchaseNow(this)" class="btn btn-sm  bookNowBtngradient bookNowBtn d-block">Book Now</a>
+                                                                </div>
+                                                            </div>
+                                                           @*  </div> *@
+                                                        }
+                                                    else if (RoomList[i].Rates[j].CancellationRefund == RoomList[i].Rates[j].TotalAmt && RoomList[i].Rates[j].BoardType == "room_only" )
+                                                    {
+                                                        @* <div class="fully-refund"> *@
+                                                            <div class="description-hotel row">
+                                                                <ul class="policy-list col-8">
+                                                                    <h5 class="h5-custom"><span>Fully Refundable</span></h5>
+
+                                                                    <li>
+                                                                    <span>No meals, @RoomList[i].Rates[j].BoardType </span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>Free Cancellation until @RoomList[i].Rates[j].CancellationBefore</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>Sourced from @RoomList[i].Rates[j].Source</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>At least @RoomList[i].Rates[j].Quantity room(s) available</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="room-price col-4">
+                                                                    <span class="room-price-value">@RoomList[i].Rates[j].Currency @RoomList[i].Rates[j].TotalAmt for @Model.NightsStay nights</span>
+                                                                    <a id="@(Model.SessionID)|@(RoomList[i].Rates[j].Id)" onclick="PurchaseNow(this)" class="btn btn-sm  bookNowBtngradient bookNowBtn d-block">Book Now</a>
+                                                                </div>
+                                                            </div>
+                                                       @*  </div> *@
+                                                    }
+                                                    else if(RoomList[i].Rates[j].CancellationRefund == RoomList[i].Rates[j].TotalAmt && RoomList[i].Rates[j].BoardType=="breakfast")
+                                                    {
+                                                            @* <div class="fullyrefund-breakfast"> *@
+                                                                <div class="description-hotel row">
+                                                                    <ul class="policy-list col-8">
+                                                                        <h5 class="h5-custom"><span>Fully Refundable with Breakfast</span></h5>
+
+                                                                        <li>
+                                                                        <span>Included @RoomList[i].Rates[j].BoardType</span>
+                                                                        </li>
+                                                                        <li>
+                                                                        <span>Free Cancellation until @RoomList[i].Rates[j].CancellationBefore</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span>Sourced from @RoomList[i].Rates[j].Source</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span>At least @RoomList[i].Rates[j].Quantity room(s) available</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="room-price col-4">
+                                                                        <span class="room-price-value">@RoomList[i].Rates[j].Currency @RoomList[i].Rates[j].TotalAmt for @Model.NightsStay nights</span>
+                                                                        <a id="@(Model.SessionID)|@(RoomList[i].Rates[j].Id)" onclick="PurchaseNow(this)" class="btn btn-sm  bookNowBtngradient bookNowBtn d-block">Book Now</a>
+                                                                    </div>
+                                                                </div>
+                                                        @*  </div> *@
+
+                                                    }
+                                                    else if (RoomList[i].Rates[j].CancellationRefund < RoomList[i].Rates[j].TotalAmt && RoomList[i].Rates[j].BoardType == "room_only")
+                                                    {
+                                                        var cancellationRefund = RoomList[i].Rates[j].CancellationRefund;
+                                                        var totalAmt = RoomList[i].Rates[j].TotalAmt;
+                                                        var finalAmount = totalAmt - cancellationRefund;
+                                                        finalAmount = Math.Round(finalAmount, 2);
+
+                                                        <div class="description-hotel row">
+                                                            <ul class="policy-list col-8">
+                                                                <h5 class="h5-custom"><span>Partially Refundable</span></h5>
+
+                                                                <li>
+                                                                    <span>No meals, @RoomList[i].Rates[j].BoardType</span>
+                                                                </li>
+                                                                @* <li>
+                                                                    <span>Cancellation available (from @RoomList[i].Rates[j].Currency @finalAmount fee)</span>
+                                                                </li> *@
+                                                                <li>
+                                                                    <span>Cancellation available (from @finalAmount fee)</span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>Sourced from @RoomList[i].Rates[j].Source</span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>At least @RoomList[i].Rates[j].Quantity room(s) available</span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="room-price col-4">
+                                                                <span class="room-price-value">@RoomList[i].Rates[j].Currency @RoomList[i].Rates[j].TotalAmt for @Model.NightsStay nights</span>
+                                                                <a id="@(Model.SessionID)|@(RoomList[i].Rates[j].Id)" onclick="PurchaseNow(this)" class="btn btn-sm  bookNowBtngradient bookNowBtn d-block">Book Now</a>
+                                                            </div>
+                                                        </div>
+
+                                                    } 
+                                                    else if (RoomList[i].Rates[j].CancellationRefund < RoomList[i].Rates[j].TotalAmt && RoomList[i].Rates[j].BoardType == "breakfast")
+                                                    {
+                                                        var cancellationRefund = RoomList[i].Rates[j].CancellationRefund;
+                                                        var totalAmt = RoomList[i].Rates[j].TotalAmt;
+                                                        var finalAmount = totalAmt - cancellationRefund;
+                                                        finalAmount = Math.Round(finalAmount, 2);
+
+                                                        <div class="description-hotel row">
+                                                            <ul class="policy-list col-8">
+                                                                <h5 class="h5-custom"><span>Partially Refundable with Breakfast</span></h5>
+
+                                                                <li>
+                                                                    <span>Included @RoomList[i].Rates[j].BoardType</span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>Cancellation available (from @finalAmount fee)</span>
+                                                                </li>
+                                                               @*  <li>
+                                                                    <span>Cancellation available (from @RoomList[i].Rates[j].Currency @finalAmount fee)</span>
+                                                                </li> *@
+                                                                <li>
+                                                                    <span>Sourced from @RoomList[i].Rates[j].Source</span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>At least @RoomList[i].Rates[j].Quantity room(s) available</span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="room-price col-4">
+                                                                <span class="room-price-value">@RoomList[i].Rates[j].Currency @RoomList[i].Rates[j].TotalAmt for @Model.NightsStay nights</span>
+                                                                <a id="@(Model.SessionID)|@(RoomList[i].Rates[j].Id)" onclick="PurchaseNow(this)" class="btn btn-sm  bookNowBtngradient bookNowBtn d-block">Book Now</a>
+                                                            </div>
+                                                        </div>
+                                                      
+
+                                                    }
+                                               </div>
+                                          </div>
+                                           @*  <div class="refund-nonrefund"> *@
+                                                <!--deal-->
+                                                @* <div class=""> *@
+                                                    @* <div class="description-hotel">
+                                                        @* <ul class="policy-list">
+                                                            @foreach (var po in RoomList[i].Rates[j].Policies)
+                                                            {
+                                                                var firstSentence = po.Split('-')[0];
+                                                                <li>
+                                                                    <span class="short-text">@firstSentence</span>
+                                                                    <span class="full-text" style="display: none;">@po</span>
+                                                                    <span class="read-more">...</span>
+                                                                </li>
+                                                            }
+                                                        </ul> *@
+                                                   @*  </div> *@
+                                                    @* <div class="room-price">
+                                                        <span class="room-price-value">@RoomList[i].Rates[j].Currency @RoomList[i].Rates[j].TotalAmt</span>
+                                                        <a id="@(Model.SessionID)|@(RoomList[i].Rates[j].Id)" onclick="PurchaseNow(this)" class="btn bookNowBtngradient bookNowBtn">Book Now</a>
+                                                        <div class="cancellation">Cancellation before - @RoomList[i].Rates[j].CancellationBefore  ••• </div>
+                                                        <span class="cancellation-refund"> Refund - @RoomList[i].Rates[j].CancellationRefund</span>
+                                                    </div> *@
+                                              @*   </div> *@
+                                          @*   </div> *@
+                                        }
+                                    </div>
+                                 </div>
+                            </article>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+            <!--//three-fourth content-->
+        </div>
+        <!--//main content-->
+    </div>
+</section>
+
+
+
+@section Scripts
+    {
+    <script src="~/assets/functions/js/HotelListing.js" asp-append-version="true"></script>
+    <script src="assets/functions/js/index.js" asp-append-version="true"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    
+    <script>
+        function openFullScreen(element) {
+            var fullText = element.parentNode.querySelector('.full-text').textContent;
+            var modalOverlay = document.querySelector('.modal-overlay');
+            if (!modalOverlay) {
+
+                modalOverlay = document.createElement('div');
+                modalOverlay.classList.add('modal-overlay');
+
+
+                var modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal-container');
+
+
+                var closeButton = document.createElement('span');
+                closeButton.classList.add('close-button');
+                closeButton.innerHTML = '&times;';
+                closeButton.onclick = function () {
+                    modalOverlay.remove();
+                };
+
+
+                var contentContainer = document.createElement('div');
+                contentContainer.classList.add('content-container');
+
+                modalContainer.appendChild(closeButton);
+                modalContainer.appendChild(contentContainer);
+
+
+                modalOverlay.appendChild(modalContainer);
+                document.body.appendChild(modalOverlay);
+            }
+
+
+            var contentContainer = modalOverlay.querySelector('.content-container');
+            contentContainer.textContent = fullText;
+        }
+
+
+        var readMoreElements = document.querySelectorAll('.read-more');
+        readMoreElements.forEach(function (element) {
+            element.addEventListener('click', function () {
+                openFullScreen(this);
+            });
+        });
+    </script>
+    
+}
+
