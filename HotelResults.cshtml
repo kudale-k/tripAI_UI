@@ -6,9 +6,9 @@
 <title>@ViewData["Title"]</title>
 <link href="~/assets/functions/css/Hotellisting.css" rel="stylesheet" />
 <link href="~/assets/functions/css/listing.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqj61gCWsbLUHw7N2Qyhwv+VbrXOEYfBUYTp7+qZCkCVuLhGLNrtHZM7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     @using HotelDataModels;
     @using Microsoft.AspNetCore.Http;
@@ -44,7 +44,6 @@
                                 <div class="col-sm-12">
                                     <ul class="tabs" id="leftTab">
                                         <li class="tab col-sm-6"><a href="#outbound" class="active">Filters</a></li>
-                                        @*<li class="tab col-sm-6"><a href="#return">Return</a></li>*@
                                     </ul>
                                 </div>
                                 <div class="tabContainerLeft">
@@ -154,7 +153,7 @@
                     <!--//sidebar-->
                     <!--three-fourth content-->
                     <div class="col-sm-9 three-fourth">
-                        <div class="sort-by row">
+                        <div class="sort-by">
                             @* <div class="col-sm-2">
                             <div class="sorttext">Sort by:</div>
                             </div> *@
