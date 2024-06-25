@@ -207,11 +207,11 @@ body {
 }
 
 .full-width {
-	width: 100%;
+	/*width: 100%;
 	float: left;
 	display: block;
 	padding: 0 0px;
-	margin: 0 0 20px;
+	margin: 0 0 20px;*/
 	border-radius: 15px !important;
 	background: white;
 	border: 1px solid #bdbbbb !important;
@@ -279,7 +279,7 @@ body {
 	display: block;
 	position: relative;
 	background: #fff;
-	padding: 13px 15px 15px;
+	padding: 15px 0 0 0px;
 	width: 100%;
 	-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
@@ -297,7 +297,7 @@ body {
 	.details h4 {
 		font-size: 16px;
 		font-weight: bold;
-		margin-top: 10px;;
+		/*margin-top: 10px;*/
 		text-align: left;
 	}
 	.details .address-container {
@@ -437,13 +437,13 @@ aside article .price em {
 	border-top: 0px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	padding: 12px 0;
-	margin: 0 0 15px;
+	/*margin: 0 0 15px;*/
 }
 	.details .description p {
-		margin-top: 10px;
+		/*margin-top: 10px;*/
 		padding: 3px;
 		padding-left: 2px;
-		margin-left: 5px;
+		/*margin-left: 5px;*/
 		border-radius: 1px;
 	}
 	
@@ -458,7 +458,8 @@ aside article .price em {
 }
 .bookNowBtn {
 	margin-top: 4px;
-	margin-bottom: 2px
+	margin-bottom: 2px;
+	font-size:13px;
 }
 
 .address {
@@ -662,10 +663,9 @@ aside article .price em {
 }
 
 .deals .full-width figure {
-	float: left;
-	width: 33%;
-
-	height:190px;
+	/*float: left;
+	width: 33%;*/
+	height:130px;
 	overflow: hidden;
 	background: #fff;
 	border-radius: 9px;
@@ -674,23 +674,23 @@ aside article .price em {
 	.deals .full-width figure a,
 	.deals .full-width figure img {
 		height: 100%;
-		min-height: 190px;
+		min-height: 130px;
 		max-width: none;
 		margin: 0;
 	}
 
 .deals .full-width .details {
-	float: left;
-	width: 67%;
-	min-height: 190px;
+	/*float: left;
+	width: 66%;*/
+	/*min-height: 130px;*/
 	height: auto !important;
-	padding-right: 160px;
-	-webkit-box-shadow: none;
+	/*padding-right: 160px;*/
+	/*-webkit-box-shadow: none;
 	-moz-box-shadow: none;
-	box-shadow: none;
-	max-height: 190px;
-	border-top-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	box-shadow: none;*/
+	/*max-height: 190px;*/
+	/*border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;*/
 }
 
 
@@ -725,21 +725,21 @@ aside article .price em {
 
 	.deals .full-width .details .description {
 		padding-bottom: 0;
-		margin: 13px 0 0 0;
+		/*margin: 13px 0 0 0;*/
 		border-bottom: none;
 	}
 
 	.deals .full-width .details .price {
-		position: absolute;
-		top: 15px;
-		right: 10px;
-		width: 135px;
-		min-height: 130px;
+		/*position: absolute;*/		
+		/* top: 15px; */
+		/* right: 10px; */
+		/* width: 135px; */
+		/* min-height: 130px; */
 		text-align: center;
 		border-left: 0px solid #ccc;
-		padding: 15px;
+		padding: 0 15px;
 		border-top: none;
-		margin-top: 45px;
+		/* margin-top: 10px;*/
 	}
 .details .price .price-value {
 	margin-top: 2px;
@@ -809,7 +809,7 @@ aside article .price em {
 }
 
 	/* 08 Search results */
-.sort-by {
+		.sort-by {
 	margin:15px 0px !important;
 	/*height: 48px;
 	background: #fff;
@@ -959,22 +959,34 @@ aside article .price em {
 	border-radius: 15px !important;
 	border: 1px solid #bdbbbb !important;
 }
+.details .emission {
+	padding: 5px 0;
+	font-weight: bold !important;
+	/* margin-top: 11px; */
+	border: 1px solid #ccc;
+	/*width: 30%;*/
+	text-align: center !important;
+	/* margin-left: 45px; */
+	border-radius: 40px;
+	font-size: 12px;
+	background: #E9E6E0;
+}
 
 @media only screen and (max-width: 768px) {
 	.full-width {
 		width: 100%;
 		float: left;
 		display: block;
-		padding: 0 0px;
+		padding: 0 0 10px 0px;
 		margin: 0 0 20px;
 		border-radius: 15px !important;
 		background: white;
-		height: 420px !important;
+		/*height: 420px !important;*/
 	}
 
 	.deals .full-width figure {
 		width: 100%;
-		height: 190px;
+		height: 130px;
 		overflow: hidden;
 		background: #fff;
 		border-radius: 9px;
@@ -985,11 +997,11 @@ aside article .price em {
 		width: 100%;
 		height: auto !important;
 		padding-right: 20px;
-		-webkit-box-shadow: none;
+		/*-webkit-box-shadow: none;
 		-moz-box-shadow: none;
 		box-shadow: none;
 		border-top-right-radius: 9px;
-		border-bottom-right-radius: 9px;
+		border-bottom-right-radius: 9px;*/
 	}
 
 		.deals .full-width .details .description {
@@ -998,7 +1010,7 @@ aside article .price em {
 		}
 
 		.deals .full-width .details .price {
-			position: absolute;
+			/*position: absolute;
 			top: 65px;
 			right: 10px;
 			width: 135px;
@@ -1007,7 +1019,7 @@ aside article .price em {
 			border-left: 0px solid #ccc;
 			padding: 15px;
 			border-top: none;
-			margin-top: 45px;
+			margin-top: 45px;*/
 		}
 
 	.hotel-image {
@@ -1033,6 +1045,14 @@ aside article .price em {
 		width: 94%;
 		margin-left: 10px;
 		border-radius: 6px;*/
-	}
+	}	
+}
+
+@media only screen and (max-width: 991px) {
 	
 }
+@media only screen and (max-width: 1199px) {
+	
+}
+
+	

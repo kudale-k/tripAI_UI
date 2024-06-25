@@ -1,14 +1,19 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@ViewData["Title"]</title>
-<link href="~/assets/functions/css/Hotellisting.css" rel="stylesheet" />
-<link href="~/assets/functions/css/listing.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqj61gCWsbLUHw7N2Qyhwv+VbrXOEYfBUYTp7+qZCkCVuLhGLNrtHZM7" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="~/assets/functions/css/Hotellisting.css" rel="stylesheet" />
+    <link href="~/assets/functions/css/listing.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .btnFilterContainer {
+            grid-template-columns:none;
+        }
+    </style>
 </head>
+
 <body>
     @using HotelDataModels;
     @using Microsoft.AspNetCore.Http;
@@ -17,10 +22,10 @@
         ViewData["Title"] = "HotelResults";
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-  
+
     @model HotelLowfareShoppingRS
 
-<section>
+    <section>
         @{
             List<Hotel> HotelList = new List<Hotel>();
         }
@@ -32,19 +37,18 @@
 
             <div class="row">
                 <!--sidebar-->
-                <aside class=" col-sm-3 one-fourth left-sidebar">
-                    <div class="ListingContainerLeftHtl">
+                <aside class="col-sm-3 one-fourth left-sidebar d-none d-sm-block">
+                    <div class="ListingContainerLeftHtl" id="ListingContainerLeftHtl">
                         <h6 id="HotelCount" onload="HotelCountCalculation()"></h6>
                         <a href="#" class="resetAll colorBrick">Reset All</a>
 
                         <div class="clearfix"></div>
                         <hr>
-                        <div class="ListingContainerLeftBoxes  colorBrick">
+                        <div class="ListingContainerLeftBoxes colorBrick">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <ul class="tabs" id="leftTab">
                                         <li class="tab col-sm-6"><a href="#outbound" class="active">Filters</a></li>
-                                        @*<li class="tab col-sm-6"><a href="#return">Return</a></li>*@
                                     </ul>
                                 </div>
                                 <div class="tabContainerLeft">
@@ -56,7 +60,7 @@
 
                                                 <div class="checkWrap">
                                                     <label>
-                                                        <input type="checkbox" value="5" class="filled-in"  />
+                                                        <input type="checkbox" value="5" class="filled-in" />
                                                         <span>
                                                             <i class="material-icons">&#xE838;</i>
                                                             <i class="material-icons">&#xE838;</i>
@@ -68,7 +72,7 @@
                                                 </div>
                                                 <div class="checkWrap">
                                                     <label>
-                                                        <input type="checkbox" value="4" class="filled-in"  />
+                                                        <input type="checkbox" value="4" class="filled-in" />
                                                         <span>
                                                             <i class="material-icons">&#xE838;</i>
                                                             <i class="material-icons">&#xE838;</i>
@@ -108,166 +112,185 @@
                                             <hr>
                                             <div class="radioList" id="divAirline">
                                                 @* <div class="title">Hotel</div>
-                                            <div class="checkWrap">
+                                                <div class="checkWrap">
                                                 <label>
-                                                    <input type="checkbox" class="filled-in" value="ALL" />
-                                                    <span>All</span>
+                                                <input type="checkbox" class="filled-in" value="ALL" />
+                                                <span>All</span>
                                                 </label>
-                                            </div> *@
-                                            @if (Model.Success== true)
-                                            {
-                                                @if (Model.PSCIInfoList[0].Hotel != null)
+                                                </div> *@
+                                                @if (Model.Success == true)
                                                 {
+                                                    @if (Model.PSCIInfoList[0].Hotel != null)
+                                                    {
                                                         HotelList = Model.PSCIInfoList[0].Hotel;
                                                         List<string> chainList = HotelList.Select(c => c.Chain).Distinct().ToList();
 
                                                         @* @for (int i = 0; chainList != null && i < chainList.Count; i++)
-                                                        {
-                                                        <div class="checkWrap">
-                                                            <label>
-                                                                <input type="checkbox" value="@chainList[i]" checked="checked" class="filled-in" />
-                                                                <span>
-                                                                    @chainList[i]
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                         } *@
-                                                }
-                                                else
                                                 {
-                                                    <div class="row deals  results">
-                                                        Currently we are experiencing some problem for your destination or dates. Kindly select another dates. Sorry for inconvience.
-                                                    </div>
+                                                <div class="checkWrap">
+                                                <label>
+                                                <input type="checkbox" value="@chainList[i]" checked="checked" class="filled-in" />
+                                                <span>
+                                                @chainList[i]
+                                                </span>
+                                                </label>
+                                                </div>
+                                                } *@
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="row deals  results">
+                                                            Currently we are experiencing some problem for your destination or dates. Kindly select another dates. Sorry for inconvience.
+                                                        </div>
+                                                    }
                                                 }
-                                            }
                                             </div>
                                             <hr>
-                                            </div>
                                         </div>
-                                        <div id="return"></div>
                                     </div>
+                                    <div id="return"></div>
                                 </div>
                             </div>
                         </div>
-                    </aside>
+                    </div>
+                </aside>
 
-                    <!--//sidebar-->
-                    <!--three-fourth content-->
-                    <div class="col-sm-9 three-fourth">
-                        <div class="sort-by row">
-                            @* <div class="col-sm-2">
-                            <div class="sorttext">Sort by:</div>
-                            </div> *@
-                            <div class="col-sm-4">
-                                <select class="form-control" onchange="SortItems(this, 'price')">
-                                    <option style="font-size:14px;">Sort by Price</option>
-                                    <option value="des">Price: High to Low</option>
-                                    <option value="asc">Price: Low to High</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-4">
-                                <select class="form-control" onchange="SortItems(this, 'stars')">
-                                    <option style ="font-size:14px;">Sort by Stars</option>
-                                    <option value="des">Stars: High to Low</option>
-                                    <option value="asc">Stars: Low to High</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-4">
-                                <select class="form-control" onchange="SortItems(this, 'rating')">
-                                    <option style="font-size:14px;">Sort by Rating</option>
-                                    <option value="des">Rating: High to Low</option>
-                                    <option value="asc">Rating: Low to High</option>
-                                </select>
-                            </div>
+                <!--//sidebar-->
+                <!--three-fourth content-->
+                <div class="col-sm-9 three-fourth">
+                    <div class="sort-by row">
+                        @* <div class="col-sm-2">
+                        <div class="sorttext">Sort by:</div>
+                        </div> *@
+                        <div class="col-sm-4">
+                            <select class="form-control" onchange="SortItems(this, 'price')">
+                                <option style="font-size:14px;">Sort by Price</option>
+                                <option value="des">Price: High to Low</option>
+                                <option value="asc">Price: Low to High</option>
+                            </select>
                         </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" onchange="SortItems(this, 'stars')">
+                                <option style="font-size:14px;">Sort by Stars</option>
+                                <option value="des">Stars: High to Low</option>
+                                <option value="asc">Stars: Low to High</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" onchange="SortItems(this, 'rating')">
+                                <option style="font-size:14px;">Sort by Rating</option>
+                                <option value="des">Rating: High to Low</option>
+                                <option value="asc">Rating: Low to High</option>
+                            </select>
+                        </div>
+                    </div>
 
-                        <div class="col-sm-12 three-fourth" id="best" data-url="@Model.SessionID">
-                        @if (Model.Success== true)
-                         {                  
+                    <div class="col-sm-12 three-fourth" id="best" data-url="@Model.SessionID">
+                        @if (Model.Success == true)
+                        {
                             @if (Model.PSCIInfoList[0].Hotel != null)
                             {
                                 @for (int i = 0; HotelList != null && i < HotelList.Count; i++)
                                 {
                                     var mapurl = "https://maps.google.com/maps?q=" + @HotelList[i].Latitude + "," + @HotelList[i].Longitude;
-                                    <div class="row deals  results">
-                                        <article class="full-width">
-                                            <figure>
-                                                <a title=""><img src="@HotelList[i].HotelPhotos[0]" alt="" class="hotel-image" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';" /></a>
-                                            </figure>
-                                            <div class="details">
-                                                <h4>
-                                                    @HotelList[i].Name
-                                                    <span class="stars">
-                                                        @for (int idxStar = 0; HotelList[i].Rating != null && idxStar < Convert.ToInt16(HotelList[i].Rating); idxStar++)
-                                                        {
-                                                            <i class="material-icons">&#xE838;</i>
-                                                        }
-                                                    </span>
-                                                </h4>
-                                                <div class="address-container">
-                                                    <span class="address">@HotelList[i].Address</span>
-                                                    <span class="address"><a target="_blank" href="@mapurl">Show on map</a></span>
-                                                </div>
-
-                                                <div class="description">
-                                                    <p>
-                                                     @{
-                                                        if (!string.IsNullOrEmpty(HotelList[i].ReviewScore) && double.TryParse(HotelList[i].ReviewScore, out double reviewScore))
-                                                        {
-                                                            <span class="review-score @GetReviewScoreClass(reviewScore.ToString())">
-                                                                @reviewScore
-                                                            </span>
-                                                            <span class="review-text">
-                                                                @if (reviewScore >= 9.0)
-                                                                {
-                                                                    @: - Wonderful <!-- Display the text describing the review -->
-                                                                }
-                                                                else if (reviewScore >= 8.5 && reviewScore < 9.0)
-                                                                {
-                                                                    @: - Excellent
-                                                                }
-                                                                else if (reviewScore >= 8.0 && reviewScore < 8.5)
-                                                                {
-                                                                    @: - Very good
-                                                                }
-                                                                else if (reviewScore >= 7.0 && reviewScore < 8.0)
-                                                                {
-                                                                    @: - Good
-                                                                }
-                                                                else
-                                                                {
-                                                                    @: - Average
-                                                                }
-                                                            </span>
-                                                        }
-                                                        else
-                                                        {
-                                                            @:Review not available
-                                                        }
-                                                    }
-                                                    </p>
-                                                    @* <div class="emission">@HotelList[i].HotelEmissions </div> *@
-                                                    <div class="emission">
-                                                    @{
-                                                        if (!string.IsNullOrEmpty(HotelList[i].HotelEmissions))
-                                                        {
-                                                            @HotelList[i].HotelEmissions
-                                                        }
-                                                        else
-                                                        {
-                                                            @:No Emissions
-                                                        }
-                                                    }
+                                    <div class="row deals results mb-3">
+                                        <article class="full-width row">
+                                            <div class="col-12 col-xs-12 col-sm-12 col-md-3 col-lg-3 pl-0 pr-0">
+                                                <figure>
+                                                    <a title=""><img src="@HotelList[i].HotelPhotos[0]" alt="" class="hotel-image" onerror="this.onerror=null; this.src='assets/images/listing/hotels/hotel.png';" /></a>
+                                                </figure>
+                                            </div>
+                                            <div class="col-12 col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                                                <div class="details">
+                                                    <div class="row">
+<div class="col-12">
+                                                            <h4>
+                                                                @HotelList[i].Name
+                                                                <span class="stars">
+                                                                    @for (int idxStar = 0; HotelList[i].Rating != null && idxStar < Convert.ToInt16(HotelList[i].Rating); idxStar++)
+                                                                    {
+                                                                        <i class="material-icons">&#xE838;</i>
+                                                                    }
+                                                                </span>
+                                                            </h4>
+</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                                                            
+                                                            <div class="address-container">
+                                                                <span class="address">@HotelList[i].Address</span>
+                                                                <span class="address"><a target="_blank" href="@mapurl">Show on map</a></span>
+                                                            </div>
+                                                            <div class="description row">
+                                                                <div class="col-6 col-xs-6 col-sm-6 col-md-8 col-lg-8">
+                                                                    <p>
+                                                                        @{
+                                                                            if (!string.IsNullOrEmpty(HotelList[i].ReviewScore) && double.TryParse(HotelList[i].ReviewScore, out double reviewScore))
+                                                                            {
+                                                                                <span class="review-score @GetReviewScoreClass(reviewScore.ToString())">
+                                                                                    @reviewScore
+                                                                                </span>
+                                                                                <span class="review-text">
+                                                                                    @if (reviewScore >= 9.0)
+                                                                                    {
+                                                                                        @: - Wonderful <!-- Display the text describing the review -->
+                                                                                    }
+                                                                                    else if (reviewScore >= 8.5 && reviewScore < 9.0)
+                                                                                    {
+                                                                                        @: - Excellent
+                                                                                    }
+                                                                                    else if (reviewScore >= 8.0 && reviewScore < 8.5)
+                                                                                    {
+                                                                                        @: - Very good
+                                                                                    }
+                                                                                    else if (reviewScore >= 7.0 && reviewScore < 8.0)
+                                                                                    {
+                                                                                        @: - Good
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        @: - Average
+                                                                                    }
+                                                                                </span>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                @:Review not available
+                                                                            }
+                                                                        }
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-6 col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                                                    <div class="emission">
+                                                                    @{
+                                                                        if (!string.IsNullOrEmpty(HotelList[i].HotelEmissions))
+                                                                        {
+                                                                            @HotelList[i].HotelEmissions
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @:No Emissions
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                </div>                                                                
+                                                                @* <div class="emission">@HotelList[i].HotelEmissions </div> *@                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                                            <div class="price">
+                                                                <img src="assets/images/listing/USD.png" alt="" style="width: 35px; height: 15px; margin-bottom:7px;">
+                                                                <span class="price-value">@HotelList[i].PackageRate </span>
+                                                                <a id="@(Model.SessionID)|@(HotelList[i].Code)" onclick="BookNow(this)" class="btn bookNowBtngradient bookNowBtn">View Details</a>
+                                                                <span class="taxes-description">Includes taxes & fees </span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                
-                                                <div class="price">
-                                                    <img src="assets/images/listing/USD.png" alt="" style="width: 35px; height: 15px; margin-bottom:7px;">
-                                                    <span class="price-value">@HotelList[i].PackageRate </span>
-                                                    <a id="@(Model.SessionID)|@(HotelList[i].Code)" onclick="BookNow(this)" class="btn bookNowBtngradient bookNowBtn">View Details</a>
-                                                    <span class="taxes-description">Includes taxes & fees </span>
-                                                </div>
                                             </div>
+                                            
+                                            
                                         </article>
                                     </div>
                                 }
@@ -275,10 +298,10 @@
                             else
                             {
                                 <div class="row deals  results">
-                                Currently we are experiencing some problem for your destination or dates. Kindly select another dates. Sorry for inconvience.
+                                    Currently we are experiencing some problem for your destination or dates. Kindly select another dates. Sorry for inconvience.
                                 </div>
                             }
-                            }
+                        }
                         else
                         {
                             <div class="missing-destination">
@@ -287,53 +310,182 @@
                             </div>
 
                         }
-                            </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="btnFilterContainer">           
+            <button type="button" id="btnFilter" class="btn btn-primary border-0" data-toggle="modal" data-target="#filterModale">
+                <span class="fa fa-filter"></span> Filter
+            </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="filterModale" tabindex="-1" role="dialog" aria-labelledby="filterModaleLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="ListingContainerLeftHtl" id="ListingContainerLeftHtl">
+                            <h6 id="HotelCount" onload="HotelCountCalculation()"></h6>
+                            <a href="#" class="resetAll colorBrick">Reset All</a>
+
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="ListingContainerLeftBoxes text-left colorBrick">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <ul class="tabs" id="leftTab">
+                                            <li class="tab col-sm-6"><a href="#outbound" class="active">Filters</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tabContainerLeft">
+
+                                        <div id="outbound">
+                                            <div class="radioContainer">
+                                                <div class="radioList" id="divStops">
+                                                    <div class="title">Star Ratings</div>
+
+                                                    <div class="checkWrap">
+                                                        <label>
+                                                            <input type="checkbox" value="5" class="filled-in" />
+                                                            <span>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkWrap">
+                                                        <label>
+                                                            <input type="checkbox" value="4" class="filled-in" />
+                                                            <span>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkWrap">
+                                                        <label>
+                                                            <input type="checkbox" value="3" class="filled-in" />
+                                                            <span>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkWrap">
+                                                        <label>
+                                                            <input type="checkbox" value="2" class="filled-in" />
+                                                            <span>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkWrap">
+                                                        <label>
+                                                            <input type="checkbox" value="1" class="filled-in" />
+                                                            <span>
+                                                                <i class="material-icons">&#xE838;</i>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="radioList" id="divAirline">
+                                                    @* <div class="title">Hotel</div>
+                                                    <div class="checkWrap">
+                                                    <label>
+                                                    <input type="checkbox" class="filled-in" value="ALL" />
+                                                    <span>All</span>
+                                                    </label>
+                                                    </div> *@
+                                                    @if (Model.Success == true)
+                                                    {
+                                                        @if (Model.PSCIInfoList[0].Hotel != null)
+                                                        {
+                                                            HotelList = Model.PSCIInfoList[0].Hotel;
+                                                            List<string> chainList = HotelList.Select(c => c.Chain).Distinct().ToList();
+
+                                                            @* @for (int i = 0; chainList != null && i < chainList.Count; i++)
+                                                    {
+                                                    <div class="checkWrap">
+                                                    <label>
+                                                    <input type="checkbox" value="@chainList[i]" checked="checked" class="filled-in" />
+                                                    <span>
+                                                    @chainList[i]
+                                                    </span>
+                                                    </label>
+                                                    </div>
+                                                    } *@
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="row deals  results">
+                                                                Currently we are experiencing some problem for your destination or dates. Kindly select another dates. Sorry for inconvience.
+                                                            </div>
+                                                        }
+                                                    }
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        <div id="return"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-</section>
+        </div>
+    </section>
 
-@functions {
-    string GetReviewScoreClass(string reviewScore)
-    {
-        const double ExcellentThreshold = 9.0;
-        const double VeryGoodThreshold = 8.5;
-        const double GoodThreshold = 8.0;
-        const double AverageThreshold = 7.0;
-
-        double score;
-        if (double.TryParse(reviewScore, out score))
+    @functions {
+        string GetReviewScoreClass(string reviewScore)
         {
-            if (score >= ExcellentThreshold)
+            const double ExcellentThreshold = 9.0;
+            const double VeryGoodThreshold = 8.5;
+            const double GoodThreshold = 8.0;
+            const double AverageThreshold = 7.0;
+
+            double score;
+            if (double.TryParse(reviewScore, out score))
             {
-                return "wonderful";
+                if (score >= ExcellentThreshold)
+                {
+                    return "wonderful";
+                }
+                else if (score >= VeryGoodThreshold)
+                {
+                    return "excellent";
+                }
+                else if (score >= GoodThreshold)
+                {
+                    return "very-good";
+                }
+                else if (score >= AverageThreshold)
+                {
+                    return "good";
+                }
+                else
+                {
+                    return "average";
+                }
             }
-            else if (score >= VeryGoodThreshold)
-            {
-                return "excellent";
-            }
-            else if (score >= GoodThreshold)
-            {
-                return "very-good";
-            }
-            else if (score >= AverageThreshold)
-            {
-                return "good";
-            }
-            else
-            {
-                return "average";
-            }
+            return "";
         }
-        return "";
     }
-}
 
     @section Scripts
     {
         <script src="~/assets/functions/js/HotelListing.js" asp-append-version="true"></script>
         <script src="assets/functions/js/index.js" asp-append-version="true"></script>
-  
+
         <script>
             $('.resetAll').click(function (e) {
                 e.preventDefault();
@@ -344,9 +496,9 @@
             function showAllHotels() {
                 var hotels = document.querySelectorAll('.deals.results');
                 hotels.forEach(function (hotel) {
-                    hotel.style.display = 'block'; 
+                    hotel.style.display = 'block';
                 });
-               
+
                 HotelCountCalculation(hotels.length);
             }
 
@@ -364,24 +516,24 @@
                 hotels.forEach(function (hotel) {
                     var hotelStars = hotel.querySelectorAll('.stars i').length;
                     if (selectedStars.includes(hotelStars)) {
-                        hotel.style.display = 'block'; 
+                        hotel.style.display = 'block';
                     } else {
-                        hotel.style.display = 'none'; 
+                        hotel.style.display = 'none';
                     }
                 });
-               
+
                 HotelCountCalculation(document.querySelectorAll('.deals.results:not([style*="display: none"])').length);
             }
 
-           
+
             document.addEventListener('change', function (event) {
-               
+
                 if (event.target.matches('.filled-in')) {
-                   
+
                     var selectedStars = Array.from(document.querySelectorAll('.filled-in:checked')).map(function (checkbox) {
                         return parseInt(checkbox.value);
                     });
-                   
+
                     filterHotelsByStars(selectedStars);
                 }
             });

@@ -245,7 +245,7 @@ a {
     }
 
 .tabContainerLeft {
-    padding: 24px 13px 0;
+    padding: 0px 13px 0;
     width: 100%;
 }
 
@@ -296,7 +296,7 @@ a {
 }
 
 .radioContainer {
-    margin-top: 22px;
+    margin-top: 0px;
 }
 
 .radioList {
